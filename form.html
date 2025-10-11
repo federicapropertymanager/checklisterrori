@@ -78,22 +78,35 @@
     <h1>Scarica la Checklist</h1>
     <p>Compila i campi qui sotto per riceverla e scoprire gli errori più comuni di chi affitta case vacanza.</p>
 
-    <form id="leadForm">
-      <label for="name">Nome</label>
-      <input type="text" id="name" name="name" placeholder="Inserisci il tuo nome" required>
+    <form id="checklistForm" onsubmit="sendData(event)">
+  <div class="form-group">
+    <label for="name">Nome</label>
+    <input type="text" id="name" name="name" placeholder="Inserisci il tuo nome" required>
+  </div>
 
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" placeholder="Inserisci la tua email" required>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" placeholder="Inserisci la tua email" required>
+  </div>
 
-      <label for="stato">Situazione</label>
-      <select id="stato" name="stato" required>
-        <option value="">Seleziona...</option>
-        <option value="Ho già una casa vacanza">Ho già una casa vacanza</option>
-        <option value="Sto per iniziare">Sto per iniziare</option>
-        <option value="Sto solo informandomi">Sto solo informandomi</option>
-      </select>
+  <div class="form-group">
+    <label for="phone">Telefono</label>
+    <input type="tel" id="phone" name="phone" placeholder="Inserisci il tuo numero" required>
+  </div>
 
-      <button type="submit">Invia e vai alla Checklist</button>
+  <div class="form-group">
+    <label for="situazione">Situazione</label>
+    <select id="situazione" name="situazione" required>
+      <option value="">Seleziona...</option>
+      <option value="Ho già una casa vacanza">Ho già una casa vacanza</option>
+      <option value="Sto per iniziare">Sto per iniziare</option>
+      <option value="Gestisco per altri">Gestisco per altri</option>
+    </select>
+  </div>
+
+  <button type="submit">Invia e vai alla Checklist</button>
+</form>
+
       <div class="success" id="successMsg">Dati inviati! Reindirizzamento...</div>
     </form>
   </div>
