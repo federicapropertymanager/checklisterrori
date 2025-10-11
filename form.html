@@ -1,202 +1,141 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Checklist - Federica Cellini</title>
-  <meta name="robots" content="noindex,nofollow">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Checklist – Federica Cellini</title>
+  <meta name="robots" content="noindex,nofollow" />
+
   <style>
-    body {
-      font-family: "Inter", Arial, sans-serif;
-      margin: 0;
-      background: #fafafa;
-      color: #1c1c1c;
+    :root{
+      --navy:#0A2540; --gold:#D4AF37; --gold-2:#E2BF56; --text:#1C1C1C; --muted:#555; --bg:#FAFAFA;
+      --radius:14px;
     }
-    .container {
-      max-width: 480px;
-      margin: 60px auto;
-      background: white;
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:var(--text)}
+    .container{
+      max-width: 520px; margin: 64px auto; background:#fff; padding:28px; border-radius:var(--radius);
+      box-shadow:0 6px 24px rgba(10,37,64,.08);
     }
-    h1 {
-      font-size: 22px;
-      font-weight: 800;
-      color: #0a2540;
-      margin-bottom: 8px;
-      text-align: center;
+    h1{margin:0 0 8px; font-size:24px; line-height:1.2; font-weight:800; color:var(--navy); text-align:center}
+    p.lead{margin:0 0 22px; color:var(--muted); font-size:15px; text-align:center}
+    label{display:block; font-size:14px; font-weight:600; margin:14px 0 6px}
+    input,select{
+      width:100%; padding:12px 14px; border:1px solid #e6e6e6; border-radius:12px; font-size:15px;
+      outline:none; background:#fff;
     }
-    p {
-      font-size: 15px;
-      text-align: center;
-      color: #555;
-      margin-bottom: 25px;
+    input:focus,select:focus{border-color:#cbd5e1; box-shadow:0 0 0 3px rgba(58,124,165,.12)}
+    button{
+      width:100%; margin-top:10px; padding:14px; border:0; border-radius:12px; cursor:pointer;
+      background:var(--gold); color:var(--navy); font-weight:800; font-size:16px;
+      transition:background .15s ease, transform .02s ease;
     }
-    label {
-      font-size: 14px;
-      font-weight: 600;
-      display: block;
-      margin-bottom: 5px;
+    button:hover{background:var(--gold-2)}
+    button:active{transform:translateY(1px)}
+    .success{
+      display:none; margin-top:14px; padding:12px; border-radius:12px; text-align:center;
+      background:#e8f7ef; color:#0a6b2b; font-weight:600; font-size:14px;
     }
-    input, select {
-      width: 100%;
-      padding: 12px;
-      border-radius: 10px;
-      border: 1px solid #ddd;
-      font-size: 15px;
-      margin-bottom: 16px;
-    }
-    button {
-      width: 100%;
-      background-color: #d4af37;
-      color: #0a2540;
-      border: none;
-      border-radius: 10px;
-      font-weight: 700;
-      font-size: 16px;
-      padding: 14px;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-    button:hover {
-      background-color: #e2bf56;
-    }
-    .success {
-      display: none;
-      text-align: center;
-      background: #e7f6ec;
-      color: #0a6b2b;
-      padding: 10px;
-      border-radius: 10px;
-      margin-top: 15px;
-    }
+    .err{color:#b00020; font-size:13px; margin-top:6px; display:none}
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Scarica la Checklist</h1>
-    <p>Compila i campi qui sotto per riceverla e scoprire gli errori più comuni di chi affitta case vacanza.</p>
+    <p class="lead">Compila i campi per riceverla e scoprire i 7 errori più comuni che fanno perdere prenotazioni.</p>
 
-    <form id="checklistForm" onsubmit="sendData(event)">
-  <div class="form-group">
-    <label for="name">Nome</label>
-    <input type="text" id="name" name="name" placeholder="Inserisci il tuo nome" required>
-  </div>
+    <!-- FORM -->
+    <form id="leadForm" novalidate>
+      <label for="name">Nome</label>
+      <input id="name" name="name" type="text" placeholder="Inserisci il tuo nome" autocomplete="name" required />
 
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input type="email" id="email" name="email" placeholder="Inserisci la tua email" required>
-  </div>
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" placeholder="es. nome@email.com" autocomplete="email" required />
 
-  <div class="form-group">
-    <label for="phone">Telefono</label>
-    <input type="tel" id="phone" name="phone" placeholder="Inserisci il tuo numero" required>
-  </div>
+      <label for="phone">Telefono</label>
+      <input id="phone" name="phone" type="tel" inputmode="tel" placeholder="+39 3xx xxx xxxx" autocomplete="tel" required />
 
-  <div class="form-group">
-    <label for="situazione">Situazione</label>
-    <select id="situazione" name="situazione" required>
-      <option value="">Seleziona...</option>
-      <option value="Ho già una casa vacanza">Ho già una casa vacanza</option>
-      <option value="Sto per iniziare">Sto per iniziare</option>
-      <option value="Gestisco per altri">Gestisco per altri</option>
-    </select>
-  </div>
+      <label for="situazione">Situazione</label>
+      <select id="situazione" name="situazione" required>
+        <option value="">Seleziona…</option>
+        <option value="Ho già una casa vacanza">Ho già una casa vacanza</option>
+        <option value="Sto per iniziare">Sto per iniziare</option>
+        <option value="Gestisco per altri">Gestisco per altri</option>
+      </select>
 
-  <button type="submit">Invia e vai alla Checklist</button>
-</form>
-
-      <div class="success" id="successMsg">Dati inviati! Reindirizzamento...</div>
+      <button type="submit" id="submitBtn">Invia e vai alla Checklist</button>
+      <div class="success" id="successMsg">Dati inviati! Reindirizzamento…</div>
+      <div class="err" id="errMsg">Errore di rete. Riprova tra qualche secondo.</div>
     </form>
   </div>
 
   <script>
-    const ZAP_URL = "ZAPIER_WEBHOOK_URL"; // <-- Inserisci qui il tuo webhook Zapier
+    // 1) Endpoint APPS SCRIPT (deve essere “Chiunque” nella pubblicazione)
+    const ENDPOINT = "https://script.google.com/macros/s/AKfycbysELmr4ZOvglHJfEplkkO0E8mW1oDfZUbhkQ2mzHo0vJp4f0npo50SNz8NLGwL-SwZNA/exec";
+
+    // 2) URL landing di redirect
     const REDIRECT = "https://federicapropertymanager.github.io/checklisterrori/";
-<form id="leadForm">
-  <div class="form-group">
-    <label for="name">Nome</label>
-    <input id="name" name="name" type="text" placeholder="Inserisci il tuo nome" required>
-  </div>
 
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input id="email" name="email" type="email" placeholder="Inserisci la tua email" required>
-  </div>
+    // 3) Helper validazione semplice email
+    const isEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
-  <div class="form-group">
-    <label for="phone">Telefono</label>
-    <input id="phone" name="phone" type="tel" inputmode="tel" placeholder="+39 3xx xxx xxxx" required>
-  </div>
+    document.getElementById("leadForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById("submitBtn");
+      const ok = document.getElementById("successMsg");
+      const errBox = document.getElementById("errMsg");
+      errBox.style.display = "none";
 
-  <div class="form-group">
-    <label for="situazione">Situazione</label>
-    <select id="situazione" name="situazione" required>
-      <option value="">Seleziona…</option>
-      <option value="Ho già una casa vacanza">Ho già una casa vacanza</option>
-      <option value="Sto per iniziare">Sto per iniziare</option>
-      <option value="Gestisco per altri">Gestisco per altri</option>
-    </select>
-  </div>
+      // Campi
+      const name  = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const stato = document.getElementById("situazione").value;
 
-  <button type="submit">Invia e vai alla Checklist</button>
-</form>
-
-<!-- Sposta il messaggio di successo FUORI dal form e tienilo nascosto -->
-<div class="success" id="successMsg" style="display:none">Dati inviati! Reindirizzamento…</div>
-
-<script>
-  // 1) Un'unica costante con il TUO endpoint Apps Script
-  const ENDPOINT = "https://script.google.com/macros/s/AKfycbysELmr4ZOvglHJfEplkkO0E8mW1oDfZUbhkQ2mzHo0vJp4f0npo50SNz8NLGwL-SwZNA/exec";
-
-  // 2) URL di redirect (landing)
-  const REDIRECT = "https://federicapropertymanager.github.io/checklisterrori/";
-
-  // 3) Handler del form
-  document.getElementById("leadForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const btn = e.target.querySelector("button");
-    btn.disabled = true;
-    btn.textContent = "Invio in corso…";
-
-    const data = {
-      name: document.getElementById("name").value.trim(),
-      email: document.getElementById("email").value.trim(),
-      phone: document.getElementById("phone").value.trim(),
-      stato: document.getElementById("situazione").value,
-      timestamp: new Date().toISOString()
-    };
-
-    try {
-      // Percorso “fire-and-forget” super affidabile
-      if (navigator.sendBeacon) {
-        const blob = new Blob([JSON.stringify(data)], { type: "text/plain" });
-        navigator.sendBeacon(ENDPOINT, blob);
-        // Redirect immediato
-        window.location.href = REDIRECT;
+      // Validazione minima
+      if (!name || !isEmail(email) || !phone || !stato) {
+        errBox.textContent = "Compila correttamente tutti i campi.";
+        errBox.style.display = "block";
         return;
       }
 
-      // Fallback con fetch senza preflight
-      await fetch(ENDPOINT, {
-        method: "POST",
-        mode: "no-cors",
-        keepalive: true,
-        headers: { "Content-Type": "text/plain" },
-        body: JSON.stringify(data)
-      });
+      btn.disabled = true;
+      btn.textContent = "Invio in corso…";
 
-      document.getElementById("successMsg").style.display = "block";
-      setTimeout(() => window.location.href = REDIRECT, 300);
-    } catch (err) {
-      alert("Errore di rete, riprova tra poco.");
-      btn.disabled = false;
-      btn.textContent = "Invia e vai alla Checklist";
-    }
-  });
-</script>
+      const payload = {
+        name, email, phone, stato,
+        userAgent: navigator.userAgent,
+        ts: new Date().toISOString()
+      };
 
+      try {
+        // 3a) Invio “fire-and-forget” (super affidabile sui device mobili)
+        if (navigator.sendBeacon) {
+          const blob = new Blob([JSON.stringify(payload)], { type: "text/plain" });
+          navigator.sendBeacon(ENDPOINT, blob);
+          // Redirect immediato
+          window.location.href = REDIRECT;
+          return;
+        }
+
+        // 3b) Fallback senza preflight (no-cors + text/plain)
+        await fetch(ENDPOINT, {
+          method: "POST",
+          mode: "no-cors",
+          keepalive: true,
+          headers: { "Content-Type": "text/plain" },
+          body: JSON.stringify(payload)
+        });
+
+        ok.style.display = "block";
+        setTimeout(() => window.location.href = REDIRECT, 300);
+      } catch (e) {
+        errBox.textContent = "Errore di rete. Riprova tra qualche secondo.";
+        errBox.style.display = "block";
+        btn.disabled = false;
+        btn.textContent = "Invia e vai alla Checklist";
+      }
+    });
+  </script>
 </body>
 </html>
