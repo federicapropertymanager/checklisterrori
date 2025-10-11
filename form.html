@@ -114,49 +114,89 @@
   <script>
     const ZAP_URL = "ZAPIER_WEBHOOK_URL"; // <-- Inserisci qui il tuo webhook Zapier
     const REDIRECT = "https://federicapropertymanager.github.io/checklisterrori/";
+<form id="leadForm">
+  <div class="form-group">
+    <label for="name">Nome</label>
+    <input id="name" name="name" type="text" placeholder="Inserisci il tuo nome" required>
+  </div>
 
-    document.getElementById("leadForm").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const btn = e.target.querySelector("button");
-      btn.disabled = true;
-      btn.textContent = "Invio in corso...";
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input id="email" name="email" type="email" placeholder="Inserisci la tua email" required>
+  </div>
 
-      const data = {
-        name: document.getElementById("name").value.trim(),
-        email: document.getElementById("email").value.trim(),
-        stato: document.getElementById("stato").value,
-        timestamp: new Date().toISOString()
-      };
+  <div class="form-group">
+    <label for="phone">Telefono</label>
+    <input id="phone" name="phone" type="tel" inputmode="tel" placeholder="+39 3xx xxx xxxx" required>
+  </div>
 
-      try {
-  // 1) invio "fire-and-forget" super affidabile
-  if (navigator.sendBeacon) {
-    const blob = new Blob([JSON.stringify(data)], { type: "text/plain" });
-    navigator.sendBeacon("https://script.google.com/macros/s/AKfycbysELmr4ZOvglHJfEplkkO0E8mW1oDfZUbhkQ2mzHo0vJp4f0npo50SNz8NLGwL-SwZNA/exec", blob);
-    // redirect immediato
-    window.location.href = REDIRECT;
-    return;
-  }
+  <div class="form-group">
+    <label for="situazione">Situazione</label>
+    <select id="situazione" name="situazione" required>
+      <option value="">Seleziona…</option>
+      <option value="Ho già una casa vacanza">Ho già una casa vacanza</option>
+      <option value="Sto per iniziare">Sto per iniziare</option>
+      <option value="Gestisco per altri">Gestisco per altri</option>
+    </select>
+  </div>
 
-  // 2) fallback con fetch senza preflight
-  await fetch("https://script.google.com/macros/s/AKfycbysELmr4ZOvglHJfEplkkO0E8mW1oDfZUbhkQ2mzHo0vJp4f0npo50SNz8NLGwL-SwZNA/exec", {
-    method: "POST",
-    mode: "no-cors",               // evita il preflight
-    keepalive: true,               // continua anche se si naviga via
-    headers: { "Content-Type": "text/plain" }, // niente application/json
-    body: JSON.stringify(data)
+  <button type="submit">Invia e vai alla Checklist</button>
+</form>
+
+<!-- Sposta il messaggio di successo FUORI dal form e tienilo nascosto -->
+<div class="success" id="successMsg" style="display:none">Dati inviati! Reindirizzamento…</div>
+
+<script>
+  // 1) Un'unica costante con il TUO endpoint Apps Script
+  const ENDPOINT = "https://script.google.com/macros/s/AKfycbysELmr4ZOvglHJfEplkkO0E8mW1oDfZUbhkQ2mzHo0vJp4f0npo50SNz8NLGwL-SwZNA/exec";
+
+  // 2) URL di redirect (landing)
+  const REDIRECT = "https://federicapropertymanager.github.io/checklisterrori/";
+
+  // 3) Handler del form
+  document.getElementById("leadForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const btn = e.target.querySelector("button");
+    btn.disabled = true;
+    btn.textContent = "Invio in corso…";
+
+    const data = {
+      name: document.getElementById("name").value.trim(),
+      email: document.getElementById("email").value.trim(),
+      phone: document.getElementById("phone").value.trim(),
+      stato: document.getElementById("situazione").value,
+      timestamp: new Date().toISOString()
+    };
+
+    try {
+      // Percorso “fire-and-forget” super affidabile
+      if (navigator.sendBeacon) {
+        const blob = new Blob([JSON.stringify(data)], { type: "text/plain" });
+        navigator.sendBeacon(ENDPOINT, blob);
+        // Redirect immediato
+        window.location.href = REDIRECT;
+        return;
+      }
+
+      // Fallback con fetch senza preflight
+      await fetch(ENDPOINT, {
+        method: "POST",
+        mode: "no-cors",
+        keepalive: true,
+        headers: { "Content-Type": "text/plain" },
+        body: JSON.stringify(data)
+      });
+
+      document.getElementById("successMsg").style.display = "block";
+      setTimeout(() => window.location.href = REDIRECT, 300);
+    } catch (err) {
+      alert("Errore di rete, riprova tra poco.");
+      btn.disabled = false;
+      btn.textContent = "Invia e vai alla Checklist";
+    }
   });
+</script>
 
-  // Mostra messaggio e poi vai
-  document.getElementById("successMsg").style.display = "block";
-  setTimeout(() => window.location.href = REDIRECT, 300);
-} catch (err) {
-  alert("Errore di rete, riprova tra qualche secondo.");
-  btn.disabled = false;
-  btn.textContent = "Invia e vai alla Checklist";
-}
-
-    });
-  </script>
 </body>
 </html>
