@@ -129,10 +129,12 @@
       };
 
       try {
-        await fetch(ZAP_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data)
+        await fetch("https://script.google.com/macros/s/AKfycbysELmr4ZOvglHJfEplkkO0E8mW1oDfZUbhkQ2mzHo0vJp4f0npo50SNz8NLGwL-SwZNA/exec", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+});
+
         });
         document.getElementById("successMsg").style.display = "block";
         setTimeout(() => window.location.href = REDIRECT, 800);
