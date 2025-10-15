@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Checklist – Federica Cellini</title>
+  <title>Scarica la guida — Federica Cellini</title>
   <meta name="robots" content="noindex,nofollow" />
   <style>
     :root{
@@ -40,8 +40,8 @@
 </head>
 <body>
   <div class="container">
-    <h1>Scarica la Checklist</h1>
-    <p class="lead">Compila i campi per riceverla e scoprire i 7 errori più comuni che fanno perdere prenotazioni.</p>
+    <h1>Scarica la guida</h1>
+    <p class="lead" id="leadText">Compila i campi per riceverla in pochi secondi.</p>
 
     <form id="leadForm" novalidate>
       <label for="name">Nome</label>
@@ -61,17 +61,42 @@
         <option value="Gestisco per altri">Gestisco per altri</option>
       </select>
 
-      <button type="submit" id="submitBtn">Invia e vai alla Checklist</button>
+      <!-- UTM e campaign via URL -->
+      <input type="hidden" id="campaign" name="campaign">
+      <input type="hidden" id="utm_source" name="utm_source">
+      <input type="hidden" id="utm_medium" name="utm_medium">
+      <input type="hidden" id="utm_campaign" name="utm_campaign">
+
+      <button type="submit" id="submitBtn">Invia e scarica</button>
       <div class="success" id="successMsg" aria-live="polite">Dati inviati! Reindirizzamento…</div>
       <div class="err" id="errMsg">Errore di rete. Riprova tra qualche secondo.</div>
     </form>
   </div>
 
   <script>
-    // Endpoint Apps Script pubblicato con accesso "Chiunque"
+    // === CONFIG ===
     const ENDPOINT = "https://script.google.com/macros/s/AKfycbysELmr4ZOvglHJfEplkkO0E8mW1oDfZUbhkQ2mzHo0vJp4f0npo50SNz8NLGwL-SwZNA/exec";
-    // URL landing di redirect
-    const REDIRECT = "https://federicapropertymanager.github.io/checklisterrori/";
+    const params = new URLSearchParams(location.search);
+    const REDIRECT = params.get('redirect') ?
+      decodeURIComponent(params.get('redirect')) :
+      "https://federicapropertymanager.github.io/checklisterrori/";
+
+    // Campaign & UTM dal querystring (se presenti)
+    const campaign = params.get('campaign') || '';
+    const utm_source   = params.get('utm_source')   || '';
+    const utm_medium   = params.get('utm_medium')   || '';
+    const utm_campaign = params.get('utm_campaign') || campaign;
+
+    // Popola hidden + testo lead
+    document.getElementById('campaign').value     = campaign;
+    document.getElementById('utm_source').value   = utm_source;
+    document.getElementById('utm_medium').value   = utm_medium;
+    document.getElementById('utm_campaign').value = utm_campaign;
+    const leadText = document.getElementById('leadText');
+    if (campaign === 'errori')   leadText.textContent = "Checklist: scopri i 7 errori più comuni che fanno perdere prenotazioni.";
+    if (campaign === 'regole')   leadText.textContent = "Mini-guida: le 5 regole che ogni host deve conoscere.";
+    if (campaign === 'gestione') leadText.textContent = "Dietro le quinte: come funziona davvero la gestione, senza stress.";
+
     // Validazione minima email
     const isEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
@@ -98,13 +123,14 @@
       btn.textContent = "Invio in corso…";
 
       const payload = {
-        name, email, phone, situazione,            // <-- chiave corretta
+        name, email, phone, situazione,
+        campaign, utm_source, utm_medium, utm_campaign,
         userAgent: navigator.userAgent,
         ts: new Date().toISOString()
       };
 
       try {
-        // Percorso “fire-and-forget” affidabile (mobile-friendly)
+        // sendBeacon
         if (navigator.sendBeacon) {
           const blob = new Blob([JSON.stringify(payload)], { type: "text/plain" });
           navigator.sendBeacon(ENDPOINT, blob);
@@ -112,7 +138,7 @@
           return;
         }
 
-        // Fallback senza preflight
+        // Fallback fetch no-cors
         await fetch(ENDPOINT, {
           method: "POST",
           mode: "no-cors",
@@ -127,7 +153,7 @@
         errBox.textContent = "Errore di rete. Riprova tra qualche secondo.";
         errBox.style.display = "block";
         btn.disabled = false;
-        btn.textContent = "Invia e vai alla Checklist";
+        btn.textContent = "Invia e scarica";
       }
     });
   </script>
