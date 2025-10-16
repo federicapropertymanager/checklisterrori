@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Scarica la checklist — Errori</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <style>
+    :root{ --navy:#0A2540; --gold:#D4AF37; --gold-2:#E2BF56; --text:#1C1C1C; --muted:#555; --bg:#FAFAFA; --radius:14px; }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:var(--text)}
+    .container{ max-width:520px;margin:64px auto;background:#fff;padding:28px;border-radius:var(--radius); box-shadow:0 6px 24px rgba(10,37,64,.08); }
+    h1{margin:0 0 8px;font-size:24px;line-height:1.2;font-weight:800;color:var(--navy);text-align:center}
+    p.lead{margin:0 0 22px;color:var(--muted);font-size:15px;text-align:center}
+    label{display:block;font-size:14px;font-weight:600;margin:14px 0 6px}
+    input,select{ width:100%;padding:12px 14px;border:1px solid #e6e6e6;border-radius:12px;font-size:15px;outline:none;background:#fff; }
+    input:focus,select:focus{border-color:#cbd5e1;box-shadow:0 0 0 3px rgba(58,124,165,.12)}
+    button{ width:100%;margin-top:10px;padding:14px;border:0;border-radius:12px;cursor:pointer;background:var(--gold);color:var(--navy);font-weight:800;font-size:16px;transition:background .15s ease,transform .02s ease; }
+    button:hover{background:var(--gold-2)} button:active{transform:translateY(1px)}
+    .success{ display:none;margin-top:14px;padding:12px;border-radius:12px;text-align:center;background:#e8f7ef;color:#0a6b2b;font-weight:600;font-size:14px; }
+    .err{color:#b00020;font-size:13px;margin-top:6px;display:none}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Scarica la Checklist</h1>
+    <p class="lead" id="leadText">Compila i campi per riceverla in pochi secondi.</p>
+
+    <form id="leadForm" novalidate>
+      <label for="name">Nome</label>
+      <input id="name" name="name" type="text" placeholder="Inserisci il tuo nome" autocomplete="name" required />
+
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" placeholder="es. nome@email.com" autocomplete="email" required />
+
+      <label for="phone">Telefono</label>
+      <input id="phone" name="phone" type="tel" inputmode="tel" placeholder="+39 3xx xxx xxxx" autocomplete="tel" required />
+
+      <label for="situazione">Situazione</label>
+      <select id="situazione" name="situazione" required>
+        <option value="">Seleziona…</option>
+        <option value="Ho già una casa vacanza">Ho già una casa vacanza</option>
+        <option value="Sto per iniziare">Sto per iniziare</option>
+        <option value="Gestisco per altri">Gestisco per altri</option>
+      </select>
+
+      <!-- UTM -->
+      <input type="hidden" id="utm_source" name="utm_source">
+      <input type="hidden" id="utm_medium" name="utm_medium">
+      <input type="hidden" id="utm_campaign" name="utm_campaign">
+
+      <button type="submit" id="submitBtn">Invia e scarica la checklist</button>
+      <div class="success" id="successMsg" aria-live="polite">Dati inviati! Reindirizzamento…</div>
+      <div class="err" id="errMsg">Errore di rete. Riprova tra qualche secondo.</div>
+    </form>
+  </div>
+
+  <script>
+    const ENDPOINT = "https://script.google.com/macros/s/AKfycbysELmr4ZOvglHJfEplkkO0E8mW1oDfZUbhkQ2mzHo0vJp4f0npo50SNz8NLGwL-SwZNA/exec";
+    const KEYWORD  = "errori";
+    const REDIRECT = "https://federicapropertymanager.github.io/checklisterrori/errori/";
+
+    (function(){
+      const p = new URLSearchParams(location.search);
+      ['utm_source','utm_medium','utm_campaign'].forEach(k=>{
+        const v = p.get(k); if(v) document.getElementById(k).value = v;
+      });
+      document.getElementById('leadText').textContent = "Checklist: i 7 errori che fanno perdere prenotazioni.";
+    })();
+
+    const isEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+
+    document.getElementById("leadForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const btn    = document.getElementById("submitBtn");
+      const okBox  = document.getElementById("successMsg");
+      const errBox = document.getElementById("errMsg");
+      errBox.style.display = "none";
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const situazione = document.getElementById("situazione").value;
+
+      if (!name || !isEmail(email) || !phone || !situazione) {
+        errBox.textContent = "Compila correttamente tutti i campi.";
+        errBox.style.display = "block";
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = "Invio in corso…";
+
+      const payload = {
+        name, email, phone, situazione,
+        campaign: KEYWORD,
+        utm_source: document.getElementById("utm_source").value || "",
+        utm_medium: document.getElementById("utm_medium").value || "",
+        utm_campaign: document.getElementById("utm_campaign").value || KEYWORD,
+        userAgent: navigator.userAgent,
+        ts: new Date().toISOString()
+      };
+
+      try {
+        if (navigator.sendBeacon) {
+          const blob = new Blob([JSON.stringify(payload)], { type:"text/plain" });
+          navigator.sendBeacon(ENDPOINT, blob);
+          window.location.href = REDIRECT;
+          return;
+        }
+        await fetch(ENDPOINT, { method:"POST", mode:"no-cors", keepalive:true, headers:{ "Content-Type":"text/plain" }, body: JSON.stringify(payload) });
+        okBox.style.display = "block";
+        setTimeout(()=> window.location.href = REDIRECT, 300);
+      } catch(err) {
+        errBox.textContent = "Errore di rete. Riprova tra qualche secondo.";
+        errBox.style.display = "block";
+        btn.disabled = false;
+        btn.textContent = "Invia e scarica la checklist";
+      }
+    });
+  </script>
+</body>
+</html>
