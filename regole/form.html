@@ -1,115 +1,65 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Scarica la guida gestione — Federica Cellini</title>
-  <meta name="robots" content="noindex,nofollow" />
-  <style>
-    :root{ --navy:#0A2540; --gold:#D4AF37; --gold-2:#E2BF56; --text:#1C1C1C; --muted:#555; --bg:#FAFAFA; --radius:14px; }
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:var(--text)}
-    .container{max-width:520px;margin:64px auto;background:#fff;padding:28px;border-radius:var(--radius);box-shadow:0 6px 24px rgba(10,37,64,.08)}
-    h1{margin:0 0 8px;font-size:24px;line-height:1.2;font-weight:800;color:var(--navy);text-align:center}
-    p.lead{margin:0 0 22px;color:var(--muted);font-size:15px;text-align:center}
-    label{display:block;font-size:14px;font-weight:600;margin:14px 0 6px}
-    input,select{width:100%;padding:12px 14px;border:1px solid #e6e6e6;border-radius:12px;font-size:15px;background:#fff;outline:none}
-    input:focus,select:focus{border-color:#cbd5e1;box-shadow:0 0 0 3px rgba(58,124,165,.12)}
-    button{width:100%;margin-top:10px;padding:14px;border:0;border-radius:12px;cursor:pointer;background:var(--gold);color:var(--navy);font-weight:800;font-size:16px;transition:background .15s ease,transform .02s ease}
-    button:hover{background:var(--gold-2)} button:active{transform:translateY(1px)}
-    .success{display:none;margin-top:14px;padding:12px;border-radius:12px;text-align:center;background:#e8f7ef;color:#0a6b2b;font-weight:600;font-size:14px}
-    .err{color:#b00020;font-size:13px;margin-top:6px;display:none}
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>Scarica la guida sulla gestione</h1>
-    <p class="lead">Compila i campi per riceverla in pochi secondi.</p>
+<script>
+  const ENDPOINT = "https://script.google.com/macros/s/AKfycbysELmr4ZOvglHJfEplkkO0E8mW1oDfZUbhkQ2mzHo0vJp4f0npo50SNz8NLGwL-SwZNA/exec";
+  const REDIRECT = "https://federicapropertymanager.github.io/checklisterrori/regole/";
+  const TIPOLOGIA = "regole";
 
-    <form id="leadForm" novalidate>
-      <label for="name">Nome</label>
-      <input id="name" type="text" placeholder="Inserisci il tuo nome" autocomplete="name" required />
+  const q = new URLSearchParams(location.search);
+  const utm_source   = q.get('utm_source')   || '';
+  const utm_medium   = q.get('utm_medium')   || '';
+  const utm_campaign = q.get('utm_campaign') || TIPOLOGIA;
 
-      <label for="email">Email</label>
-      <input id="email" type="email" placeholder="es. nome@email.com" autocomplete="email" required />
+  const PROVENIENZA = utm_source || 'instagram';
+  const isEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
-      <label for="phone">Telefono</label>
-      <input id="phone" type="tel" inputmode="tel" placeholder="+39 3xx xxx xxxx" autocomplete="tel" required />
+  document.getElementById("leadForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-      <label for="situazione">Situazione</label>
-      <select id="situazione" required>
-        <option value="">Seleziona…</option>
-        <option>Ho già una casa vacanza</option>
-        <option>Sto per iniziare</option>
-        <option>Gestisco per altri</option>
-      </select>
+    const btn = document.getElementById("submitBtn");
+    const ok  = document.getElementById("successMsg");
+    const err = document.getElementById("errMsg");
+    err.style.display = "none";
 
-      <button type="submit" id="submitBtn">Invia e scarica la guida</button>
-      <div class="success" id="successMsg" aria-live="polite">Dati inviati! Reindirizzamento…</div>
-      <div class="err" id="errMsg">Errore di rete. Riprova tra qualche secondo.</div>
-    </form>
-  </div>
+    const Nome       = document.getElementById("name").value.trim();
+    const Email      = document.getElementById("email").value.trim();
+    const Telefono   = document.getElementById("phone").value.trim();
+    const Situazione = document.getElementById("situazione").value;
 
-  <script>
-    const ENDPOINT = "https://script.google.com/macros/s/AKfycbysELmr4ZOvglHJfEplkkO0E8mW1oDfZUbhkQ2mzHo0vJp4f0npo50SNz8NLGwL-SwZNA/exec";
-    const REDIRECT = "https://federicapropertymanager.github.io/checklisterrori/gestione/";
-    const TIPOLOGIA = "gestione";
+    if (!Nome || !isEmail(Email) || !Telefono || !Situazione) {
+      err.textContent = "Compila correttamente tutti i campi.";
+      err.style.display = "block";
+      return;
+    }
 
-    const q = new URLSearchParams(location.search);
-    const utm_source   = q.get('utm_source')   || '';
-    const utm_medium   = q.get('utm_medium')   || '';
-    const utm_campaign = q.get('utm_campaign') || TIPOLOGIA;
+    btn.disabled = true; btn.textContent = "Invio in corso…";
 
-    const PROVENIENZA = utm_source || 'instagram';
-    const isEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+    const payload = {
+      Nome, Email, Telefono, Situazione,
+      Tipologia: TIPOLOGIA,
+      Prenotato: "No",
+      Provenienza: PROVENIENZA,
+      utm_source, utm_medium, utm_campaign,
+      ts: new Date().toISOString(),
+      userAgent: navigator.userAgent
+    };
+    const qs = new URLSearchParams(payload).toString();
 
-    document.getElementById("leadForm").addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      const btn = document.getElementById("submitBtn");
-      const ok  = document.getElementById("successMsg");
-      const err = document.getElementById("errMsg");
-      err.style.display = "none";
-
-      const Nome       = document.getElementById("name").value.trim();
-      const Email      = document.getElementById("email").value.trim();
-      const Telefono   = document.getElementById("phone").value.trim();
-      const Situazione = document.getElementById("situazione").value;
-
-      if (!Nome || !isEmail(Email) || !Telefono || !Situazione) {
-        err.textContent = "Compila correttamente tutti i campi.";
-        err.style.display = "block";
+    try {
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(ENDPOINT + "?" + qs, new Blob([], {type:"text/plain"}));
+        location.href = REDIRECT;
         return;
       }
-
-      btn.disabled = true; btn.textContent = "Invio in corso…";
-
-      const payload = {
-        Nome, Email, Telefono, Situazione,
-        Tipologia: TIPOLOGIA,
-        Prenotato: "No",
-        Provenienza: PROVENIENZA,
-        utm_source, utm_medium, utm_campaign,
-        ts: new Date().toISOString(),
-        userAgent: navigator.userAgent
-      };
-
-      try {
-        if (navigator.sendBeacon) {
-          const blob = new Blob([JSON.stringify(payload)], { type: "text/plain" });
-          navigator.sendBeacon(ENDPOINT, blob);
-          location.href = REDIRECT;
-          return;
-        }
-        await fetch(ENDPOINT, { method:"POST", mode:"no-cors", keepalive:true, headers:{ "Content-Type":"text/plain" }, body: JSON.stringify(payload) });
-        ok.style.display = "block";
-        setTimeout(()=> location.href = REDIRECT, 200);
-      } catch {
-        err.textContent = "Errore di rete. Riprova tra qualche secondo.";
-        err.style.display = "block";
-        btn.disabled = false; btn.textContent = "Invia e scarica la guida";
-      }
-    });
-  </script>
-</body>
-</html>
+      await fetch(ENDPOINT, {
+        method:"POST", mode:"no-cors", keepalive:true,
+        headers:{ "Content-Type":"application/x-www-form-urlencoded;charset=UTF-8" },
+        body: qs
+      });
+      ok.style.display = "block";
+      setTimeout(()=> location.href = REDIRECT, 200);
+    } catch {
+      err.textContent = "Errore di rete. Riprova tra qualche secondo.";
+      err.style.display = "block";
+      btn.disabled = false; btn.textContent = "Invia e scarica la guida";
+    }
+  });
+</script>
