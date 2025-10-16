@@ -26,6 +26,8 @@
   .btn{display:inline-flex;align-items:center;gap:12px;padding:16px 22px;border-radius:14px;font-weight:700;border:2px solid transparent;transition:.15s ease;justify-content:center}
   .btn-primary{background:var(--gold);color:#0A2540}
   .btn-primary:hover{filter:brightness(.95)}
+  .btn-ghost{background:transparent;border-color:#2D4962;color:#E8F1F7;border:2px solid #2D4962}
+  .btn-ghost:hover{background:#0f3555}
   .note{margin-top:18px;border:1px solid #26425B;background:rgba(255,255,255,.03);color:#DCE8F0;border-radius:14px;padding:14px 16px}
 
   /* Sections */
@@ -37,7 +39,6 @@
   @media(min-width:900px){.grid-3{grid-template-columns:repeat(3,1fr)}}
   .feature{background:#fff;border:1px solid #EAEAEA;border-radius:14px;padding:16px;box-shadow:0 4px 14px rgba(10,37,64,.06)}
   .feature b{color:#0A2540}
-  .spacer{height:10px}
 
   /* Proof section base */
   .proof-grid{display:grid;gap:18px;grid-template-columns:1fr}
@@ -61,13 +62,14 @@
     .shot,.s1,.s2,.s3,.s4,.s5{grid-column:auto;grid-row:auto;transform:none;z-index:auto}
   }
 
-  /* Lightbox + CTA sticky */
+  /* Lightbox */
   .lightbox{position:fixed;inset:0;background:rgba(10,37,64,.8);display:none;align-items:center;justify-content:center;padding:24px;z-index:1000}
   .lightbox:target{display:flex}
   .lb-content{max-width:92vw;max-height:88vh;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.35)}
   .lb-img{display:block;max-width:92vw;max-height:82vh}
   .lb-cap{margin:0;background:#0A2540;color:#EAF2F8;padding:10px 14px;font-size:.95rem}
   .lb-close{position:fixed;top:14px;right:16px;font-size:34px;color:#fff;text-decoration:none;line-height:1}
+
   .cta-bar{position:sticky;bottom:0;left:0;right:0;background:#0A2540;border-top:1px solid rgba(255,255,255,.12);padding:14px 0;z-index:40}
 </style>
 </head>
@@ -80,10 +82,10 @@
       <h1>Come funziona <span class="hi">davvero</span> la gestione</h1>
       <p class="lead">Dalla comunicazione con gli ospiti alla manutenzione: come lavora un PM e cosa puoi delegare per liberare tempo (senza perdere controllo).</p>
       <div class="stack">
-        <!-- Bottone: link diretto al PDF -->
-        <a id="cta-download" class="btn btn-primary"
-           href="https://drive.google.com/file/d/1d8WxW1Cp0OXpqj8KVWeqNz0TlB2s4_u-/view?usp=drive_link"
-           target="_blank" rel="noopener">📄 Scarica la guida</a>
+        <!-- 1) Download guida -->
+        <a class="btn btn-primary" href="https://drive.google.com/uc?export=download&id=1d8WxW1Cp0OXpqj8KVWeqNz0TlB2s4_u-" target="_blank" rel="noopener">📄 Scarica la guida</a>
+        <!-- 2) Prenota consulenza (il bottone che mancava) -->
+        <a class="btn btn-ghost" href="https://calendly.com/federica-cellini88/30min" target="_blank" rel="noopener">Prenota una consulenza gratuita</a>
       </div>
       <div class="note">
         <b>Dietro le quinte:</b> processi, automazioni e strumenti reali che permettono di gestire più case senza perdere qualità.
@@ -91,6 +93,7 @@
     </div>
   </header>
 
+  <!-- SEZIONE PERCHÉ / PROVE -->
   <section class="section">
     <div class="wrap">
       <h2>Gestione non è caos: è <span class="kicker">metodo</span></h2>
@@ -113,6 +116,7 @@
         </div>
       </section>
 
+      <!-- COLLAGE -->
       <section class="section" id="prove">
         <h2>Prove & risultati reali</h2>
         <p class="muted">Screenshot originali (dati sensibili oscurati). Clicca per ingrandire.</p>
@@ -129,6 +133,7 @@
     </div>
   </section>
 
+  <!-- CALL -->
   <section class="section alt">
     <div class="wrap">
       <h2>Come funziona la call gratuita (30’)</h2>
@@ -141,6 +146,7 @@
     </div>
   </section>
 
+  <!-- ABOUT -->
   <section class="section">
     <div class="wrap">
       <h2>Chi è Federica Cellini</h2>
@@ -148,13 +154,10 @@
     </div>
   </section>
 
-  <!-- CTA STICKY (come “errori”) -->
+  <!-- CTA STICKY -->
   <div class="cta-bar">
     <div class="wrap">
-      <a class="btn btn-primary" style="width:100%"
-         href="https://calendly.com/federica-cellini88/30min" target="_blank" rel="noopener">
-         Prenota la consulenza gratuita
-      </a>
+      <a class="btn btn-primary" style="width:100%" href="https://calendly.com/federica-cellini88/30min" target="_blank" rel="noopener">Prenota la consulenza gratuita</a>
     </div>
   </div>
 
