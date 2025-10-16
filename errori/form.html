@@ -56,16 +56,15 @@
     const REDIRECT = "https://federicapropertymanager.github.io/checklisterrori/errori/";
     const TIPOLOGIA = "errori";
 
-    // UTM from URL
+    // UTM dal link
     const q = new URLSearchParams(location.search);
     const utm_source   = q.get('utm_source')   || '';
     const utm_medium   = q.get('utm_medium')   || '';
     const utm_campaign = q.get('utm_campaign') || TIPOLOGIA;
 
-    // Provenienza di default dal canale (o "instagram")
+    // Provenienza = canale (default instagram)
     const PROVENIENZA = utm_source || 'instagram';
 
-    // Email quick check
     const isEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
     document.getElementById("leadForm").addEventListener("submit", async (e) => {
@@ -89,14 +88,13 @@
 
       btn.disabled = true; btn.textContent = "Invio in corso…";
 
-      // Payload con ESATTAMENTE i nomi delle colonne/chiavi attese
       const payload = {
         Nome, Email, Telefono, Situazione,
         Tipologia: TIPOLOGIA,
         Prenotato: "No",
         Provenienza: PROVENIENZA,
         utm_source, utm_medium, utm_campaign,
-        ts: new Date().toISOString(),        // usato dal server come Data
+        ts: new Date().toISOString(),
         userAgent: navigator.userAgent
       };
 
