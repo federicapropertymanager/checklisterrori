@@ -5,6 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Scarica la checklist — Federica Cellini</title>
   <meta name="robots" content="noindex,nofollow" />
+  
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1375982357419853'); 
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1375982357419853&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- End Meta Pixel Code -->
+
   <style>
     :root{ --navy:#0A2540; --gold:#D4AF37; --gold-2:#E2BF56; --text:#1C1C1C; --muted:#555; --bg:#FAFAFA; --radius:14px; }
     *{box-sizing:border-box}
@@ -48,38 +68,32 @@
       <button type="submit" id="submitBtn">Invia e scarica la checklist</button>
       <div class="success" id="successMsg" aria-live="polite">Dati inviati! Reindirizzamento…</div>
       <div class="err" id="errMsg">Errore di rete. Riprova tra qualche secondo.</div>
-      <noscript>Per favore attiva JavaScript e ricarica.</noscript>
     </form>
   </div>
 
   <script>
-    // === CONFIG ===
     const ENDPOINT = "https://script.google.com/macros/s/AKfycbysELmr4ZOvglHJfEplkkO0E8mW1oDfZUbhkQ2mzHo0vJp4f0npo50SNz8NLGwL-SwZNA/exec";
     const REDIRECT = "https://federicapropertymanager.github.io/checklisterrori/errori/";
     const TIPOLOGIA = "errori";
 
-    // UTM dal link
     const q = new URLSearchParams(location.search);
     const utm_source   = q.get('utm_source')   || '';
     const utm_medium   = q.get('utm_medium')   || '';
     const utm_campaign = q.get('utm_campaign') || TIPOLOGIA;
-
-    // Provenienza = canale (default instagram)
     const PROVENIENZA = utm_source || 'instagram';
-
     const isEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
     document.getElementById("leadForm").addEventListener("submit", async (e) => {
       e.preventDefault();
 
-      const btn    = document.getElementById("submitBtn");
-      const okBox  = document.getElementById("successMsg");
+      const btn = document.getElementById("submitBtn");
+      const okBox = document.getElementById("successMsg");
       const errBox = document.getElementById("errMsg");
       errBox.style.display = "none";
 
-      const Nome       = document.getElementById("name").value.trim();
-      const Email      = document.getElementById("email").value.trim();
-      const Telefono   = document.getElementById("phone").value.trim();
+      const Nome = document.getElementById("name").value.trim();
+      const Email = document.getElementById("email").value.trim();
+      const Telefono = document.getElementById("phone").value.trim();
       const Situazione = document.getElementById("situazione").value;
 
       if (!Nome || !isEmail(Email) || !Telefono || !Situazione) {
@@ -88,40 +102,20 @@
         return;
       }
 
+      fbq('track', 'Lead'); // 🔥 tracciamento evento
+
       btn.disabled = true; btn.textContent = "Invio in corso…";
 
-      // payload (chiavi = intestazioni foglio)
-      const payload = {
-        Nome, Email, Telefono, Situazione,
-        Tipologia: TIPOLOGIA,
-        Prenotato: "No",
-        Provenienza: PROVENIENZA,
-        utm_source, utm_medium, utm_campaign,
-        ts: new Date().toISOString(),
-        userAgent: navigator.userAgent
-      };
-
-      // Querystring di fallback (sempre presente)
+      const payload = { Nome, Email, Telefono, Situazione, Tipologia: TIPOLOGIA, Prenotato: "No", Provenienza: PROVENIENZA, utm_source, utm_medium, utm_campaign, ts: new Date().toISOString(), userAgent: navigator.userAgent };
       const qs = new URLSearchParams(payload).toString();
 
       try {
-        // 1) sendBeacon: metto i dati ANCHE in querystring (così il server li legge da e.parameter)
         if (navigator.sendBeacon) {
-          const url = ENDPOINT + "?" + qs;
-          navigator.sendBeacon(url, new Blob([], { type: "text/plain" }));
+          navigator.sendBeacon(ENDPOINT + "?" + qs, new Blob([], { type: "text/plain" }));
           location.href = REDIRECT;
           return;
         }
-
-        // 2) fetch: classico urlencoded (super compatibile con Apps Script)
-        await fetch(ENDPOINT, {
-          method: "POST",
-          mode: "no-cors",
-          keepalive: true,
-          headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
-          body: qs
-        });
-
+        await fetch(ENDPOINT, { method: "POST", mode: "no-cors", keepalive: true, headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" }, body: qs });
         okBox.style.display = "block";
         setTimeout(()=> location.href = REDIRECT, 200);
       } catch {
