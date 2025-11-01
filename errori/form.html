@@ -22,7 +22,7 @@
     noscript{display:block;color:#b00020;text-align:center;margin-top:12px}
   </style>
 
-  <!-- Meta Pixel (ID: 1375982357419853) -->
+  <!-- Meta Pixel -->
   <script>
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
@@ -30,8 +30,7 @@
     t=b.createElement(e); t.async=!0; t.src=v;
     s=b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s)
     }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init','1375982357419853'); // Federica PM Pixel
-    fbq('track','PageView');
+    fbq('init','1375982357419853'); fbq('track','PageView');
   </script>
   <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=1375982357419853&ev=PageView&noscript=1"/></noscript>
@@ -67,30 +66,28 @@
   </div>
 
   <script>
-    // === CONFIG ===
     const ENDPOINT = "https://script.google.com/macros/s/AKfycbysELmr4ZOvglHJfEplkkO0E8mW1oDfZUbhkQ2mzHo0vJp4f0npo50SNz8NLGwL-SwZNA/exec";
     const REDIRECT = "https://federicapropertymanager.github.io/checklisterrori/errori/";
     const TIPOLOGIA = "errori";
 
-    // UTM dal link
+    // UTM
     const q = new URLSearchParams(location.search);
     const utm_source   = q.get('utm_source')   || '';
     const utm_medium   = q.get('utm_medium')   || '';
     const utm_campaign = q.get('utm_campaign') || TIPOLOGIA;
 
-    // Provenienza = canale (default instagram)
     const PROVENIENZA = utm_source || 'instagram';
     const isEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
-    // Traccia "Schedule" se c'è Calendly
+    // Track Calendly clicks (se presenti nella pagina)
     document.addEventListener("DOMContentLoaded", () => {
-      const calendlyEls = document.querySelectorAll('a[href*="calendly.com"], button[data-calendly]');
-      calendlyEls.forEach(el => el.addEventListener('click', () => {
-        fbq('track', 'Schedule', {
-          content_name: 'Prenotazione Calendly',
-          funnel: TIPOLOGIA, utm_source, utm_medium, utm_campaign, value: 0, currency: 'EUR'
-        });
-      }));
+      document.querySelectorAll('a[href*="calendly.com"], button[data-calendly]')
+        .forEach(el => el.addEventListener('click', () => {
+          fbq('track', 'Schedule', {
+            content_name: 'Prenotazione Calendly',
+            funnel: TIPOLOGIA, utm_source, utm_medium, utm_campaign, value: 0, currency: 'EUR'
+          });
+        }));
     });
 
     document.getElementById("leadForm").addEventListener("submit", async (e) => {
@@ -114,7 +111,6 @@
 
       btn.disabled = true; btn.textContent = "Invio in corso…";
 
-      // payload (chiavi = intestazioni foglio)
       const payload = {
         Nome, Email, Telefono, Situazione,
         Tipologia: TIPOLOGIA,
@@ -125,37 +121,24 @@
         userAgent: navigator.userAgent
       };
 
-      // --- Pixel: Lead + FormSubmit
       try {
-        fbq('track','Lead', {
-          funnel: TIPOLOGIA, Nome, Email,
-          utm_source, utm_medium, utm_campaign
-        });
-        fbq('trackCustom','FormSubmit', {
-          funnel: TIPOLOGIA, Provenienza: PROVENIENZA,
-          utm_source, utm_medium, utm_campaign
-        });
-      } catch(e){/* no-op */};
+        fbq('track','Lead', { funnel: TIPOLOGIA, Nome, Email, utm_source, utm_medium, utm_campaign });
+        fbq('trackCustom','FormSubmit', { funnel: TIPOLOGIA, Provenienza: PROVENIENZA, utm_source, utm_medium, utm_campaign });
+      } catch(e){}
 
-      // Querystring di fallback (sempre presente)
       const qs = new URLSearchParams(payload).toString();
 
       try {
         if (navigator.sendBeacon) {
-          const url = ENDPOINT + "?" + qs;
-          navigator.sendBeacon(url, new Blob([], { type: "text/plain" }));
+          navigator.sendBeacon(ENDPOINT + "?" + qs, new Blob([], { type: "text/plain" }));
           location.href = REDIRECT + (location.search || "");
           return;
         }
-
         await fetch(ENDPOINT, {
-          method: "POST",
-          mode: "no-cors",
-          keepalive: true,
+          method: "POST", mode: "no-cors", keepalive: true,
           headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
           body: qs
         });
-
         okBox.style.display = "block";
         setTimeout(()=> location.href = REDIRECT + (location.search || ""), 200);
       } catch {
