@@ -84,13 +84,6 @@
       return id;
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
-      document.querySelectorAll('a[href*="calendly.com"], button[data-calendly]')
-        .forEach(el => el.addEventListener('click', () => {
-          try{ fbq('track','Schedule',{content_name:'Prenotazione Calendly', funnel:TIPOLOGIA, utm_source, utm_medium, utm_campaign, value:0, currency:'EUR'});}catch(e){}
-        }));
-    });
-
     document.getElementById("leadForm").addEventListener("submit", async (e) => {
       e.preventDefault();
       const btn = document.getElementById("submitBtn");
