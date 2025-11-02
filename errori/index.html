@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Checklist 7 errori + Consulenza gratuita — Federica Cellini</title>
+<title>Checklist: 7 errori che ti fanno perdere prenotazioni — Federica Cellini</title>
 <base href="https://federicapropertymanager.github.io/checklisterrori/">
 <meta name="description" content="Scarica la checklist con gli errori più comuni che fanno perdere prenotazioni e prenota una consulenza gratuita con Federica Cellini.">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,7 +24,7 @@
   .btn{display:inline-flex;align-items:center;gap:12px;padding:16px 22px;border-radius:14px;font-weight:700;border:2px solid transparent;transition:.15s ease;justify-content:center}
   .btn-primary{background:var(--gold);color:#0A2540}
   .btn-primary:hover{filter:brightness(.95)}
-  .btn-ghost{background:transparent;border-color:#2D4962;color:#E8F1F7}
+  .btn-ghost{background:transparent;border-color:#2D4962;color:#E8F1F7;border:2px solid #2D4962}
   .btn-ghost:hover{background:#0f3555}
   .note{margin-top:18px;border:1px solid #26425B;background:rgba(255,255,255,.03);color:#DCE8F0;border-radius:14px;padding:14px 16px}
   .section{padding:46px 0}
@@ -48,13 +48,14 @@
   .s4{grid-column:8 / span 5; grid-row:9 / span 7; transform:rotate(-0.8deg); z-index:5}
   .s5{grid-column:4 / span 5; grid-row:12 / span 7; transform:rotate(-2.4deg); z-index:1}
   @media(max-width:780px){.collage{grid-template-columns:1fr;grid-auto-rows:auto}.shot,.s1,.s2,.s3,.s4,.s5{grid-column:auto;grid-row:auto;transform:none;z-index:auto}}
+  .cta-bar{position:sticky;bottom:0;left:0;right:0;background:#0A2540;border-top:1px solid rgba(255,255,255,.12);padding:14px 0;z-index:40}
+  /* Lightbox */
   .lightbox{position:fixed;inset:0;background:rgba(10,37,64,.8);display:none;align-items:center;justify-content:center;padding:24px;z-index:1000}
   .lightbox:target{display:flex}
   .lb-content{max-width:92vw;max-height:88vh;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.35)}
   .lb-img{display:block;max-width:92vw;max-height:82vh}
   .lb-cap{margin:0;background:#0A2540;color:#EAF2F8;padding:10px 14px;font-size:.95rem}
   .lb-close{position:fixed;top:14px;right:16px;font-size:34px;color:#fff;text-decoration:none;line-height:1}
-  .cta-bar{position:sticky;bottom:0;left:0;right:0;background:#0A2540;border-top:1px solid rgba(255,255,255,.12);padding:14px 0;z-index:40}
 </style>
 
 <!-- Meta Pixel -->
@@ -63,7 +64,8 @@
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
 n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
 t=b.createElement(e);t.async=!0;t.src=v;
-s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','1375982357419853'); fbq('track','PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1375982357419853&ev=PageView&noscript=1"/></noscript>
@@ -76,8 +78,8 @@ fbq('init','1375982357419853'); fbq('track','PageView');
     <h1>Checklist: <span class="hi">7 errori</span> che ti fanno perdere prenotazioni</h1>
     <p class="lead">Guida pratica per host e proprietari: cosa evitare subito su <b>titolo</b>, <b>foto</b>, <b>prezzi</b> e <b>messaggi</b> per aumentare click e prenotazioni.</p>
     <div class="stack">
-      <a id="cta-download" class="btn btn-primary" href="https://drive.google.com/file/d/1aJmnfQn4-Q31_UiskQMJAQ0O11YKpWog/view?usp=sharing" target="_blank" rel="noopener">📄 Scarica la checklist</a>
-      <a id="cta-calendly" class="btn btn-ghost" href="https://calendly.com/federica-cellini88/30min" target="_blank" rel="noopener">Prenota una consulenza gratuita</a>
+      <a id="cta-download" class="btn btn-primary" href="#">📄 Scarica la checklist</a>
+      <a id="cta-calendly" class="btn btn-ghost" href="#">Prenota una consulenza gratuita</a>
     </div>
     <div class="note"><b>Come usarla:</b> apri la checklist, controlla il tuo annuncio punto per punto e applica i fix. Se vuoi un check iniziale con me, trovi la call gratuita qui sopra.</div>
   </div>
@@ -116,7 +118,7 @@ fbq('init','1375982357419853'); fbq('track','PageView');
       </div>
     </section>
 
-    <a class="btn btn-primary" href="https://calendly.com/federica-cellini88/30min" target="_blank" rel="noopener">Prenota la consulenza gratuita</a>
+    <a id="cta-calendly-footer" class="btn btn-primary" href="#">Prenota la consulenza gratuita</a>
   </div>
 </section>
 
@@ -128,7 +130,7 @@ fbq('init','1375982357419853'); fbq('track','PageView');
       <li>Ricevi <b>indicazioni pratiche</b> da applicare subito.</li>
       <li>Se ha senso, valutiamo <b>gestione completa</b> o supporto all’avviamento.</li>
     </ol>
-    <a class="btn btn-primary" href="https://calendly.com/federica-cellini88/30min" target="_blank" rel="noopener">Prenota ora (gratuita)</a>
+    <a class="btn btn-primary" id="cta-calendly-2" href="#">Prenota ora (gratuita)</a>
   </div>
 </section>
 
@@ -141,60 +143,78 @@ fbq('init','1375982357419853'); fbq('track','PageView');
 
 <div class="cta-bar">
   <div class="wrap">
-    <a class="btn btn-primary" style="width:100%" href="https://calendly.com/federica-cellini88/30min" target="_blank" rel="noopener">Prenota la consulenza gratuita</a>
+    <a class="btn btn-primary" style="width:100%" id="cta-calendly-sticky" href="#">Prenota la consulenza gratuita</a>
   </div>
 </div>
 
 <!-- LIGHTBOX -->
-<div id="lb1" class="lightbox"><a class="lb-close" href="#prove">&times;</a><div class="lb-content"><img class="lb-img" src="assets/img/1-2025.png" alt=""><p class="lb-cap">Screenshot risultato #1</p></div></div>
-<div id="lb2" class="lightbox"><a class="lb-close" href="#prove">&times;</a><div class="lb-content"><img class="lb-img" src="assets/img/2-2025.png" alt=""><p class="lb-cap">Screenshot risultato #2</p></div></div>
-<div id="lb3" class="lightbox"><a class="lb-close" href="#prove">&times;</a><div class="lb-content"><img class="lb-img" src="assets/img/3-2025.png" alt=""><p class="lb-cap">Screenshot risultato #3</p></div></div>
-<div id="lb4" class="lightbox"><a class="lb-close" href="#prove">&times;</a><div class="lb-content"><img class="lb-img" src="assets/img/4-2025.png" alt=""><p class="lb-cap">Screenshot risultato #4</p></div></div>
-<div id="lb5" class="lightbox"><a class="lb-close" href="#prove">&times;</a><div class="lb-content"><img class="lb-img" src="assets/img/5-2025.png" alt=""><p class="lb-cap">Screenshot risultato #5</p></div></div>
+<div id="lb1" class="lightbox"><a class="lb-close" href="#prove">&times;</a><div class="lb-content"><img class="lb-img" src="assets/img/1-2025.png"><p class="lb-cap">Screenshot risultato #1</p></div></div>
+<div id="lb2" class="lightbox"><a class="lb-close" href="#prove">&times;</a><div class="lb-content"><img class="lb-img" src="assets/img/2-2025.png"><p class="lb-cap">Screenshot risultato #2</p></div></div>
+<div id="lb3" class="lightbox"><a class="lb-close" href="#prove">&times;</a><div class="lb-content"><img class="lb-img" src="assets/img/3-2025.png"><p class="lb-cap">Screenshot risultato #3</p></div></div>
+<div id="lb4" class="lightbox"><a class="lb-close" href="#prove">&times;</a><div class="lb-content"><img class="lb-img" src="assets/img/4-2025.png"><p class="lb-cap">Screenshot risultato #4</p></div></div>
+<div id="lb5" class="lightbox"><a class="lb-close" href="#prove">&times;</a><div class="lb-content"><img class="lb-img" src="assets/img/5-2025.png"><p class="lb-cap">Screenshot risultato #5</p></div></div>
 
-<!-- Tracking & UTM + LID (SNIPPET UNICO) -->
+<!-- ===== Tracking stabile (GET) + UTM + LID ===== -->
 <script>
-  const ENDPOINT = "https://script.google.com/macros/s/AKfycbysELmr4ZOvglHJfEplkkO0E8mW1oDfZUbhkQ2mzHo0vJp4f0npo50SNz8NLGwL-SwZNA/exec";
-  const titleL = (document.title || '').toLowerCase();
-  const TIPOLOGIA = titleL.includes('errori') ? 'errori' : titleL.includes('regole') ? 'regole' : 'gestione';
+const ENDPOINT      = "https://script.google.com/macros/s/AKfycbysELmr4ZOvglHJfEplkkO0E8mW1oDfZUbhkQ2mzHo0vJp4f0npo50SNz8NLGwL-SwZNA/exec";
+const TIPOLOGIA     = "errori";
+const DOWNLOAD_URL  = "https://drive.google.com/file/d/1aJmnfQn4-Q31_UiskQMJAQ0O11YKpWog/view?usp=sharing";
+const CALENDLY_URL  = "https://calendly.com/federica-cellini88/30min";
 
-  const q = new URLSearchParams(location.search);
-  const utm_source   = q.get('utm_source')   || '';
-  const utm_medium   = q.get('utm_medium')   || '';
-  const utm_campaign = q.get('utm_campaign') || TIPOLOGIA;
+const q = new URLSearchParams(location.search);
+const utm_source   = q.get('utm_source')   || "";
+const utm_medium   = q.get('utm_medium')   || "";
+const utm_campaign = q.get('utm_campaign') || TIPOLOGIA;
 
-  let lid = q.get('lid') || localStorage.getItem('lid') || '';
-  if (!lid) { lid = 'ld_' + (crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(16).slice(2)); localStorage.setItem('lid', lid); }
+let lid = q.get('lid') || localStorage.getItem('lid') || '';
+if (!lid) { lid = 'ld_' + (crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(16).slice(2)); localStorage.setItem('lid', lid); }
 
-  function logAction(action){
-    if(!action) return;
-    const base = { Action: action, Tipologia: TIPOLOGIA, lead_id: lid, utm_source, utm_medium, utm_campaign, ts: new Date().toISOString(), ua: navigator.userAgent, cacheBust: Date.now() };
-    const qs = new URLSearchParams(base).toString();
-    const url = ENDPOINT + "?" + qs;
-    if (navigator.sendBeacon) { navigator.sendBeacon(url); }
-    else { fetch(url, { method:"GET", mode:"no-cors", keepalive:true }).catch(()=>{}); }
-  }
+function withParams(base){
+  try{
+    const u=new URL(base);
+    if(utm_source)   u.searchParams.set('utm_source',utm_source);
+    if(utm_medium)   u.searchParams.set('utm_medium',utm_medium);
+    if(utm_campaign) u.searchParams.set('utm_campaign',utm_campaign);
+    if(lid)          u.searchParams.set('lid', lid);
+    return u.toString();
+  }catch(e){ return base; }
+}
 
-  function propagateParams(){
-    document.querySelectorAll('a[href*="calendly.com"],a[href*="drive.google.com"]').forEach(a=>{
-      try{
-        const u=new URL(a.href);
-        if(utm_source)   u.searchParams.set('utm_source',utm_source);
-        if(utm_medium)   u.searchParams.set('utm_medium',utm_medium);
-        if(utm_campaign) u.searchParams.set('utm_campaign',utm_campaign);
-        if(lid)          u.searchParams.set('lid', lid);
-        a.href=u.toString(); a.setAttribute('target','_blank'); a.setAttribute('rel','noopener');
-      }catch(e){}
-    });
-  }
+function logGET(action){
+  if(!action) return;
+  const payload = new URLSearchParams({
+    Action: action, Tipologia: TIPOLOGIA,
+    lead_id: lid, lid: lid,
+    utm_source, utm_medium, utm_campaign,
+    ts: new Date().toISOString(),
+    userAgent: navigator.userAgent
+  }).toString();
+  (new Image()).src = ENDPOINT + "?" + payload;
+}
 
-  document.addEventListener('DOMContentLoaded', ()=>{
-    propagateParams();
-    const btnDownload = document.getElementById('cta-download');
-    const btnCalendly = document.getElementById('cta-calendly');
-    if (btnDownload) btnDownload.addEventListener('click', ()=>{ try{ fbq('trackCustom','Download',{funnel:TIPOLOGIA,utm_source,utm_medium,utm_campaign}); }catch(e){} logAction('Download'); });
-    if (btnCalendly) btnCalendly.addEventListener('click', ()=>{ try{ fbq('track','Schedule',{content_name:'Prenotazione Calendly',funnel:TIPOLOGIA,utm_source,utm_medium,utm_campaign,value:0,currency:'EUR'});}catch(e){} logAction('ScheduleClick'); });
-  });
+function handleDownload(e){
+  e.preventDefault();
+  try{ fbq('trackCustom','Download',{funnel:TIPOLOGIA,utm_source,utm_medium,utm_campaign}); }catch(e){}
+  logGET('Download');
+  setTimeout(()=> window.open(withParams(DOWNLOAD_URL),'_blank'), 300);
+}
+function handleCalendly(e){
+  e.preventDefault();
+  try{ fbq('track','Schedule',{content_name:'Prenotazione Calendly',funnel:TIPOLOGIA,utm_source,utm_medium,utm_campaign,value:0,currency:'EUR'});}catch(e){}
+  logGET('ScheduleClick');
+  setTimeout(()=> window.open(withParams(CALENDLY_URL),'_blank'), 300);
+}
+function bind(id){ const el=document.getElementById(id); if(el){ el.href="#"; el.addEventListener('click',handleCalendly); } }
+
+document.getElementById('cta-download').addEventListener('click', handleDownload);
+bind('cta-calendly');
+bind('cta-calendly-footer');
+bind('cta-calendly-2');
+bind('cta-calendly-sticky');
+
+document.addEventListener('DOMContentLoaded', ()=>{
+  document.querySelectorAll('a[href*="calendly.com"],a[href*="drive.google.com"]').forEach(a=>{ try{ a.href=withParams(a.href); }catch(e){} });
+});
 </script>
 </body>
 </html>
