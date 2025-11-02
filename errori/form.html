@@ -70,12 +70,10 @@
     const REDIRECT = "https://federicapropertymanager.github.io/checklisterrori/errori/";
     const TIPOLOGIA = "errori";
 
-    // UTM
     const q = new URLSearchParams(location.search);
     const utm_source   = q.get('utm_source')   || '';
     const utm_medium   = q.get('utm_medium')   || '';
     const utm_campaign = q.get('utm_campaign') || TIPOLOGIA;
-
     const PROVENIENZA = utm_source || 'instagram';
     const isEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
@@ -84,14 +82,6 @@
       if(!id){ id = 'ld_'+crypto.randomUUID(); localStorage.setItem('lid', id); }
       return id;
     }
-
-    // Track Calendly clicks (se presenti nella pagina)
-    document.addEventListener("DOMContentLoaded", () => {
-      document.querySelectorAll('a[href*="calendly.com"], button[data-calendly]')
-        .forEach(el => el.addEventListener('click', () => {
-          try{ fbq('track','Schedule', {content_name:'Prenotazione Calendly', funnel: TIPOLOGIA, utm_source, utm_medium, utm_campaign, value: 0, currency: 'EUR'}); }catch(e){}
-        }));
-    });
 
     document.getElementById("leadForm").addEventListener("submit", async (e) => {
       e.preventDefault();
