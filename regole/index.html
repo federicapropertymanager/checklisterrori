@@ -163,27 +163,25 @@ fbq('init','1375982357419853'); fbq('track','PageView');
     const utm_source   = q.get('utm_source')   || '';
     const utm_medium   = q.get('utm_medium')   || '';
     const utm_campaign = q.get('utm_campaign') || TIPOLOGIA;
-    const lid          = q.get('lid') || localStorage.getItem('lid') || '';
+    let   lid          = q.get('lid') || localStorage.getItem('lid') || '';
+    if(!lid){ lid='ld_'+(crypto.randomUUID?crypto.randomUUID():Math.random().toString(16).slice(2)); localStorage.setItem('lid', lid); }
 
-    function log(action, extra={}) {
-      const base = { Tipologia: TIPOLOGIA, Action: action, lead_id: lid, utm_source, utm_medium, utm_campaign, ts: new Date().toISOString(), userAgent: navigator.userAgent };
-      const qs = new URLSearchParams({...base, ...extra}).toString();
-      if (navigator.sendBeacon) navigator.sendBeacon(ENDPOINT+"?"+qs, new Blob([], {type:"text/plain"}));
-      else fetch(ENDPOINT, {method:"POST", mode:"no-cors", keepalive:true, headers:{"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"}, body:qs});
+    function logGET(action){
+      const qs = new URLSearchParams({ Tipologia: TIPOLOGIA, Action: action, lead_id: lid, utm_source, utm_medium, utm_campaign, ts: new Date().toISOString(), userAgent: navigator.userAgent }).toString();
+      (new Image()).src = ENDPOINT + "?" + qs;
     }
 
     document.getElementById('cta-download').addEventListener('click', ()=> {
       try{ fbq('trackCustom','Download',{funnel:TIPOLOGIA, utm_source, utm_medium, utm_campaign}); }catch(e){}
-      log('Download');
+      logGET('Download');
     });
 
     document.getElementById('cta-calendly').addEventListener('click', ()=> {
       try{ fbq('track','Schedule',{content_name:'Prenotazione Calendly', funnel:TIPOLOGIA, utm_source, utm_medium, utm_campaign, value:0, currency:'EUR'});}catch(e){}
-      log('ScheduleClick');
+      logGET('ScheduleClick');
     });
 
     (function propagate(){
-      if(!location.search && !lid) return;
       document.querySelectorAll('a[href*="calendly.com"],a[href*="drive.google.com"]').forEach(a=>{
         try{
           const u=new URL(a.href);
