@@ -78,6 +78,12 @@
     const PROVENIENZA = utm_source || 'instagram';
     const isEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
+    function getLeadId(){
+      let id = localStorage.getItem('lid');
+      if(!id){ id = 'ld_'+crypto.randomUUID(); localStorage.setItem('lid', id); }
+      return id;
+    }
+
     document.addEventListener("DOMContentLoaded", () => {
       document.querySelectorAll('a[href*="calendly.com"], button[data-calendly]')
         .forEach(el => el.addEventListener('click', () => {
@@ -105,16 +111,19 @@
 
       btn.disabled = true; btn.textContent = "Invio in corso…";
 
+      const lead_id = getLeadId();
       const payload = {
         Nome, Email, Telefono, Situazione,
         Tipologia: TIPOLOGIA,
         Prenotato: "No",
         Provenienza: PROVENIENZA,
         utm_source, utm_medium, utm_campaign,
+        lead_id,
         ts: new Date().toISOString(),
         userAgent: navigator.userAgent
       };
       const qs = new URLSearchParams(payload).toString();
+      const redirect = REDIRECT + (location.search ? location.search + '&' : '?') + 'lid=' + encodeURIComponent(lead_id);
 
       try {
         fbq('track','Lead',{funnel:TIPOLOGIA, Nome, Email, utm_source, utm_medium, utm_campaign});
@@ -124,7 +133,7 @@
       try {
         if (navigator.sendBeacon) {
           navigator.sendBeacon(ENDPOINT + "?" + qs, new Blob([], {type:"text/plain"}));
-          location.href = REDIRECT + (location.search || "");
+          location.href = redirect;
           return;
         }
         await fetch(ENDPOINT, {
@@ -133,7 +142,7 @@
           body: qs
         });
         ok.style.display = "block";
-        setTimeout(()=> location.href = REDIRECT + (location.search || ""), 200);
+        setTimeout(()=> location.href = redirect, 200);
       } catch {
         err.textContent = "Errore di rete. Riprova tra qualche secondo.";
         err.style.display = "block";
