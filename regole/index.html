@@ -1,45 +1,114 @@
-<script>
-  const ENDPOINT = "https://script.google.com/macros/s/AKfycbysELmr4ZOvglHJfEplkkO0E8mW1oDfZUbhkQ2mzHo0vJp4f0npo50SNz8NLGwL-SwZNA/exec";
-  const TIPOLOGIA = "regole";
-  const q = new URLSearchParams(location.search);
-  const utm_source   = q.get('utm_source')   || '';
-  const utm_medium   = q.get('utm_medium')   || '';
-  const utm_campaign = q.get('utm_campaign') || TIPOLOGIA;
-  const lid = q.get('lid') || localStorage.getItem('lid') || '';
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Le 5 Regole — Federica Cellini</title>
+  <meta name="description" content="Le 5 regole per gestire in modo efficace gli affitti brevi e Airbnb. Scarica la guida e prenota una call.">
+  <meta name="robots" content="noindex,nofollow" />
+  <style>
+    :root{ --navy:#0A2540; --gold:#D4AF37; --gold-2:#E2BF56; --text:#1C1C1C; --muted:#667085; --bg:#FAFAFA; --radius:16px; --shadow:0 8px 24px rgba(10,37,64,.08); }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:var(--text)}
+    .wrap{max-width:980px;margin:48px auto;padding:0 16px}
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
+    @media (max-width:900px){ .hero{grid-template-columns:1fr} }
+    .card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:28px}
+    h1{margin:0 0 10px;font-size:32px;line-height:1.15;color:var(--navy);font-weight:900}
+    p.lead{margin:0 0 18px;color:var(--muted);font-size:16px}
+    ul{margin:0 0 14px 20px;color:#334155}
+    li{margin:6px 0}
+    .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 16px;border:0;border-radius:12px;font-weight:800;cursor:pointer;text-decoration:none}
+    .btn-primary{background:var(--gold);color:var(--navy)}
+    .btn-primary:hover{background:var(--gold-2)}
+    .btn-ghost{background:#f5f7fa;color:#0A2540;border:1px solid #E5E7EB}
+    .badge{display:inline-block;background:#FFF7ED;color:#9A3412;border-radius:999px;padding:6px 10px;font-weight:700;font-size:12px;margin-bottom:10px}
+    .box{background:#fff;border-radius:14px;box-shadow:var(--shadow);padding:18px}
+    .small{font-size:13px;color:var(--muted)}
+    .footer{margin:36px 0 12px;text-align:center;color:var(--muted);font-size:12px}
+  </style>
 
-  function log(action, extra={}) {
-    const base = {
-      Tipologia: TIPOLOGIA, Action: action, lead_id: lid,
-      utm_source, utm_medium, utm_campaign,
-      ts: new Date().toISOString(), userAgent: navigator.userAgent
-    };
-    const qs = new URLSearchParams({...base, ...extra}).toString();
-    if (navigator.sendBeacon) navigator.sendBeacon(ENDPOINT+"?"+qs, new Blob([], {type:"text/plain"}));
-    else fetch(ENDPOINT, {method:"POST", mode:"no-cors", keepalive:true, headers:{"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"}, body:qs});
-  }
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)n=f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
+    t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','1375982357419853'); fbq('track','PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1375982357419853&ev=PageView&noscript=1"/></noscript>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="card">
+        <span class="badge">Le 5 Regole</span>
+        <h1>La base solida della tua gestione</h1>
+        <p class="lead">La guida operativa per evitare penalità, ridurre imprevisti e migliorare recensioni in modo costante.</p>
+        <ul>
+          <li>Policy chiare senza frizioni</li>
+          <li>Messaggi automatici ma umani</li>
+          <li>Prezzi e calendari sempre aggiornati</li>
+        </ul>
+        <div class="cta">
+          <!-- Sostituisci PDF_REGOLE e CALENDLY_REGOLE -->
+          <a id="cta-download" class="btn btn-primary" href="PDF_REGOLE" target="_blank" rel="noopener">Scarica la guida</a>
+          <a id="cta-calendly" class="btn btn-ghost" href="CALENDLY_REGOLE" target="_blank" rel="noopener">Prenota 15’ con Federica</a>
+        </div>
+        <p class="small">Ricevi il PDF subito. La call è opzionale.</p>
+      </div>
 
-  document.getElementById('cta-download').addEventListener('click', ()=> {
-    try{ fbq('trackCustom','Download',{funnel:TIPOLOGIA, utm_source, utm_medium, utm_campaign}); }catch(e){}
-    log('Download');
-  });
+      <aside class="box">
+        <strong>Consiglio</strong>
+        <p class="small">Applica le 5 regole su un solo annuncio, misura l’effetto per 7 giorni, poi estendile agli altri.</p>
+      </aside>
+    </section>
 
-  document.getElementById('cta-calendly').addEventListener('click', ()=> {
-    try{ fbq('track','Schedule',{content_name:'Prenotazione Calendly', funnel:TIPOLOGIA, utm_source, utm_medium, utm_campaign, value:0, currency:'EUR'});}catch(e){}
-    log('ScheduleClick');
-  });
+    <p class="footer">© Federica Cellini — Property Manager</p>
+  </div>
 
-  // Propaga UTM + lid ai link
-  (function propagate(){
-    if(!location.search && !lid) return;
-    document.querySelectorAll('a[href*="calendly.com"],a[href*="drive.google.com"]').forEach(a=>{
-      try{
-        const u=new URL(a.href);
-        if(utm_source)   u.searchParams.set('utm_source',utm_source);
-        if(utm_medium)   u.searchParams.set('utm_medium',utm_medium);
-        if(utm_campaign) u.searchParams.set('utm_campaign',utm_campaign);
-        if(lid)          u.searchParams.set('lid', lid);
-        a.href=u.toString();
-      }catch(e){}
+  <script>
+    const ENDPOINT = "https://script.google.com/macros/s/AKfycbysELmr4ZOvglHJfEplkkO0E8mW1oDfZUbhkQ2mzHo0vJp4f0npo50SNz8NLGwL-SwZNA/exec";
+    const TIPOLOGIA = "regole";
+    const q = new URLSearchParams(location.search);
+    const utm_source   = q.get('utm_source')   || '';
+    const utm_medium   = q.get('utm_medium')   || '';
+    const utm_campaign = q.get('utm_campaign') || TIPOLOGIA;
+    const lid = q.get('lid') || localStorage.getItem('lid') || '';
+
+    try{ fbq('track','ViewContent',{content_category:'landing',funnel:TIPOLOGIA,utm_source,utm_medium,utm_campaign}); }catch(e){}
+
+    function log(action, extra={}){
+      const base = { Tipologia: TIPOLOGIA, Action: action, lead_id: lid, utm_source, utm_medium, utm_campaign, ts:new Date().toISOString(), userAgent:navigator.userAgent };
+      const qs = new URLSearchParams({...base, ...extra}).toString();
+      if (navigator.sendBeacon) navigator.sendBeacon(ENDPOINT+"?"+qs, new Blob([], {type:"text/plain"}));
+      else fetch(ENDPOINT,{method:"POST",mode:"no-cors",keepalive:true,headers:{"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},body:qs});
+    }
+    function propagate(){
+      if(!location.search && !lid) return;
+      document.querySelectorAll('a[href*="calendly.com"],a[href*="drive.google.com"]').forEach(a=>{
+        try{
+          const u=new URL(a.href);
+          if(utm_source)   u.searchParams.set('utm_source',utm_source);
+          if(utm_medium)   u.searchParams.set('utm_medium',utm_medium);
+          if(utm_campaign) u.searchParams.set('utm_campaign',utm_campaign);
+          if(lid)          u.searchParams.set('lid', lid);
+          a.href=u.toString();
+        }catch(e){}
+      });
+    }
+    document.getElementById('cta-download').addEventListener('click', ()=>{
+      try{ fbq('trackCustom','Download',{doc:'pdf',funnel:TIPOLOGIA,utm_source,utm_medium,utm_campaign}); }catch(e){}
+      log('Download');
     });
-  })();
-</script>
+    document.getElementById('cta-calendly').addEventListener('click', ()=>{
+      try{ fbq('track','Schedule',{content_name:'Prenotazione Calendly',funnel:TIPOLOGIA,utm_source,utm_medium,utm_campaign,value:0,currency:'EUR'});}catch(e){}
+      log('ScheduleClick');
+    });
+    document.addEventListener('DOMContentLoaded', propagate);
+  </script>
+</body>
+</html>
