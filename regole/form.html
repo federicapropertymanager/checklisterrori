@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Scarica le 5 regole — Federica Cellini</title>
+  <title>Scarica la checklist — Federica Cellini</title>
   <meta name="robots" content="noindex,nofollow" />
   <style>
     :root{ --navy:#0A2540; --gold:#D4AF37; --gold-2:#E2BF56; --text:#1C1C1C; --muted:#555; --bg:#FAFAFA; --radius:14px; }
@@ -21,13 +21,15 @@
     .err{color:#b00020;font-size:13px;margin-top:6px;display:none}
     noscript{display:block;color:#b00020;text-align:center;margin-top:12px}
   </style>
-  <!-- Pixel -->
+
+  <!-- Meta Pixel -->
   <script>
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
-    t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    n.push=n; n.loaded=!0; n.version='2.0'; n.queue=[];
+    t=b.createElement(e); t.async=!0; t.src=v;
+    s=b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s)
+    }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init','1375982357419853'); fbq('track','PageView');
   </script>
   <noscript><img height="1" width="1" style="display:none"
@@ -35,16 +37,19 @@
 </head>
 <body>
   <div class="container">
-    <h1>Scarica le 5 regole</h1>
-    <p class="lead">Compila i campi per riceverle in pochi secondi.</p>
+    <h1>Scarica la checklist</h1>
+    <p class="lead">Compila i campi per riceverla in pochi secondi.</p>
 
     <form id="leadForm" novalidate>
       <label for="name">Nome</label>
       <input id="name" type="text" placeholder="Inserisci il tuo nome" autocomplete="name" required />
+
       <label for="email">Email</label>
       <input id="email" type="email" placeholder="es. nome@email.com" autocomplete="email" required />
+
       <label for="phone">Telefono</label>
       <input id="phone" type="tel" inputmode="tel" placeholder="+39 3xx xxx xxxx" autocomplete="tel" required />
+
       <label for="situazione">Situazione</label>
       <select id="situazione" required>
         <option value="">Seleziona…</option>
@@ -53,7 +58,7 @@
         <option>Gestisco per altri</option>
       </select>
 
-      <button type="submit" id="submitBtn">Invia e scarica la guida</button>
+      <button type="submit" id="submitBtn">Invia e scarica la checklist</button>
       <div class="success" id="successMsg" aria-live="polite">Dati inviati! Reindirizzamento…</div>
       <div class="err" id="errMsg">Errore di rete. Riprova tra qualche secondo.</div>
       <noscript>Per favore attiva JavaScript e ricarica.</noscript>
@@ -62,29 +67,32 @@
 
   <script>
     const ENDPOINT = "https://script.google.com/macros/s/AKfycbysELmr4ZOvglHJfEplkkO0E8mW1oDfZUbhkQ2mzHo0vJp4f0npo50SNz8NLGwL-SwZNA/exec";
-    const REDIRECT = "https://federicapropertymanager.github.io/checklisterrori/regole/";
-    const TIPOLOGIA = "regole";
+    const REDIRECT = "https://federicapropertymanager.github.io/checklisterrori/errori/";
+    const TIPOLOGIA = "errori";
 
     const q = new URLSearchParams(location.search);
     const utm_source   = q.get('utm_source')   || '';
     const utm_medium   = q.get('utm_medium')   || '';
     const utm_campaign = q.get('utm_campaign') || TIPOLOGIA;
-    const PROVENIENZA  = utm_source || 'instagram';
+    const PROVENIENZA = utm_source || 'instagram';
     const isEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
     function getLeadId(){
       let id = localStorage.getItem('lid');
-      if(!id){ id = 'ld_'+crypto.randomUUID(); localStorage.setItem('lid', id); }
+      if(!id){
+        id = 'ld_'+(crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(16).slice(2));
+        localStorage.setItem('lid', id);
+      }
       return id;
     }
 
     document.getElementById("leadForm").addEventListener("submit", async (e) => {
       e.preventDefault();
 
-      const btn = document.getElementById("submitBtn");
-      const ok  = document.getElementById("successMsg");
-      const err = document.getElementById("errMsg");
-      err.style.display = "none";
+      const btn    = document.getElementById("submitBtn");
+      const okBox  = document.getElementById("successMsg");
+      const errBox = document.getElementById("errMsg");
+      errBox.style.display = "none";
 
       const Nome       = document.getElementById("name").value.trim();
       const Email      = document.getElementById("email").value.trim();
@@ -92,8 +100,8 @@
       const Situazione = document.getElementById("situazione").value;
 
       if (!Nome || !isEmail(Email) || !Telefono || !Situazione) {
-        err.textContent = "Compila correttamente tutti i campi.";
-        err.style.display = "block";
+        errBox.textContent = "Compila correttamente tutti i campi.";
+        errBox.style.display = "block";
         return;
       }
 
@@ -108,33 +116,35 @@
         utm_source, utm_medium, utm_campaign,
         lead_id,
         ts: new Date().toISOString(),
-        userAgent: navigator.userAgent
+        userAgent: navigator.userAgent,
+        cacheBust: Date.now()
       };
+
+      try {
+        fbq('track','Lead', { funnel: TIPOLOGIA, Nome, Email, utm_source, utm_medium, utm_campaign });
+        fbq('trackCustom','FormSubmit', { funnel: TIPOLOGIA, Provenienza: PROVENIENZA, utm_source, utm_medium, utm_campaign });
+      } catch(e){}
+
       const qs = new URLSearchParams(payload).toString();
       const redirect = REDIRECT + (location.search ? location.search + '&' : '?') + 'lid=' + encodeURIComponent(lead_id);
 
       try {
-        fbq('track','Lead',{funnel:TIPOLOGIA, Nome, Email, utm_source, utm_medium, utm_campaign});
-        fbq('trackCustom','FormSubmit',{funnel:TIPOLOGIA, Provenienza:PROVENIENZA, utm_source, utm_medium, utm_campaign});
-      } catch(e){}
-
-      try {
         if (navigator.sendBeacon) {
-          navigator.sendBeacon(ENDPOINT + "?" + qs, new Blob([], {type:"text/plain"}));
+          navigator.sendBeacon(ENDPOINT + "?" + qs, new Blob([], { type: "text/plain" }));
           location.href = redirect;
           return;
         }
         await fetch(ENDPOINT, {
-          method:"POST", mode:"no-cors", keepalive:true,
-          headers:{ "Content-Type":"application/x-www-form-urlencoded;charset=UTF-8" },
+          method: "POST", mode: "no-cors", keepalive: true,
+          headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
           body: qs
         });
-        ok.style.display = "block";
-        setTimeout(()=> location.href = redirect, 200);
+        okBox.style.display = "block";
+        setTimeout(()=> location.href = redirect, 150);
       } catch {
-        err.textContent = "Errore di rete. Riprova tra qualche secondo.";
-        err.style.display = "block";
-        btn.disabled = false; btn.textContent = "Invia e scarica la guida";
+        errBox.textContent = "Errore di rete. Riprova tra qualche secondo.";
+        errBox.style.display = "block";
+        btn.disabled = false; btn.textContent = "Invia e scarica la checklist";
       }
     });
   </script>
