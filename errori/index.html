@@ -63,10 +63,8 @@
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
 n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
 t=b.createElement(e);t.async=!0;t.src=v;
-s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
-(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init','1375982357419853');
-fbq('track','PageView');
+s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1375982357419853'); fbq('track','PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1375982357419853&ev=PageView&noscript=1"/></noscript>
 </head>
@@ -148,33 +146,36 @@ fbq('track','PageView');
 </div>
 
 <!-- LIGHTBOX -->
-<div id="lb1" class="lightbox"><a class="lb-close" href="#prove">&times;</a><div class="lb-content"><img class="lb-img" src="assets/img/1-2025.png"><p class="lb-cap">Screenshot risultato #1</p></div></div>
-<div id="lb2" class="lightbox"><a class="lb-close" href="#prove">&times;</a><div class="lb-content"><img class="lb-img" src="assets/img/2-2025.png"><p class="lb-cap">Screenshot risultato #2</p></div></div>
-<div id="lb3" class="lightbox"><a class="lb-close" href="#prove">&times;</a><div class="lb-content"><img class="lb-img" src="assets/img/3-2025.png"><p class="lb-cap">Screenshot risultato #3</p></div></div>
-<div id="lb4" class="lightbox"><a class="lb-close" href="#prove">&times;</a><div class="lb-content"><img class="lb-img" src="assets/img/4-2025.png"><p class="lb-cap">Screenshot risultato #4</p></div></div>
-<div id="lb5" class="lightbox"><a class="lb-close" href="#prove">&times;</a><div class="lb-content"><img class="lb-img" src="assets/img/5-2025.png"><p class="lb-cap">Screenshot risultato #5</p></div></div>
+<div id="lb1" class="lightbox"><a class="lb-close" href="#prove">&times;</a><div class="lb-content"><img class="lb-img" src="assets/img/1-2025.png" alt=""><p class="lb-cap">Screenshot risultato #1</p></div></div>
+<div id="lb2" class="lightbox"><a class="lb-close" href="#prove">&times;</a><div class="lb-content"><img class="lb-img" src="assets/img/2-2025.png" alt=""><p class="lb-cap">Screenshot risultato #2</p></div></div>
+<div id="lb3" class="lightbox"><a class="lb-close" href="#prove">&times;</a><div class="lb-content"><img class="lb-img" src="assets/img/3-2025.png" alt=""><p class="lb-cap">Screenshot risultato #3</p></div></div>
+<div id="lb4" class="lightbox"><a class="lb-close" href="#prove">&times;</a><div class="lb-content"><img class="lb-img" src="assets/img/4-2025.png" alt=""><p class="lb-cap">Screenshot risultato #4</p></div></div>
+<div id="lb5" class="lightbox"><a class="lb-close" href="#prove">&times;</a><div class="lb-content"><img class="lb-img" src="assets/img/5-2025.png" alt=""><p class="lb-cap">Screenshot risultato #5</p></div></div>
 
-<!-- Tracking & UTM + LID -->
+<!-- Tracking & UTM + LID (SNIPPET UNICO) -->
 <script>
-  const ENDPOINT    = "https://script.google.com/macros/s/AKfycbysELmr4ZOvglHJfEplkkO0E8mW1oDfZUbhkQ2mzHo0vJp4f0npo50SNz8NLGwL-SwZNA/exec";
-  const TIPOLOGIA   = 'errori';
-  const q           = new URLSearchParams(location.search);
-  const utm_source  = q.get('utm_source')   || '';
-  const utm_medium  = q.get('utm_medium')   || '';
-  const utm_campaign= q.get('utm_campaign') || TIPOLOGIA;
-  let   lid         = q.get('lid') || localStorage.getItem('lid') || '';
+  const ENDPOINT = "https://script.google.com/macros/s/AKfycbysELmr4ZOvglHJfEplkkO0E8mW1oDfZUbhkQ2mzHo0vJp4f0npo50SNz8NLGwL-SwZNA/exec";
+  const titleL = (document.title || '').toLowerCase();
+  const TIPOLOGIA = titleL.includes('errori') ? 'errori' : titleL.includes('regole') ? 'regole' : 'gestione';
+
+  const q = new URLSearchParams(location.search);
+  const utm_source   = q.get('utm_source')   || '';
+  const utm_medium   = q.get('utm_medium')   || '';
+  const utm_campaign = q.get('utm_campaign') || TIPOLOGIA;
+
+  let lid = q.get('lid') || localStorage.getItem('lid') || '';
   if (!lid) { lid = 'ld_' + (crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(16).slice(2)); localStorage.setItem('lid', lid); }
 
-  try{ fbq('track','ViewContent',{content_category:'landing',funnel:TIPOLOGIA,utm_source,utm_medium,utm_campaign}); }catch(e){}
-
-  function logGET(action){
+  function logAction(action){
     if(!action) return;
-    const base = { Tipologia: TIPOLOGIA, Action: action, lead_id: lid, utm_source, utm_medium, utm_campaign, ts: new Date().toISOString(), userAgent: navigator.userAgent };
+    const base = { Action: action, Tipologia: TIPOLOGIA, lead_id: lid, utm_source, utm_medium, utm_campaign, ts: new Date().toISOString(), ua: navigator.userAgent, cacheBust: Date.now() };
     const qs = new URLSearchParams(base).toString();
-    (new Image()).src = ENDPOINT + "?" + qs; // GET → doGet
+    const url = ENDPOINT + "?" + qs;
+    if (navigator.sendBeacon) { navigator.sendBeacon(url); }
+    else { fetch(url, { method:"GET", mode:"no-cors", keepalive:true }).catch(()=>{}); }
   }
 
-  function propagate(){
+  function propagateParams(){
     document.querySelectorAll('a[href*="calendly.com"],a[href*="drive.google.com"]').forEach(a=>{
       try{
         const u=new URL(a.href);
@@ -182,21 +183,18 @@ fbq('track','PageView');
         if(utm_medium)   u.searchParams.set('utm_medium',utm_medium);
         if(utm_campaign) u.searchParams.set('utm_campaign',utm_campaign);
         if(lid)          u.searchParams.set('lid', lid);
-        a.href=u.toString();
+        a.href=u.toString(); a.setAttribute('target','_blank'); a.setAttribute('rel','noopener');
       }catch(e){}
     });
   }
 
-  document.getElementById('cta-download').addEventListener('click', ()=>{
-    try{ fbq('trackCustom','Download',{doc:'pdf',funnel:TIPOLOGIA,utm_source,utm_medium,utm_campaign}); }catch(e){}
-    logGET('Download');
+  document.addEventListener('DOMContentLoaded', ()=>{
+    propagateParams();
+    const btnDownload = document.getElementById('cta-download');
+    const btnCalendly = document.getElementById('cta-calendly');
+    if (btnDownload) btnDownload.addEventListener('click', ()=>{ try{ fbq('trackCustom','Download',{funnel:TIPOLOGIA,utm_source,utm_medium,utm_campaign}); }catch(e){} logAction('Download'); });
+    if (btnCalendly) btnCalendly.addEventListener('click', ()=>{ try{ fbq('track','Schedule',{content_name:'Prenotazione Calendly',funnel:TIPOLOGIA,utm_source,utm_medium,utm_campaign,value:0,currency:'EUR'});}catch(e){} logAction('ScheduleClick'); });
   });
-  document.getElementById('cta-calendly').addEventListener('click', ()=>{
-    try{ fbq('track','Schedule',{content_name:'Prenotazione Calendly',funnel:TIPOLOGIA,utm_source,utm_medium,utm_campaign,value:0,currency:'EUR'});}catch(e){}
-    logGET('ScheduleClick');
-  });
-
-  document.addEventListener('DOMContentLoaded', propagate);
 </script>
 </body>
 </html>
