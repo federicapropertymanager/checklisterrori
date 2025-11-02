@@ -156,44 +156,51 @@ fbq('track','PageView');
 
 <!-- Tracking & UTM -->
 <script>
+  const ENDPOINT = "https://script.google.com/macros/s/AKfycbysELmr4ZOvglHJfEplkkO0E8mW1oDfZUbhkQ2mzHo0vJp4f0npo50SNz8NLGwL-SwZNA/exec";
   const TIPOLOGIA = 'errori';
   const q = new URLSearchParams(location.search);
   const utm_source   = q.get('utm_source')   || '';
   const utm_medium   = q.get('utm_medium')   || '';
   const utm_campaign = q.get('utm_campaign') || TIPOLOGIA;
+  const lid = q.get('lid') || localStorage.getItem('lid') || '';
 
   // ViewContent
   try{ fbq('track','ViewContent',{content_category:'landing',funnel:TIPOLOGIA,utm_source,utm_medium,utm_campaign}); }catch(e){}
+
+  function log(action, extra={}){
+    const base = { Action: action, Tipologia: TIPOLOGIA, lead_id: lid, utm_source, utm_medium, utm_campaign, ts: new Date().toISOString(), userAgent: navigator.userAgent };
+    const qs = new URLSearchParams({ ...base, ...extra }).toString();
+    if (navigator.sendBeacon) navigator.sendBeacon(ENDPOINT+"?"+qs, new Blob([], {type:"text/plain"}));
+    else fetch(ENDPOINT, { method:"POST", mode:"no-cors", keepalive:true, headers:{ "Content-Type":"application/x-www-form-urlencoded;charset=UTF-8" }, body: qs });
+  }
 
   function trackCalendly(){
     document.querySelectorAll('a[href*="calendly.com"],button[data-calendly]')
       .forEach(el => el.addEventListener('click', () => {
         try{ fbq('track','Schedule',{content_name:'Prenotazione Calendly',funnel:TIPOLOGIA,utm_source,utm_medium,utm_campaign,value:0,currency:'EUR'}); }catch(e){}
+        log('ScheduleClick');
       }));
   }
   function trackDownload(){
     document.querySelectorAll('a[href*="drive.google.com"]')
       .forEach(el => el.addEventListener('click', () => {
         try{ fbq('trackCustom','Download',{doc:'pdf',funnel:TIPOLOGIA,utm_source,utm_medium,utm_campaign}); }catch(e){}
+        log('Download');
       }));
   }
   function propagateUTM(){
-    if(!location.search) return;
+    if(!location.search && !lid) return;
     document.querySelectorAll('a[href*="calendly.com"],a[href*="drive.google.com"]').forEach(a=>{
       try{
         const u=new URL(a.href);
         if(utm_source)   u.searchParams.set('utm_source',utm_source);
         if(utm_medium)   u.searchParams.set('utm_medium',utm_medium);
         if(utm_campaign) u.searchParams.set('utm_campaign',utm_campaign);
+        if(lid)          u.searchParams.set('lid', lid);
         a.href=u.toString();
       }catch(e){}
     });
   }
-
-  // (Opzionale) Loggare su Google Sheet anche i click Calendly/Download:
-  // const LOG_URL = "https://script.google.com/macros/s/XXXXXXXX/exec"; // tuo Apps Script “logger”
-  // function logToSheet(evt){ try{ navigator.sendBeacon(LOG_URL+"?event="+evt+"&funnel="+TIPOLOGIA+"&utm_source="+utm_source+"&utm_medium="+utm_medium+"&utm_campaign="+utm_campaign); }catch(e){} }
-  // Aggiungi in trackCalendly/trackDownload: logToSheet('Schedule') / logToSheet('Download')
 
   document.addEventListener('DOMContentLoaded', ()=>{ trackCalendly(); trackDownload(); propagateUTM(); });
 </script>
