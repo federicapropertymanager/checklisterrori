@@ -79,14 +79,17 @@
     const PROVENIENZA = utm_source || 'instagram';
     const isEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
+    function getLeadId(){
+      let id = localStorage.getItem('lid');
+      if(!id){ id = 'ld_'+crypto.randomUUID(); localStorage.setItem('lid', id); }
+      return id;
+    }
+
     // Track Calendly clicks (se presenti nella pagina)
     document.addEventListener("DOMContentLoaded", () => {
       document.querySelectorAll('a[href*="calendly.com"], button[data-calendly]')
         .forEach(el => el.addEventListener('click', () => {
-          fbq('track', 'Schedule', {
-            content_name: 'Prenotazione Calendly',
-            funnel: TIPOLOGIA, utm_source, utm_medium, utm_campaign, value: 0, currency: 'EUR'
-          });
+          try{ fbq('track','Schedule', {content_name:'Prenotazione Calendly', funnel: TIPOLOGIA, utm_source, utm_medium, utm_campaign, value: 0, currency: 'EUR'}); }catch(e){}
         }));
     });
 
@@ -111,12 +114,14 @@
 
       btn.disabled = true; btn.textContent = "Invio in corso…";
 
+      const lead_id = getLeadId();
       const payload = {
         Nome, Email, Telefono, Situazione,
         Tipologia: TIPOLOGIA,
         Prenotato: "No",
         Provenienza: PROVENIENZA,
         utm_source, utm_medium, utm_campaign,
+        lead_id,
         ts: new Date().toISOString(),
         userAgent: navigator.userAgent
       };
@@ -127,11 +132,12 @@
       } catch(e){}
 
       const qs = new URLSearchParams(payload).toString();
+      const redirect = REDIRECT + (location.search ? location.search + '&' : '?') + 'lid=' + encodeURIComponent(lead_id);
 
       try {
         if (navigator.sendBeacon) {
           navigator.sendBeacon(ENDPOINT + "?" + qs, new Blob([], { type: "text/plain" }));
-          location.href = REDIRECT + (location.search || "");
+          location.href = redirect;
           return;
         }
         await fetch(ENDPOINT, {
@@ -140,7 +146,7 @@
           body: qs
         });
         okBox.style.display = "block";
-        setTimeout(()=> location.href = REDIRECT + (location.search || ""), 200);
+        setTimeout(()=> location.href = redirect, 200);
       } catch {
         errBox.textContent = "Errore di rete. Riprova tra qualche secondo.";
         errBox.style.display = "block";
