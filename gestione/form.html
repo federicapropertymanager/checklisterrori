@@ -78,11 +78,10 @@
     const PROVENIENZA = utm_source || 'instagram';
     const isEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
-    // Traccia Calendly se presente
     document.addEventListener("DOMContentLoaded", () => {
       document.querySelectorAll('a[href*="calendly.com"], button[data-calendly]')
         .forEach(el => el.addEventListener('click', () => {
-          fbq('track','Schedule',{content_name:'Prenotazione Calendly', funnel:TIPOLOGIA, utm_source, utm_medium, utm_campaign, value:0, currency:'EUR'});
+          try{ fbq('track','Schedule',{content_name:'Prenotazione Calendly', funnel:TIPOLOGIA, utm_source, utm_medium, utm_campaign, value:0, currency:'EUR'});}catch(e){}
         }));
     });
 
