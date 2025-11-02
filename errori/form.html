@@ -79,7 +79,10 @@
 
     function getLeadId(){
       let id = localStorage.getItem('lid');
-      if(!id){ id = 'ld_'+crypto.randomUUID(); localStorage.setItem('lid', id); }
+      if(!id){
+        id = 'ld_'+(crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(16).slice(2));
+        localStorage.setItem('lid', id);
+      }
       return id;
     }
 
@@ -113,7 +116,8 @@
         utm_source, utm_medium, utm_campaign,
         lead_id,
         ts: new Date().toISOString(),
-        userAgent: navigator.userAgent
+        userAgent: navigator.userAgent,
+        cacheBust: Date.now()
       };
 
       try {
@@ -136,7 +140,7 @@
           body: qs
         });
         okBox.style.display = "block";
-        setTimeout(()=> location.href = redirect, 200);
+        setTimeout(()=> location.href = redirect, 150);
       } catch {
         errBox.textContent = "Errore di rete. Riprova tra qualche secondo.";
         errBox.style.display = "block";
