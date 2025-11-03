@@ -1,124 +1,122 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Le 5 regole indispensabili — Federica Cellini</title>
-<meta name="robots" content="noindex,nofollow">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Guida “Regole & adempimenti” — Federica Cellini</title>
+<meta name="robots" content="noindex,nofollow" />
 <style>
-  :root{--navy:#0A2540;--ink:#101828;--muted:#667085;--gold:#D4AF37;--gold-2:#E2BF56;--bg:#F7F9FC;--card:#fff;--line:#E6ECF3;--radius:16px;--shadow:0 10px 30px rgba(16,24,40,.08)}
-  *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:var(--ink)}
-  a{text-decoration:none} .wrap{max-width:1120px;margin:0 auto;padding:22px}
-  .top{position:sticky;top:0;background:linear-gradient(180deg,#0A2540 0,#0A2540 85%,transparent);z-index:50}
-  .bar{max-width:1120px;margin:0 auto;padding:12px 22px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
-  .cta{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:12px 18px;font-weight:800}
-  .cta.primary{background:var(--gold);color:#0A2540}.cta.primary:hover{background:var(--gold-2)}
-  .cta.dark{background:#113653;color:#fff}
-  .hero{display:grid;grid-template-columns:1.25fr .75fr;gap:28px;align-items:center;margin-top:10px}
-  .hero h1{font-size:42px;line-height:1.1;margin:8px 0;color:#0A2540}
-  .lead{font-size:18px;color:var(--muted);margin:0 0 12px}
-  .pill{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow);font-weight:600;margin:10px 0}
-  .hero-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
-  .section{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px;margin:28px 0}
-  .section h2{margin:0 0 10px;color:#0A2540}
-  .compare{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-  .frame{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
-  .imgbox{aspect-ratio:3/2;display:flex;align-items:center;justify-content:center}
-  .imgbox img{max-width:100%;max-height:100%;object-fit:contain}
-  .cap{border-top:1px solid var(--line);padding:10px 12px;font-size:14px;color:#3b4350}
-  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-  .thumb .imgbox{aspect-ratio:4/3}
-  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-  .step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
-  .sticky{position:sticky;bottom:0;background:#0A2540;padding:16px 0}
-  .cta-bar{max-width:900px;margin:0 auto;background:var(--gold);color:#0A2540;border-radius:999px;padding:16px 22px;text-align:center;font-weight:800}
-  @media (max-width:1024px){.hero{grid-template-columns:1fr}}
-  @media (max-width:780px){.grid3,.steps{grid-template-columns:1fr}.hero h1{font-size:34px}}
+/* stessa base stile della pagina Errori */
+:root{--navy:#0A2540;--navy-2:#0e3558;--gold:#D4AF37;--gold-2:#E2BF56;--text:#0f172a;--muted:#475569;--bg:#f7f9fc;--card:#ffffff;--radius:16px}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;font-family:Inter,system-ui,Arial,sans-serif;color:var(--text);background:var(--bg)}
+.container{max-width:1080px;margin:0 auto;padding:24px}
+.hero{padding:48px 0 12px}
+h1{font-size:42px;line-height:1.1;margin:0 0 12px}
+h1 .u{ text-decoration:underline; text-decoration-thickness:6px; text-underline-offset:6px }
+.lead{font-size:18px;color:var(--muted);max-width:920px}
+.pill{display:inline-flex;align-items:center;gap:10px;padding:14px 20px;border-radius:999px;font-weight:800;white-space:nowrap}
+.pill--gold{background:var(--gold);color:var(--navy)} .pill--blue{background:var(--navy);color:#fff}
+.pill-row{display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:center;background:var(--navy);padding:16px}
+.pill-row .pill{box-shadow:0 10px 24px rgba(0,0,0,.15)}
+.list{display:grid;gap:14px;margin:28px 0 18px}
+.list .item{background:var(--card);border-radius:14px;padding:16px 18px;box-shadow:0 4px 18px rgba(10,37,64,.08);font-weight:600}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:16px 0 8px}
+@media (max-width:900px){ .grid-2{grid-template-columns:1fr} }
+.card{background:var(--card);border-radius:18px;padding:14px;box-shadow:0 10px 28px rgba(10,37,64,.10)}
+.proof{display:flex;flex-direction:column;gap:8px}
+.proof img{width:100%;height:auto;display:block;border-radius:14px;border:1px solid #e6eef7;background:#fff}
+.gallery{margin-top:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:900px){ .gallery{grid-template-columns:1fr 1fr} }
+@media (max-width:560px){ .gallery{grid-template-columns:1fr} }
+.sticky{position:sticky;bottom:0;z-index:50;background:var(--navy);padding:14px 10px;border-top:1px solid rgba(255,255,255,.08)}
+.sticky .cta{max-width:1080px;margin:0 auto;display:flex;justify-content:center}
+.section{margin:26px 0}
+.box{background:var(--card);border-radius:18px;padding:20px;box-shadow:0 10px 28px rgba(10,37,64,.10)}
+.kit{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:900px){ .kit{grid-template-columns:1fr} }
+.footer{margin:32px 0 40px}
+a.btn{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:14px 20px;font-weight:800;text-decoration:none}
+.btn--gold{background:var(--gold);color:var(--navy)} .btn--blue{background:var(--navy);color:#fff}
+.center{text-align:center}
 </style>
 </head>
 <body>
-
-<div class="top">
-  <div class="bar">
-    <a class="cta primary js-utm" href="../regole/form.html">📄 Scarica le 5 regole</a>
-    <a class="cta dark js-utm" href="https://calendly.com/federica-cellini888/30min" target="_blank" rel="noopener">📞 Prenota la call gratuita</a>
-  </div>
+<div class="pill-row">
+  <a id="btnDownloadTop" class="pill pill--gold" href="#" rel="nofollow">📄 Scarica la guida</a>
+  <a id="btnCallTop" class="pill pill--blue" href="#" rel="nofollow">📞 Prenota la call gratuita</a>
 </div>
 
-<main class="wrap">
+<div class="container">
   <section class="hero">
-    <div>
-      <h1>Le <u>regole</u> che sbloccano l’annuncio (e tengono sereni i portali)</h1>
-      <p class="lead">Quando metti in ordine norme e processi, i portali “si fidano” e l’utente anche → visibilità e prenotazioni più stabili.</p>
-      <div class="pill"><b>Normativa in ordine</b> → niente blocchi improvvisi.</div>
-      <div class="pill"><b>Qualità misurabile</b> → più 5★ e tasso di risposta alto.</div>
-      <div class="pill"><b>Processi chiari</b> → sai cosa fare e quando.</div>
-      <div style="display:flex;gap:10px;flex-wrap:wrap">
-        <a class="cta primary js-utm" href="../regole/form.html">📄 Scarica “Regole”</a>
-        <a class="cta dark js-utm" href="https://calendly.com/federica-cellini888/30min" target="_blank" rel="noopener">📞 Parliamone 30’</a>
+    <h1>Le <span class="u">regole</span> che evitano blocchi (e ti tengono “a norma”)</h1>
+    <p class="lead">SCIA, Alloggiati Web, tassa di soggiorno. Con il setup giusto riduci rischi e aumenti la fiducia (e le prenotazioni).</p>
+    <div class="list">
+      <div class="item">Meno rischi → niente sorprese dai portali o blocchi improvvisi.</div>
+      <div class="item">Più fiducia → gli host “a norma” convertono meglio e ottengono più 5★.</div>
+      <div class="item">Processi chiari → sai cosa fare e quando farlo.</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Effetto conformità (stesso immobile)</h2>
+    <div class="grid-2">
+      <div class="card proof">
+        <img src="../assets/img/confronto-2024.png" alt="Riepilogo 2024">
+        <div class="item">Prima: documenti e processi lacunosi.</div>
+      </div>
+      <div class="card proof">
+        <img src="../assets/img/confronto-2025.png" alt="Riepilogo 2025">
+        <div class="item">Dopo: attriti ridotti, più prenotazioni liquide.</div>
       </div>
     </div>
-    <div class="hero-card">
-      <b>Cosa trovi nella guida</b>
-      <ul>
-        <li>Checklist SCIA, Alloggiati Web, tassa soggiorno.</li>
-        <li>Template messaggi “a norma” che convertono.</li>
-        <li>Flusso operativo per restare coperti e performanti.</li>
-      </ul>
+    <div class="gallery">
+      <img src="../assets/img/dash-entrate.png" alt="Entrate in crescita">
+      <img src="../assets/img/dash-qualita.png" alt="Qualità e 5 stelle">
+      <img src="../assets/img/calendario.png" alt="Calendario stabile">
     </div>
   </section>
 
   <section class="section">
-    <h2>Effetto “regole fatte bene”</h2>
-    <div class="compare">
-      <div class="frame"><div class="imgbox"><img src="../assets/img/proof-2024.png" alt="Riepilogo 2024"></div><div class="cap">Prima: documenti/processi incompleti → attriti e buchi a calendario.</div></div>
-      <div class="frame"><div class="imgbox"><img src="../assets/img/proof-2025.png" alt="Riepilogo 2025"></div><div class="cap"><b>Con Federica</b>: portali sereni, più fiducia → <b>prenotazioni costanti</b>.</div></div>
+    <div class="box kit">
+      <div>
+        <h3>Cosa ottieni nella call (30′)</h3>
+        <p>Checklist dei fix “a norma”, priorità operative, e se serve un piano su misura (gestione/avviamento).</p>
+        <div class="center"><a id="btnCallMid" class="btn btn--blue" href="#" rel="nofollow">📞 Prenota la call gratuita</a></div>
+      </div>
+      <div>
+        <h3>Perché questa guida</h3>
+        <p>Se vuoi un annuncio pulito e senza attriti, questa guida ti fa evitare gli errori formali che costano visibilità e conversione.</p>
+        <div class="center"><a id="btnDownloadMid" class="btn btn--gold" href="#" rel="nofollow">📄 Scarica “Regole & adempimenti”</a></div>
+      </div>
     </div>
   </section>
 
-  <section class="section">
-    <h2>Prove in chiaro</h2>
-    <div class="grid3">
-      <div class="frame thumb"><div class="imgbox"><img src="../assets/img/dash.png" alt="Dashboard"></div><div class="cap">Valore prenotazioni in crescita dopo il riordino.</div></div>
-      <div class="frame thumb"><div class="imgbox"><img src="../assets/img/calendar.png" alt="Calendario"></div><div class="cap">Calendario più pieno anche sui feriali.</div></div>
-      <div class="frame thumb"><div class="imgbox"><img src="../assets/img/reviews.png" alt="Recensioni"></div><div class="cap">Più 5★ grazie a regole e messaggi chiari.</div></div>
-    </div>
+  <section class="section center">
+    <a id="btnDownloadBottom" class="btn btn--gold" href="#" rel="nofollow">📄 Scarica “Regole & adempimenti”</a>
   </section>
-
-  <section class="section">
-    <h2>Come procediamo</h2>
-    <div class="steps">
-      <div class="step"><b>1) Check situazione</b><br>Lo stato attuale, senza giri di parole.</div>
-      <div class="step"><b>2) Priorità legali</b><br>Mettiamo subito a norma ciò che serve.</div>
-      <div class="step"><b>3) Template e flusso</b><br>Regole semplici che tengono alti punteggi e conversioni.</div>
-    </div>
-    <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
-      <a class="cta primary js-utm" href="../regole/form.html">📄 Scarica le 5 regole</a>
-      <a class="cta dark js-utm" href="https://calendly.com/federica-cellini888/30min" target="_blank" rel="noopener">📞 Prenota la call gratuita</a>
-    </div>
-  </section>
-</main>
+</div>
 
 <div class="sticky">
-  <div class="wrap" style="max-width:900px">
-    <a class="cta-bar js-utm" href="../regole/form.html">📄 Scarica la guida “Regole”</a>
-  </div>
+  <div class="cta"><a id="btnCallSticky" class="pill pill--blue" href="#" rel="nofollow">📞 Prenota la call gratuita</a></div>
 </div>
 
 <script>
-  (function(){
-    const q=new URLSearchParams(location.search);
-    let lid=q.get('lid')||localStorage.getItem('lid');
-    if(!lid){ lid='ld_'+(crypto.randomUUID?crypto.randomUUID():Math.random().toString(16).slice(2)); localStorage.setItem('lid',lid); }
-    if(!q.get('lid')) q.set('lid',lid);
-    document.querySelectorAll('a.js-utm').forEach(a=>{
-      try{
-        const u=new URL(a.getAttribute('href'),location.href);
-        const m=new URLSearchParams(u.search);
-        q.forEach((v,k)=>{ if(!m.has(k)) m.set(k,v); });
-        u.search=m.toString(); a.setAttribute('href',u.toString());
-      }catch(e){}
-    });
-  })();
+  const TIPOLOGIA='regole';
+  const DOWNLOAD_URL='https://drive.google.com/file/d/1zwA16ynAmG-DmSvrIAWULeM-7RgYETOc/view?usp=sharing';
+  const CALENDLY_URL='https://calendly.com/federica-cellini188/30min';
+
+  const q=new URLSearchParams(location.search);
+  const utm_source=q.get('utm_source')||''; const utm_medium=q.get('utm_medium')||''; const utm_campaign=q.get('utm_campaign')||TIPOLOGIA;
+
+  function getLeadId(){ let id=localStorage.getItem('lid'); if(!id){ id='ld_'+(crypto.randomUUID?crypto.randomUUID():Math.random().toString(16).slice(2)); localStorage.setItem('lid',id);} return id; }
+  const lid=getLeadId();
+
+  function withParams(url){ const u=new URL(url); if(utm_source)u.searchParams.set('utm_source',utm_source); if(utm_medium)u.searchParams.set('utm_medium',utm_medium); if(utm_campaign)u.searchParams.set('utm_campaign',utm_campaign); u.searchParams.set('lid',lid); return u.toString(); }
+
+  ['btnDownloadTop','btnDownloadMid','btnDownloadBottom'].forEach(id=>{ const el=document.getElementById(id); if(el) el.href=withParams(DOWNLOAD_URL); });
+  ['btnCallTop','btnCallMid','btnCallSticky'].forEach(id=>{ const el=document.getElementById(id); if(el) el.href=withParams(CALENDLY_URL); });
+  document.querySelectorAll('a[href*="calendly.com"], a[href*="drive.google.com"]').forEach(a=>{ try{ a.href=withParams(a.href);}catch(_){}} );
 </script>
 </body>
 </html>
