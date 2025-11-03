@@ -5,16 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Guida pratica alla gestione degli affitti brevi — Federica Cellini</title>
 <base href="https://federicapropertymanager.github.io/checklisterrori/">
-<meta name="description" content="Scarica la guida sulla gestione: processi, prezzi dinamici, messaggi e controllo qualità per trasformare un annuncio in un asset che genera prenotazioni stabili.">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-  /* stessi stili di sopra */
   :root{ --navy:#0A2540; --az:#3A7CA5; --gold:#D4AF37; --bg:#FFFFFF; --muted:#F5F5F5; --ink:#0A2540; --radius:16px; }
   *{box-sizing:border-box}
   html,body{margin:0;padding:0;background:var(--bg);color:#13202E;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
   a{color:var(--az);text-decoration:none}
-  img{max-width:100%;height:auto;display:block}
   .wrap{max-width:1100px;margin:0 auto;padding:0 18px}
   .hero{background:linear-gradient(180deg,#0A2540 0%, #0A2540 65%, #082033 100%);color:#fff;padding:56px 0 34px}
   .eyebrow{letter-spacing:.12em;text-transform:uppercase;font-size:.82rem;color:#8CBFE0;margin:0 0 10px 0}
@@ -24,33 +21,10 @@
   .stack{display:flex;flex-direction:column;gap:14px;margin-top:22px}
   .btn{display:inline-flex;align-items:center;gap:12px;padding:16px 22px;border-radius:14px;font-weight:700;border:2px solid transparent;transition:.15s ease;justify-content:center}
   .btn-primary{background:var(--gold);color:#0A2540}
-  .btn-primary:hover{filter:brightness(.95)}
-  .btn-ghost{background:transparent;border-color:#2D4962;color:#E8F1F7;border:2px solid #2D4962}
-  .btn-ghost:hover{background:#0f3555}
-  .note{margin-top:18px;border:1px solid #26425B;background:rgba(255,255,255,.03);color:#DCE8F0;border-radius:14px;padding:14px 16px}
+  .btn-ghost{background:transparent;border:2px solid #2D4962;color:#E8F1F7}
   .section{padding:46px 0}
-  .section.alt{background:var(--muted)}
-  h2{font-size:clamp(24px,4.4vw,38px);line-height:1.15;color:var(--navy);margin:0 0 14px 0}
-  .kicker{color:#3A7CA5;font-weight:700}
-  .grid-3{display:grid;gap:16px;grid-template-columns:1fr}
-  @media(min-width:900px){.grid-3{grid-template-columns:repeat(3,1fr)}}
-  .feature{background:#fff;border:1px solid #EAEAEA;border-radius:14px;padding:16px;box-shadow:0 4px 14px rgba(10,37,64,.06)}
-  .proof-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;margin-top:30px}
-  .proof-fig{background:#fff;border-radius:14px;padding:12px;box-shadow:0 6px 18px rgba(10,37,64,.12);border:1px solid #EAEAEA}
-  .cap{font-size:.98rem;background:#F5F5F5;border:1px solid #eee;border-radius:12px;padding:10px 12px;margin-top:10px}
-  .collage{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:70px;gap:14px;position:relative;margin-top:24px}
-  .shot{position:relative;background:#fff;border:1px solid #EAEAEA;border-radius:14px;overflow:hidden;box-shadow:0 8px 20px rgba(10,37,64,.12);transition:transform .2s ease, box-shadow .2s ease}
-  .shot img{width:100%;height:100%;object-fit:cover}
-  .shot:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 12px 26px rgba(0,0,0,.18)}
   .cta-bar{position:sticky;bottom:0;left:0;right:0;background:#0A2540;border-top:1px solid rgba(255,255,255,.12);padding:14px 0;z-index:40}
-  .lightbox{position:fixed;inset:0;background:rgba(10,37,64,.8);display:none;align-items:center;justify-content:center;padding:24px;z-index:1000}
-  .lightbox:target{display:flex}
-  .lb-content{max-width:92vw;max-height:88vh;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.35)}
-  .lb-img{display:block;max-width:92vw;max-height:82vh}
-  .lb-cap{margin:0;background:#0A2540;color:#EAF2F8;padding:10px 14px;font-size:.95rem}
-  .lb-close{position:fixed;top:14px;right:16px;font-size:34px;color:#fff;text-decoration:none;line-height:1}
 </style>
-
 <!-- Meta Pixel -->
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -64,117 +38,53 @@ fbq('init','1375982357419853'); fbq('track','PageView');
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1375982357419853&ev=PageView&noscript=1"/></noscript>
 </head>
 <body>
-
 <header class="hero">
   <div class="wrap">
     <p class="eyebrow">Scarica ora</p>
     <h1>Guida pratica alla <span class="hi">gestione</span> degli affitti brevi</h1>
-    <p class="lead">Processi, prezzi dinamici, messaggi e controllo qualità: cosa serve davvero per trasformare un annuncio in un asset che genera prenotazioni stabili.</p>
+    <p class="lead">Processi, prezzi dinamici, messaggi e controllo qualità per risultati stabili.</p>
     <div class="stack">
-      <a id="cta-download" class="btn btn-primary" href="#">📗 Scarica la guida</a>
-      <a id="cta-calendly" class="btn btn-ghost" href="#">Prenota una consulenza gratuita</a>
+      <a id="cta-download" class="btn btn-primary" href="#" target="_blank" rel="noopener">Scarica la guida</a>
+      <a id="cta-calendly" class="btn btn-ghost" href="https://calendly.com/federica-cellini88/30min" target="_blank" rel="noopener">Prenota una consulenza gratuita</a>
     </div>
-    <div class="note"><b>Come usarla:</b> applica i punti chiave e, se vuoi accelerare, prenota la call gratuita per una revisione insieme.</div>
   </div>
 </header>
 
 <section class="section">
   <div class="wrap">
-    <h2>Cosa cambia con <span class="kicker">una gestione pro</span></h2>
-    <div class="grid-3">
-      <div class="feature"><b>Pricing dinamico</b> → prezzi che seguono eventi e domanda.</div>
-      <div class="feature"><b>Operazioni snelle</b> → check-in, pulizie e messaggi automatizzati.</div>
-      <div class="feature"><b>Qualità costante</b> → più recensioni 5★, più prenotazioni.</div>
-    </div>
-
-    <section class="proof-grid">
-      <div class="proof" style="flex:1 1 400px;max-width:500px;text-align:center;">
-        <figure class="proof-fig"><img src="assets/img/entrate-2025.png" alt="Grafico entrate 2025"></figure>
-        <div class="cap"><b>Effetto gestione:</b> entrate più stabili e prevedibili</div>
-      </div>
-      <div class="proof" style="flex:1 1 400px;max-width:500px;text-align:center;">
-        <figure class="proof-fig"><img src="assets/img/riepilogo-2025.png" alt="Riepilogo incassi 2025"></figure>
-        <div class="cap"><b>Case study:</b> da proprietario solo → team & processo</div>
-      </div>
-    </section>
-
-    <a id="cta-calendly-footer" class="btn btn-primary" href="#">Prenota la consulenza gratuita</a>
-  </div>
-</section>
-
-<section class="section alt">
-  <div class="wrap">
-    <h2>Come funziona la call gratuita (30’)</h2>
-    <ol>
-      <li>Contesto della struttura e obiettivi.</li>
-      <li>Piano operativo minimo per i prossimi 30 giorni.</li>
-      <li>Se ha senso, proposta di <b>gestione completa</b> o affiancamento.</li>
-    </ol>
-    <a class="btn btn-primary" id="cta-calendly-2" href="#">Prenota ora (gratuita)</a>
-  </div>
-</section>
-
-<section class="section">
-  <div class="wrap">
     <h2>Chi è Federica Cellini</h2>
-    <p>Property Manager su Roma e dintorni. Ottimizzo i processi e massimizzo le entrate con una gestione concreta e misurabile.</p>
+    <p>Property Manager su Roma e dintorni. Metodo pratico e misurabile.</p>
   </div>
 </section>
 
 <div class="cta-bar">
   <div class="wrap">
-    <a class="btn btn-primary" style="width:100%" id="cta-calendly-sticky" href="#">Prenota la consulenza gratuita</a>
+    <a class="btn btn-primary" style="width:100%" href="https://calendly.com/federica-cellini88/30min" target="_blank" rel="noopener">Prenota la consulenza gratuita</a>
   </div>
 </div>
 
-<!-- ===== Tracking affidabile + UTM + LID ===== -->
 <script>
-const ENDPOINT      = "https://script.google.com/macros/s/AKfycbysELmr4ZOvglHJfEplkkO0E8mW1oDfZUbhkQ2mzHo0vJp4f0npo50SNz8NLGwL-SwZNA/exec";
-const TIPOLOGIA     = "gestione";
-const DOWNLOAD_URL  = "https://drive.google.com/file/d/1d8kwWlCp00xpj8KVWeqNz0TlB2S4_u-/view?usp=sharing";
-const CALENDLY_URL  = "https://calendly.com/federica-cellini88/30min";
+  const TIPOLOGIA   = "gestione";
+  const DOWNLOAD_URL= "https://drive.google.com/file/d/1d8kwWlCp00xpj8KVWeqNz0TlB2S4_u-/view?usp=sharing";
 
-const q = new URLSearchParams(location.search);
-const utm_source   = q.get('utm_source')   || "";
-const utm_medium   = q.get('utm_medium')   || "";
-const utm_campaign = q.get('utm_campaign') || TIPOLOGIA;
-let   lid = q.get('lid') || localStorage.getItem('lid') || '';
-if (!lid) { lid='ld_'+(crypto.randomUUID?crypto.randomUUID():Math.random().toString(16).slice(2)); localStorage.setItem('lid',lid); }
+  const q = new URLSearchParams(location.search);
+  const utm_source   = q.get('utm_source')   || '';
+  const utm_medium   = q.get('utm_medium')   || '';
+  const utm_campaign = q.get('utm_campaign') || TIPOLOGIA;
+  const lid = q.get('lid') || localStorage.getItem('lid') || '';
 
-function withParams(base){
-  try{
-    const u=new URL(base);
-    if(utm_source)   u.searchParams.set('utm_source',utm_source);
-    if(utm_medium)   u.searchParams.set('utm_medium',utm_medium);
-    if(utm_campaign) u.searchParams.set('utm_campaign',utm_campaign);
-    if(lid)          u.searchParams.set('lid',lid);
-    return u.toString();
-  }catch(e){ return base; }
-}
-function logGET(action){
-  const p=new URLSearchParams({Action:action, Tipologia:TIPOLOGIA, lead_id:lid, utm_source, utm_medium, utm_campaign, ts:new Date().toISOString()}).toString();
-  (new Image()).src=ENDPOINT+"?"+p;
-}
-function handleDownload(e){
-  e.preventDefault();
-  try{ fbq('trackCustom','Download',{funnel:TIPOLOGIA}); }catch(e){}
-  logGET('Download');
-  setTimeout(()=> window.open(withParams(DOWNLOAD_URL),'_blank'), 180);
-}
-function handleCalendly(e){
-  e.preventDefault();
-  try{ fbq('track','Schedule',{content_name:'Calendly',funnel:TIPOLOGIA}); }catch(e){}
-  logGET('ScheduleClick');
-  setTimeout(()=> window.open(withParams(CALENDLY_URL),'_blank'), 180);
-}
-function bind(id){ const el=document.getElementById(id); if(el){ el.href="#"; el.addEventListener('click',handleCalendly); } }
+  function withParams(base){
+    try{
+      const u=new URL(base);
+      if(utm_source)   u.searchParams.set('utm_source',utm_source);
+      if(utm_medium)   u.searchParams.set('utm_medium',utm_medium);
+      if(utm_campaign) u.searchParams.set('utm_campaign',utm_campaign);
+      if(lid)          u.searchParams.set('lid', lid);
+      return u.toString();
+    }catch(e){ return base; }
+  }
 
-document.getElementById('cta-download')?.addEventListener('click', handleDownload);
-bind('cta-calendly'); bind('cta-calendly-footer'); bind('cta-calendly-2'); bind('cta-calendly-sticky');
-
-document.addEventListener('DOMContentLoaded', ()=>{
-  document.querySelectorAll('a[href*="calendly.com"],a[href*="drive.google.com"]').forEach(a=>{ a.href=withParams(a.href); });
-});
+  document.getElementById('cta-download').href = withParams(DOWNLOAD_URL);
 </script>
 </body>
 </html>
