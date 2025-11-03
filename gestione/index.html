@@ -5,83 +5,96 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Guida pratica alla gestione degli affitti brevi — Federica Cellini</title>
 <base href="https://federicapropertymanager.github.io/checklisterrori/">
-<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<meta name="description" content="Scarica la guida sulla gestione: processi, prezzi dinamici, messaggi e controllo qualità per trasformare un annuncio in un asset che genera prenotazioni stabili.">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root{ --navy:#0A2540; --gold:#D4AF37; --ink:#091826; --muted:#6C7C89; --bg:#fff; --radius:16px; }
-  *{box-sizing:border-box} html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,Arial,sans-serif}
+  :root{ --navy:#0A2540; --gold:#D4AF37; --ink:#13202E; --muted:#6B7B89; --bg:#FFFFFF; --soft:#F5F7FA; --radius:16px; }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
   a{color:#2B7BBB;text-decoration:none}
-  .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
-  header.hero{background:linear-gradient(180deg,#0A2540 0%,#0B2236 100%);color:#fff}
-  .hero-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;padding:58px 0}
-  @media (max-width:900px){ .hero-inner{grid-template-columns:1fr} }
-  h1{font-size:clamp(28px,6vw,56px);line-height:1.05;margin:0 0 12px}
-  .lead{font-size:clamp(16px,2.4vw,19px);line-height:1.6;color:#E7F0F7;margin:0 0 20px}
-  .btn{display:inline-flex;gap:12px;align-items:center;justify-content:center;padding:14px 18px;border-radius:14px;font-weight:800;cursor:pointer;border:2px solid transparent}
+  .wrap{max-width:780px;margin:0 auto;padding:0 18px}
+  .hero{background:linear-gradient(180deg,#0A2540 0%, #0B2236 100%);color:#fff;padding:48px 0}
+  .eyebrow{letter-spacing:.12em;text-transform:uppercase;font-size:.82rem;color:#8CBFE0;margin:0 0 10px 0}
+  h1{font-size:clamp(28px,6.2vw,42px);line-height:1.1;margin:0 0 14px 0}
+  h1 .hi{color:var(--gold)}
+  .lead{font-size:clamp(15px,2.9vw,18px);line-height:1.6;color:#E6F0F7;margin:0}
+  .stack{display:flex;flex-direction:column;gap:12px;margin-top:18px}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 18px;border-radius:14px;font-weight:800;border:2px solid transparent;justify-content:center}
   .btn-primary{background:var(--gold);color:#0A2540}
-  .btn-ghost{background:transparent;color:#E7F0F7;border-color:#2E4964}
-  .hero-card{background:#0F2A44;border:1px solid #183754;border-radius:16px;padding:16px}
-  .hero-img{width:100%;border-radius:12px;display:block}
-  section{padding:44px 0}
-  .features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-  @media (max-width:900px){ .features{grid-template-columns:1fr} }
-  .f{background:#F7FAFC;border:1px solid #E7EDF3;border-radius:14px;padding:16px}
-  .f h3{margin:0 0 6px;font-size:18px}
-  .f p{margin:0;color:#4B5A67}
-  .gallery{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:8px}
-  @media (max-width:900px){ .gallery{grid-template-columns:repeat(3,1fr)} }
-  .thumb{display:block;border-radius:10px;overflow:hidden;border:1px solid #e6eef4}
-  .thumb img{width:100%;display:block}
-  .lb{position:fixed;inset:0;background:rgba(9,24,38,.86);display:none;align-items:center;justify-content:center;z-index:50}
-  .lb.open{display:flex}
-  .lb img{max-width:92vw;max-height:86vh;border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,.35)}
-  .lb-close{position:fixed;top:14px;right:14px;background:#fff;border-radius:999px;padding:8px 12px;font-weight:700;color:#0A2540;border:0;cursor:pointer}
-  .cta-bar{position:sticky;bottom:0;background:#0A2540;border-top:1px solid rgba(255,255,255,.12);padding:12px 0;z-index:40}
+  .btn-ghost{background:transparent;border-color:#2D4962;color:#E8F1F7}
+  .note{margin-top:14px;border:1px solid #26425B;background:rgba(255,255,255,.04);color:#DCE8F0;border-radius:14px;padding:12px 14px}
+  .section{padding:34px 0}
+  .card{background:#fff;border:1px solid #E7EDF3;border-radius:14px;padding:16px}
+  .kicker{color:#2B7BBB;font-weight:800}
+  .bullets{display:grid;gap:12px}
+  .bul{background:var(--soft);border:1px solid #E9EEF5;border-radius:12px;padding:12px}
+  .cta-bar{position:sticky;bottom:0;left:0;right:0;background:#0A2540;border-top:1px solid rgba(255,255,255,.12);padding:12px 0;z-index:40}
 </style>
-<!-- Pixel -->
+
+<!-- Meta Pixel -->
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
 n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
 t=b.createElement(e);t.async=!0;t.src=v;
-s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','1375982357419853'); fbq('track','PageView');
 </script>
-<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1375982357419853&ev=PageView&noscript=1"/></noscript>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1375982357419853&ev=PageView&noscript=1"/></noscript>
 </head>
 <body>
 
 <header class="hero">
-  <div class="wrap hero-inner">
-    <div>
-      <h1>Guida pratica alla <span style="color:var(--gold)">gestione</span> degli affitti brevi</h1>
-      <p class="lead">Processi, prezzi dinamici, messaggi automatici e controllo qualità per risultati stabili.</p>
-      <div style="display:flex;gap:12px;flex-wrap:wrap">
-        <a data-propagate id="cta-download" class="btn btn-primary" href="#" target="_blank" rel="noopener">Scarica la guida</a>
-        <a data-propagate class="btn btn-ghost" href="https://calendly.com/federica-cellini88/30min" target="_blank" rel="noopener">Prenota consulenza gratuita</a>
-      </div>
+  <div class="wrap">
+    <p class="eyebrow">Scarica ora</p>
+    <h1>Guida pratica alla <span class="hi">gestione</span> degli affitti brevi</h1>
+    <p class="lead">Processi, prezzi dinamici, messaggi e controllo qualità: cosa serve davvero per trasformare un annuncio in un asset che genera prenotazioni stabili.</p>
+    <div class="stack">
+      <a id="cta-download" class="btn btn-primary" href="#">📗 Scarica la guida</a>
+      <a data-propagate class="btn btn-ghost" href="https://calendly.com/federica-cellini88/30min" target="_blank" rel="noopener">Prenota una consulenza gratuita</a>
     </div>
-    <div class="hero-card">
-      <img class="hero-img" src="assets/img/1-2025.png" alt="Anteprima guida gestione">
-    </div>
+    <div class="note"><b>Come usarla:</b> applica i punti chiave e, se vuoi accelerare, prenota la call gratuita per una revisione insieme.</div>
   </div>
 </header>
 
-<section>
-  <div class="wrap">
-    <div class="features">
-      <div class="f"><h3>Operatività</h3><p>Check-in, pulizie, manutenzioni: come standardizzarle.</p></div>
-      <div class="f"><h3>Redditività</h3><p>Prezzi dinamici e promo senza erodere margini.</p></div>
-      <div class="f"><h3>Comunicazione</h3><p>Messaggi automatici e KPI da monitorare.</p></div>
-    </div>
+<section class="section">
+  <div class="wrap card">
+    <h2 class="kicker">Cosa cambia con una gestione pro</h2>
+    <p style="margin:8px 0 0"><b>Operazioni snelle</b>, <b>pricing dinamico</b>, <b>messaggi automatici</b> e <b>qualità costante</b>: la base per più recensioni 5★ e più prenotazioni.</p>
+  </div>
+</section>
 
-    <div class="gallery">
-      <a href="assets/img/1-2025.png" class="thumb"><img src="assets/img/1-2025.png" alt=""></a>
-      <a href="assets/img/2-2025.png" class="thumb"><img src="assets/img/2-2025.png" alt=""></a>
-      <a href="assets/img/3-2025.png" class="thumb"><img src="assets/img/3-2025.png" alt=""></a>
-      <a href="assets/img/4-2025.png" class="thumb"><img src="assets/img/4-2025.png" alt=""></a>
-      <a href="assets/img/5-2025.png" class="thumb"><img src="assets/img/5-2025.png" alt=""></a>
+<section class="section">
+  <div class="wrap">
+    <div class="bullets">
+      <div class="bul"><b>Pricing dinamico</b> → prezzi che seguono eventi e domanda.</div>
+      <div class="bul"><b>Operatività</b> → check-in, pulizie e messaggi standardizzati.</div>
+      <div class="bul"><b>Qualità</b> → controllo costante e KPI semplici.</div>
     </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap card">
+    <h2 class="kicker">Come funziona la call gratuita (30’)</h2>
+    <ol style="margin:10px 0 0 18px">
+      <li>Contesto della struttura e obiettivi.</li>
+      <li>Piano operativo minimo per i prossimi 30 giorni.</li>
+      <li>Se ha senso, proposta di <b>gestione completa</b> o affiancamento.</li>
+    </ol>
+    <div style="margin-top:14px">
+      <a data-propagate class="btn btn-primary" href="https://calendly.com/federica-cellini88/30min" target="_blank" rel="noopener">Prenota ora (gratuita)</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-bottom:80px">
+  <div class="wrap">
+    <h2>Chi è Federica Cellini</h2>
+    <p>Property Manager su Roma e dintorni. Ottimizzo i processi e massimizzo le entrate con una gestione concreta e misurabile.</p>
   </div>
 </section>
 
@@ -91,37 +104,30 @@ fbq('init','1375982357419853'); fbq('track','PageView');
   </div>
 </div>
 
-<div id="lb" class="lb" role="dialog" aria-modal="true"><button class="lb-close" type="button">Chiudi ✕</button><img id="lb-img" alt=""></div>
-
 <script>
   const TIPOLOGIA    = "gestione";
   const DOWNLOAD_URL = "https://drive.google.com/file/d/1d8kwWlCp00xpj8KVWeqNz0TlB2S4_u-/view?usp=sharing";
 
   const q = new URLSearchParams(location.search);
-  const utm_source   = q.get("utm_source")   || "";
-  const utm_medium   = q.get("utm_medium")   || "";
-  const utm_campaign = q.get("utm_campaign") || TIPOLOGIA;
-  const lid          = q.get("lid") || localStorage.getItem("lid") || "";
+  const utm_source   = q.get('utm_source')   || "";
+  const utm_medium   = q.get('utm_medium')   || "";
+  const utm_campaign = q.get('utm_campaign') || TIPOLOGIA;
+  let lid            = q.get('lid') || localStorage.getItem('lid') || '';
+  if(!lid){ lid='ld_'+(crypto.randomUUID?crypto.randomUUID():Math.random().toString(16).slice(2)); localStorage.setItem('lid',lid); }
 
   function withParams(url){
     try{
-      const u = new URL(url);
-      if(utm_source)   u.searchParams.set("utm_source", utm_source);
-      if(utm_medium)   u.searchParams.set("utm_medium", utm_medium);
-      if(utm_campaign) u.searchParams.set("utm_campaign", utm_campaign);
-      if(lid)          u.searchParams.set("lid", lid);
+      const u=new URL(url);
+      if(utm_source)   u.searchParams.set('utm_source',utm_source);
+      if(utm_medium)   u.searchParams.set('utm_medium',utm_medium);
+      if(utm_campaign) u.searchParams.set('utm_campaign',utm_campaign);
+      if(lid)          u.searchParams.set('lid',lid);
       return u.toString();
-    }catch{ return url; }
+    }catch(e){ return url; }
   }
-  document.getElementById("cta-download").href = withParams(DOWNLOAD_URL);
-  document.querySelectorAll("a[data-propagate]").forEach(a=> a.href = withParams(a.href));
 
-  const lb = document.getElementById("lb"); const lbImg = document.getElementById("lb-img");
-  document.querySelectorAll(".gallery .thumb").forEach(a=>{
-    a.addEventListener("click", e=>{ e.preventDefault(); lbImg.src=a.href; lb.classList.add("open"); });
-  });
-  document.querySelector(".lb-close").addEventListener("click", ()=> lb.classList.remove("open"));
-  lb.addEventListener("click", e=>{ if(e.target===lb) lb.classList.remove("open"); });
+  document.getElementById('cta-download').href = withParams(DOWNLOAD_URL);
+  document.querySelectorAll('a[data-propagate]').forEach(a=> a.href = withParams(a.href));
 </script>
 </body>
 </html>
