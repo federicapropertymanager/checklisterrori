@@ -7,134 +7,175 @@
 <meta name="robots" content="noindex,nofollow">
 <style>
   :root{
-    --navy:#0A2540; --gold:#D4AF37; --gold-2:#E2BF56; --ink:#0d1117; --muted:#5b6472;
-    --bg:#f7f9fc; --card:#ffffff; --radius:16px; --shadow:0 8px 32px rgba(10,37,64,.09);
-    --ring:0 0 0 3px rgba(58,124,165,.12);
+    --navy:#0A2540; --ink:#101828; --muted:#667085; --gold:#D4AF37; --gold-2:#E2BF56;
+    --bg:#F7F9FC; --card:#FFFFFF; --line:#E6ECF3; --radius:16px; --shadow:0 10px 30px rgba(16,24,40,.08);
   }
   *{box-sizing:border-box}
   body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:var(--ink)}
-  .wrap{max-width:1120px;margin:0 auto;padding:24px}
-  header{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,#0A2540 0,#0A2540 72%,transparent);}
-  .topbar{max-width:1120px;margin:0 auto;padding:14px 24px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:center}
-  .cta{display:inline-flex;gap:10px;align-items:center;justify-content:center;background:var(--gold);color:var(--navy);font-weight:800;border:0;border-radius:999px;padding:12px 18px;cursor:pointer;text-decoration:none}
-  .cta.secondary{background:#102b45;color:#fff}
-  .cta:hover{background:var(--gold-2)}
-  h1{font-size:40px;line-height:1.1;margin:28px 0 10px;color:var(--navy)}
-  .p-lead{color:var(--muted);font-size:18px;margin:0 0 22px}
-  .pill{background:var(--card); border:1px solid #e9eef5; border-radius:14px; padding:14px 16px; box-shadow:var(--shadow); margin:10px 0; font-weight:600}
-  .section{background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:24px; margin:24px 0}
-  .compare{display:grid; grid-template-columns:1fr 1fr; gap:18px}
-  .card-img{background:#fff;border:1px solid #e8edf3;border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
-  figure{margin:0}
-  .imgbox{width:100%;height:360px;display:flex;align-items:center;justify-content:center;background:#fff}
-  .imgbox img{max-width:100%;max-height:100%;object-fit:contain;display:block}
-  figcaption{font-size:14px;color:#3b4350;padding:10px 12px;border-top:1px solid #eef3f8}
-  .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-  .thumb .imgbox{height:220px}
-  .badge{display:inline-block;font-size:12px;font-weight:700;color:#0a6b2b;background:#e8f7ef;border:1px solid #c9ecd9;border-radius:999px;padding:4px 8px;margin-left:8px}
-  .cta-sticky{position:sticky;bottom:0;background:#0A2540;padding:18px 0;z-index:40}
-  .cta-bar{max-width:900px;margin:0 auto;background:var(--gold);color:var(--navy);font-weight:800;border-radius:999px;padding:16px 22px;text-align:center}
-  .faq{display:grid;gap:12px}
-  details{background:var(--card);border:1px solid #e9eef5;border-radius:12px;padding:12px 14px}
-  summary{font-weight:700;cursor:pointer}
-  @media (max-width:960px){
-    h1{font-size:32px}
-    .compare{grid-template-columns:1fr}
-    .gallery{grid-template-columns:1fr 1fr}
-    .imgbox{height:300px}
+  a{text-decoration:none}
+  .wrap{max-width:1120px;margin:0 auto;padding:22px}
+  /* header */
+  .top{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,#0A2540 0,#0A2540 85%,transparent)}
+  .bar{max-width:1120px;margin:0 auto;padding:12px 22px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:center}
+  .cta{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:12px 18px;font-weight:800}
+  .cta.primary{background:var(--gold);color:#0A2540}
+  .cta.primary:hover{background:var(--gold-2)}
+  .cta.dark{background:#113653;color:#fff}
+  /* hero */
+  .hero{display:grid;grid-template-columns:1.25fr .75fr;gap:28px;align-items:center;margin-top:10px}
+  .hero h1{font-size:42px;line-height:1.1;margin:8px 0;color:#0A2540}
+  .lead{font-size:18px;color:var(--muted);margin:0 0 12px}
+  .benefit{display:grid;gap:10px;margin:18px 0}
+  .pill{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow);font-weight:600}
+  .hero-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
+  /* proof */
+  .section{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px;margin:28px 0}
+  .section h2{margin:0 0 10px;color:#0A2540}
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .frame{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .imgbox{aspect-ratio:3/2;display:flex;align-items:center;justify-content:center;background:#fff}
+  .imgbox img{max-width:100%;max-height:100%;object-fit:contain}
+  .cap{border-top:1px solid var(--line);padding:10px 12px;font-size:14px;color:#3b4350}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .thumb .imgbox{aspect-ratio:4/3}
+  /* how */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+  .step b{color:#0A2540}
+  /* sticky cta */
+  .sticky{position:sticky;bottom:0;z-index:40;background:#0A2540;padding:16px 0}
+  .cta-bar{max-width:900px;margin:0 auto;background:var(--gold);color:#0A2540;border-radius:999px;padding:16px 22px;text-align:center;font-weight:800}
+  /* footer bio */
+  .bio{display:flex;gap:18px;align-items:flex-start}
+  .avatar{width:72px;height:72px;border-radius:50%;background:#eaeef4}
+  @media (max-width:1024px){
+    .hero{grid-template-columns:1fr}
   }
-  @media (max-width:620px){
-    .gallery{grid-template-columns:1fr}
-    .thumb .imgbox{height:200px}
+  @media (max-width:780px){
+    .grid3,.steps{grid-template-columns:1fr}
+    .hero h1{font-size:34px}
   }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="topbar">
-    <a class="cta" href="../errori/form.html">📄 Scarica la checklist</a>
-    <a class="cta secondary" href="https://calendly.com/federica-cellini888/30min" target="_blank" rel="noopener">📞 Prenota una consulenza gratuita</a>
-  </div>
-</header>
-
-<main class="wrap">
-
-  <h1>Da “annuncio fermo” a asset che <u>converte</u></h1>
-  <p class="p-lead">
-    Il proprietario gestiva da solo nel <b>2024</b>. Nel <b>2025</b> affida l’asset a Federica:
-    <b>+19.253€ incassati</b> e un calendario che gira. Il cambio lo fanno <b>annuncio, prezzi e processi</b>.
-  </p>
-
-  <div class="pill">Titoli & cover che fanno cliccare → più visite al listing (e al calendario).</div>
-  <div class="pill">Prezzi dinamici su eventi e stagioni → addio listini “fissi”.</div>
-  <div class="pill">Messaggi preimpostati → risposta rapida, fiducia, conversioni.</div>
-
-  <!-- Confronto principale -->
-  <section class="section">
-    <h2 style="margin:0 0 10px;color:#0A2540">Con Federica i numeri cambiano</h2>
-    <p class="p-lead" style="margin:0 0 18px">Qui sotto vedi <b>lo stesso appartamento</b> prima e dopo l’intervento.</p>
-    <div class="compare">
-      <figure class="card-img">
-        <div class="imgbox">
-          <img src="../assets/img/proof-2024.png" alt="Riepilogo entrate 2024">
-        </div>
-        <figcaption>Prima (gestione autonoma): entrate instabili, calendario con buchi.</figcaption>
-      </figure>
-      <figure class="card-img">
-        <div class="imgbox">
-          <img src="../assets/img/proof-2025.png" alt="Riepilogo entrate 2025">
-        </div>
-        <figcaption><b>Con Federica</b>: prezzi dinamici + ottimizzazione annuncio → <b>entrate più alte e stabili</b>.</figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <!-- Proof extra -->
-  <section class="section">
-    <h3 style="margin-top:0;color:#0A2540">Prove reali (oscurate dove serve) <span class="badge">no vanity</span></h3>
-    <div class="gallery">
-      <figure class="card-img thumb">
-        <div class="imgbox"><img src="../assets/img/dash.png" alt="Dashboard prenotazioni"></div>
-        <figcaption>Dashboard prenotazioni: più notti vendute a prezzo medio migliore.</figcaption>
-      </figure>
-      <figure class="card-img thumb">
-        <div class="imgbox"><img src="../assets/img/calendar.png" alt="Calendario più pieno"></div>
-        <figcaption>Calendario: riempimento continuo su giorni “deboli”.</figcaption>
-      </figure>
-      <figure class="card-img thumb">
-        <div class="imgbox"><img src="../assets/img/reviews.png" alt="Recensioni e qualità"></div>
-        <figcaption>Qualità & recensioni: messaggi chiari, check-in fluidi, meno attriti.</figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <!-- Blocco consulenza -->
-  <section class="section">
-    <h3 style="margin:0 0 6px;color:#0A2540">Call gratuita (30’): cosa ottieni</h3>
-    <ul style="margin:0 0 16px 18px;line-height:1.7">
-      <li>Check rapido del tuo annuncio (titolo, foto, prezzi, messaggi).</li>
-      <li>Checklist dei fix prioritari per visibilità e conversione.</li>
-      <li>Se ha senso, piano di <b>gestione</b> o <b>avviamento</b> su misura.</li>
-    </ul>
-    <a class="cta" href="https://calendly.com/federica-cellini888/30min" target="_blank" rel="noopener">Prenota ora (gratuita)</a>
-  </section>
-
-  <section class="section">
-    <h3 style="margin:0 0 10px;color:#0A2540">Chi è Federica</h3>
-    <p style="margin:0;color:#3b4350">
-      Property Manager su Roma e dintorni. Trasforma annunci “frenati” in asset che generano prenotazioni
-      con <b>ottimizzazione annuncio</b>, <b>pricing dinamico</b> e <b>processi snelli</b>.
-    </p>
-  </section>
-</main>
-
-<!-- Sticky CTA -->
-<div class="cta-sticky">
-  <div class="wrap" style="max-width:900px">
-    <a class="cta-bar" href="../errori/form.html">📄 Scarica la checklist “7 errori”</a>
+<!-- top bar -->
+<div class="top">
+  <div class="bar">
+    <a class="cta primary js-utm" href="../errori/form.html">📄 Scarica la checklist</a>
+    <a class="cta dark js-utm" href="https://calendly.com/federica-cellini888/30min" target="_blank" rel="noopener">📞 Prenota la call gratuita</a>
   </div>
 </div>
 
+<main class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <h1>Gli <u>errori</u> che bloccano le prenotazioni (e come evitarli)</h1>
+      <p class="lead">Stesso appartamento, due risultati opposti: nel <b>2024</b> calendario fermo; nel <b>2025</b> <b>+19.253€</b> e flusso costante. La differenza? Annuncio, prezzi, processi.</p>
+      <div class="benefit">
+        <div class="pill">Titoli & cover che fanno cliccare → più visite al listing (e al calendario).</div>
+        <div class="pill">Prezzi dinamici su eventi e stagioni → addio listini fissi.</div>
+        <div class="pill">Messaggi preimpostati → risposta rapida, fiducia e conversioni.</div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="cta primary js-utm" href="../errori/form.html">📄 Scarica “7 errori”</a>
+        <a class="cta dark js-utm" href="https://calendly.com/federica-cellini888/30min" target="_blank" rel="noopener">📞 Parliamone 30’</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <b>Per chi è questa guida</b>
+      <ul>
+        <li>Hai un annuncio che “non gira” come dovrebbe.</li>
+        <li>Vuoi capire cosa sistemare per vedere subito impatto.</li>
+        <li>Preferisci numeri e processi, non magie.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PROOF: CONFRONTO -->
+  <section class="section">
+    <h2>Confronto reale <small style="color:var(--muted)">— stesso immobile</small></h2>
+    <div class="compare">
+      <div class="frame">
+        <div class="imgbox"><img src="../assets/img/proof-2024.png" alt="Riepilogo 2024"></div>
+        <div class="cap">Prima (gestione autonoma): entrate instabili, calendario con buchi.</div>
+      </div>
+      <div class="frame">
+        <div class="imgbox"><img src="../assets/img/proof-2025.png" alt="Riepilogo 2025"></div>
+        <div class="cap"><b>Con Federica</b>: ottimizzazione annuncio + pricing → <b>entrate più alte e stabili</b>.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF: GALLERY -->
+  <section class="section">
+    <h2>Altri estratti <small style="color:var(--muted)">— dati sensibili oscurati</small></h2>
+    <div class="grid3">
+      <div class="frame thumb"><div class="imgbox"><img src="../assets/img/dash.png" alt="Dashboard"></div><div class="cap">Dashboard prenotazioni: più notti vendute, ADR migliore.</div></div>
+      <div class="frame thumb"><div class="imgbox"><img src="../assets/img/calendar.png" alt="Calendario"></div><div class="cap">Calendario: riempimento anche nei feriali “deboli”.</div></div>
+      <div class="frame thumb"><div class="imgbox"><img src="../assets/img/reviews.png" alt="Recensioni"></div><div class="cap">Qualità & 5★: messaggi chiari, check-in fluidi, meno attriti.</div></div>
+    </div>
+  </section>
+
+  <!-- HOW WE WORK -->
+  <section class="section">
+    <h2>Come lavoriamo (in 3 mosse)</h2>
+    <div class="steps">
+      <div class="step"><b>1) Analisi lampo</b><br>10’ per capire dove l’annuncio perde visite o conversione.</div>
+      <div class="step"><b>2) Fix prioritari</b><br>Titolo/cover, prezzi, messaggi: facciamo prima ciò che muove i numeri.</div>
+      <div class="step"><b>3) Processo e controllo</b><br>Template, routine e KPI: da “speriamo” a “gestiamo”.</div>
+    </div>
+    <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+      <a class="cta primary js-utm" href="../errori/form.html">📄 Scarica la checklist</a>
+      <a class="cta dark js-utm" href="https://calendly.com/federica-cellini888/30min" target="_blank" rel="noopener">📞 Prenota la call gratuita</a>
+    </div>
+  </section>
+
+  <!-- BIO -->
+  <section class="section">
+    <div class="bio">
+      <div class="avatar" aria-hidden="true"></div>
+      <div>
+        <h3 style="margin:0 0 6px;color:#0A2540">Federica Cellini</h3>
+        <p style="margin:0;color:#3b4350">Property Manager su Roma e dintorni. Trasforma annunci “frenati” in asset che generano prenotazioni con <b>ottimizzazione annuncio</b>, <b>pricing dinamico</b> e <b>processi snelli</b>.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- STICKY CTA -->
+<div class="sticky">
+  <div class="wrap" style="max-width:900px">
+    <a class="cta-bar js-utm" href="../errori/form.html">📄 Scarica la checklist “7 errori”</a>
+  </div>
+</div>
+
+<script>
+  // === UTM + LID propagation ===
+  (function(){
+    const q = new URLSearchParams(location.search);
+    // lid persistente
+    let lid = q.get('lid') || localStorage.getItem('lid');
+    if(!lid){
+      lid = 'ld_' + (crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(16).slice(2));
+      localStorage.setItem('lid', lid);
+    }
+    if(!q.get('lid')){ q.set('lid', lid); }
+
+    // aggiunge UTM + lid ai link marcati .js-utm
+    document.querySelectorAll('a.js-utm').forEach(a=>{
+      try{
+        const u = new URL(a.getAttribute('href'), location.href);
+        // mantieni query esistente e aggiungi quella della pagina
+        const merged = new URLSearchParams(u.search);
+        q.forEach((v,k)=>{ if(!merged.has(k)) merged.set(k,v); });
+        u.search = merged.toString();
+        a.setAttribute('href', u.toString());
+      }catch(e){}
+    });
+  })();
+</script>
 </body>
 </html>
