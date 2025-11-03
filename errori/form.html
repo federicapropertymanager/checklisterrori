@@ -38,37 +38,112 @@ fbq('init','1375982357419853');fbq('track','PageView');</script>
   </form>
 </div>
 <script>
-const TIPOLOGIA="errori";
-const REDIRECT="https://federicapropertymanager.github.io/checklisterrori/errori/";
-const ENDPOINT="https://script.google.com/macros/s/AKfycbysELmr4ZOvglHJfEplkkO0E8mW1oDfZUbhkQ2mzHo0vJp4f0npo50SNz8NLGwL-SwZNA/exec";
+  // ==== CONFIG ====
+  const ENDPOINT = "https://script.google.com/macros/s/AKfycbysELmr4ZOvglHJfEplkkO0E8mW1oDfZUbhkQ2mzHo0vJp4f0npo50SNz8NLGwL-SwZNA/exec";
+  const TIPOLOGIA = "errori"; // <-- regole / gestione nei rispettivi file
+  const REDIRECT  = "https://federicapropertymanager.github.io/checklisterrori/errori/"; 
+  // ^^^ per regole -> /regole/   per gestione -> /gestione/
 
-const q=new URLSearchParams(location.search);
-const utm_source=q.get('utm_source')||''; const utm_medium=q.get('utm_medium')||''; const utm_campaign=q.get('utm_campaign')||TIPOLOGIA;
-const PROVENIENZA=utm_source||'instagram';
-const isEmail=v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+  // UTM dal querystring
+  const q = new URLSearchParams(location.search);
+  const utm_source   = q.get('utm_source')   || '';
+  const utm_medium   = q.get('utm_medium')   || '';
+  const utm_campaign = q.get('utm_campaign') || TIPOLOGIA;
+  const PROVENIENZA  = utm_source || 'instagram';
 
-function getLeadId(){let id=localStorage.getItem('lid'); if(!id){id='ld_'+(crypto.randomUUID?crypto.randomUUID():Math.random().toString(16).slice(2)); localStorage.setItem('lid',id);} return id;}
-function markSubmittedOnce(key){const k='submitted:'+key; if(localStorage.getItem(k)) return true; localStorage.setItem(k,'1'); return false;}
+  const isEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
-document.getElementById('leadForm').addEventListener('submit', async (e)=>{
-  e.preventDefault();
-  const Nome=document.getElementById('name').value.trim();
-  const Email=document.getElementById('email').value.trim();
-  const Telefono=document.getElementById('phone').value.trim();
-  const Situazione=document.getElementById('situazione').value;
-  const err=document.getElementById('errMsg'); err.style.display='none';
-  if(!Nome||!isEmail(Email)||!Telefono||!Situazione){ err.textContent="Compila correttamente tutti i campi."; err.style.display='block'; return; }
+  function getLeadId(){
+    try{
+      let id = localStorage.getItem('lid');
+      if(!id){
+        id = 'ld_'+(window.crypto && crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(16).slice(2));
+        localStorage.setItem('lid', id);
+      }
+      return id;
+    }catch(_){
+      return 'ld_'+Math.random().toString(16).slice(2);
+    }
+  }
 
-  const lid=getLeadId(); if(markSubmittedOnce(TIPOLOGIA+'-'+lid)) return;
-  const payload={ Nome,Email,Telefono,Situazione, Tipologia:TIPOLOGIA, Prenotato:'No', Provenienza:PROVENIENZA,
-    utm_source,utm_medium,utm_campaign, lead_id:lid, ts:new Date().toISOString(), userAgent:navigator.userAgent };
+  document.getElementById("leadForm").addEventListener("submit", (e)=>{
+    e.preventDefault();
 
-  try{ fbq('track','Lead',{funnel:TIPOLOGIA,utm_source,utm_medium,utm_campaign}); fbq('trackCustom','FormSubmit',{funnel:TIPOLOGIA}); }catch(e){}
+    const btn    = document.getElementById("submitBtn");
+    const okBox  = document.getElementById("successMsg");
+    const errBox = document.getElementById("errMsg");
+    errBox.style.display = "none";
 
-  await fetch(ENDPOINT,{method:'POST',keepalive:true,headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload)});
-  document.getElementById('successMsg').style.display='block';
-  const redirect=REDIRECT+(location.search?location.search+'&':'?')+'lid='+encodeURIComponent(lid);
-  setTimeout(()=>location.href=redirect,120);
-});
+    const Nome       = document.getElementById("name").value.trim();
+    const Email      = document.getElementById("email").value.trim();
+    const Telefono   = document.getElementById("phone").value.trim();
+    const Situazione = document.getElementById("situazione").value;
+
+    if (!Nome || !isEmail(Email) || !Telefono || !Situazione){
+      errBox.textContent = "Compila correttamente tutti i campi.";
+      errBox.style.display = "block";
+      return;
+    }
+
+    btn.disabled = true; btn.textContent = "Invio…";
+
+    const lead_id = getLeadId();
+    const payload = {
+      Nome, Email, Telefono, Situazione,
+      Tipologia: TIPOLOGIA,
+      Prenotato: "No",
+      Provenienza: PROVENIENZA,
+      utm_source, utm_medium, utm_campaign,
+      lead_id,
+      ts: new Date().toISOString(),
+      userAgent: navigator.userAgent,
+      cacheBust: Date.now()
+    };
+
+    // Pixel (non blocca mai)
+    try{
+      fbq('track','Lead', { funnel: TIPOLOGIA, Nome, Email, utm_source, utm_medium, utm_campaign });
+      fbq('trackCustom','FormSubmit', { funnel: TIPOLOGIA, Provenienza: PROVENIENZA, utm_source, utm_medium, utm_campaign });
+    }catch(_){}
+
+    // Costruisco subito il redirect (mantengo UTM e aggiungo lid)
+    const redirectUrl = (() => {
+      try{
+        const u = new URL(REDIRECT);
+        if (utm_source)   u.searchParams.set('utm_source', utm_source);
+        if (utm_medium)   u.searchParams.set('utm_medium', utm_medium);
+        if (utm_campaign) u.searchParams.set('utm_campaign', utm_campaign);
+        u.searchParams.set('lid', lead_id);
+        return u.toString();
+      }catch(_){
+        // fallback grezzo
+        const qs = new URLSearchParams({
+          utm_source, utm_medium, utm_campaign, lid: lead_id
+        }).toString();
+        return REDIRECT + (REDIRECT.includes('?') ? '&' : '?') + qs;
+      }
+    })();
+
+    // Invio NON BLOCCANTE (fire-and-forget)
+    try{
+      const qs = new URLSearchParams(payload).toString();
+      if (navigator.sendBeacon){
+        navigator.sendBeacon(ENDPOINT + "?" + qs);
+      } else {
+        fetch(ENDPOINT, {
+          method: "POST",
+          mode: "no-cors",
+          keepalive: true,
+          headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+          body: qs
+        }).catch(()=>{});
+      }
+    }catch(_){}
+
+    // Redirect immediato, senza aspettare nessuna rete
+    okBox.style.display = "block";
+    location.href = redirectUrl;
+  });
 </script>
-</body></html>
+</body>
+</html>
