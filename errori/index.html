@@ -1,8 +1,47 @@
-<!-- ...HEAD invariato... -->
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Checklist “7 errori” — Federica Cellini</title>
+<meta name="robots" content="noindex,nofollow" />
 <style>
-/* ...resto dello stile invariato... */
+:root{
+  --ink:#0b1b2b; --muted:#667085; --bg:#f6f8fb; --card:#ffffff;
+  --line:#e6eef7; --primary:#0a2540; --accent:#d4af37; --r:18px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;font-family:Inter,system-ui,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+.container{max-width:1040px;margin:0 auto;padding:20px}
+.section{margin:28px 0}
+h1{font-size:40px;line-height:1.1;margin:0 0 10px;letter-spacing:-.3px}
+h2{font-size:24px;margin:0 0 12px}
+.lead{font-size:18px;color:var(--muted);max-width:900px;margin:0 0 16px}
+.kicker{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#2d3b4a;margin:0 0 8px;font-weight:700}
+u{ text-decoration-thickness:6px; text-underline-offset:6px }
+
+.hero{padding:4px 0 6px}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px}
+.cta-row .btn{flex:1 1 240px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:14px 22px;font-weight:800;border:2px solid transparent}
+.btn--primary{background:var(--primary);color:#fff;border-color:var(--primary)}
+.btn--accent{background:var(--accent);color:#1a1a1a;border-color:var(--accent)}
+.btn--ghost{background:#fff;color:var(--primary);border-color:var(--primary)}
+.btn:active{transform:translateY(1px)}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px}
+.card p{margin:0 0 10px;color:var(--muted)}
+.center{text-align:center}
+
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:900px){ .grid-2{grid-template-columns:1fr} }
+
+/* Immagini: anteprima "cover" senza bordi + lightbox full-screen */
 .proof{display:grid;gap:10px}
-.ph{border-radius:14px;overflow:hidden;/* niente bordi */ box-shadow:0 10px 24px rgba(10,37,64,.10)}
+.ph{border-radius:14px;overflow:hidden;box-shadow:0 10px 24px rgba(10,37,64,.10)}
 .ph a{display:block;cursor:zoom-in}
 .proof img{width:100%;height:clamp(220px,52vw,420px);object-fit:cover;display:block}
 
@@ -14,6 +53,16 @@
 
 .caption{font-size:14px;color:#667085;font-weight:600;margin-top:4px}
 
+.bullets{display:grid;gap:10px;margin:12px 0 0}
+.bullets .i{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-weight:600}
+
+.sticky{position:sticky;bottom:0;z-index:50;background:#ffffffcc;backdrop-filter:saturate(1.2) blur(6px);border-top:1px solid var(--line)}
+.sticky__in{max-width:1040px;margin:0 auto;padding:12px;display:flex;gap:12px;justify-content:center}
+
+.footer{margin:26px 0 40px;color:var(--muted);font-size:13px}
+:focus-visible{outline:3px solid #e6c766;outline-offset:2px;border-radius:8px}
+@media (prefers-reduced-motion:reduce){ .btn:active{transform:none} }
+
 /* Lightbox */
 .lb{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;z-index:9999}
 .lb img{max-width:92vw;max-height:92vh;object-fit:contain;box-shadow:0 20px 60px rgba(0,0,0,.5);border-radius:12px}
@@ -21,8 +70,25 @@
 </style>
 </head>
 <body>
+
 <div class="container">
-  <!-- HERO invariato -->
+
+  <!-- 1) HERO: titolo + 2 CTA -->
+  <section class="hero">
+    <p class="kicker">Affitti brevi • Airbnb</p>
+    <h1>Checklist <u>7 errori</u> che ti stanno bloccando le prenotazioni</h1>
+    <p class="lead">Scarica la checklist per correggere subito <b>titolo/cover</b>, <b>prezzi</b> e <b>messaggi</b>. Se vuoi, prenota una call gratuita e li sistemiamo insieme in 20 minuti.</p>
+    <div class="cta-row">
+      <a id="btnDownloadHero" class="btn btn--accent" href="#" rel="nofollow">Scarica la checklist</a>
+      <a id="btnCallHero" class="btn btn--primary" href="#" rel="nofollow">Prenota la call gratuita</a>
+    </div>
+
+    <div class="bullets">
+      <div class="i">Titoli e cover che fanno cliccare → più visite al listing.</div>
+      <div class="i">Prezzi dinamici su stagioni ed eventi → addio listino fisso.</div>
+      <div class="i">Messaggi preimpostati → risposta rapida, fiducia, conversioni.</div>
+    </div>
+  </section>
 
   <!-- 2) RISULTATO principale -->
   <section class="section">
@@ -37,25 +103,58 @@
     </div>
   </section>
 
-  <!-- 3) Chi sono: invariato nel contenuto che ti ho già dato -->
-
-  <!-- 4) RISULTATI elenco immagini -->
+  <!-- 3) Chi sono (prima persona) -->
   <section class="section">
-    <h2>Altri risultati (schermate reali)</h2>
-    <div class="gallery" aria-label="Risultati">
-      <a class="zoom" href="#"><img data-src="/assets/img/entrate-2025.png" alt="Entrate 2025" loading="lazy"></a>
-      <a class="zoom" href="#"><img data-src="/assets/img/1-2025.png" alt="Dettaglio 1 2025" loading="lazy"></a>
-      <a class="zoom" href="#"><img data-src="/assets/img/2-2025.png" alt="Dettaglio 2 2025" loading="lazy"></a>
-      <a class="zoom" href="#"><img data-src="/assets/img/3-2025.png" alt="Dettaglio 3 2025" loading="lazy"></a>
-      <a class="zoom" href="#"><img data-src="/assets/img/4-2025.png" alt="Dettaglio 4 2025" loading="lazy"></a>
-      <a class="zoom" href="#"><img data-src="/assets/img/5-2025.png" alt="Dettaglio 5 2025" loading="lazy"></a>
+    <div class="card">
+      <h2>Chi sono</h2>
+      <p>Ciao, sono <b>Federica Cellini</b>, Property Manager su Roma e dintorni. Lavoro sugli annunci “frenati” e li trasformo in asset che generano prenotazioni reali.</p>
+      <p>Il mio metodo è pratico: partiamo dai fondamentali (titolo, cover, dotazioni), impostiamo un <b>pricing dinamico</b> e costruiamo <b>processi snelli</b> con template e KPI.</p>
+      <p>Io e il mio team ci muoviamo con i numeri alla mano: analizziamo, testiamo, misuriamo e correggiamo in fretta ciò che impatta sul calendario.</p>
+      <p>Se vuoi un confronto veloce sul tuo listing, prenota la call gratuita: in 20 minuti ti dico dove stai perdendo visite o conversioni e cosa sistemare subito.</p>
+      <div style="margin-top:12px;display:flex;gap:12px;flex-wrap:wrap">
+        <a id="btnDownloadMid" class="btn btn--accent" href="#" rel="nofollow">Scarica la checklist “7 errori”</a>
+        <a id="btnCallMid" class="btn btn--ghost" href="#" rel="nofollow">Prenota la call gratuita</a>
+      </div>
     </div>
   </section>
 
-  <!-- 5) Come funziona la call: invariato -->
+  <!-- 4) RISULTATI (gallery) -->
+  <section class="section">
+    <h2>Altri risultati (schermate reali)</h2>
+    <div class="gallery" aria-label="Risultati">
+      <a class="zoom" href="#"><img data-src="/assets/img/entrate-2025.png"   alt="Entrate 2025" loading="lazy"></a>
+      <a class="zoom" href="#"><img data-src="/assets/img/1-2025.png"         alt="Dettaglio 1 2025" loading="lazy"></a>
+      <a class="zoom" href="#"><img data-src="/assets/img/2-2025.png"         alt="Dettaglio 2 2025" loading="lazy"></a>
+      <a class="zoom" href="#"><img data-src="/assets/img/3-2025.png"         alt="Dettaglio 3 2025" loading="lazy"></a>
+      <a class="zoom" href="#"><img data-src="/assets/img/4-2025.png"         alt="Dettaglio 4 2025" loading="lazy"></a>
+      <a class="zoom" href="#"><img data-src="/assets/img/5-2025.png"         alt="Dettaglio 5 2025" loading="lazy"></a>
+    </div>
+  </section>
+
+  <!-- 5) Come funziona la call -->
+  <section class="section">
+    <div class="card">
+      <h2>Come funziona la call</h2>
+      <p><b>1) Analisi lampo</b> — 10′ per capire dove il tuo annuncio perde visite o conversioni.</p>
+      <p><b>2) Fix prioritari</b> — titolo/cover, prezzi e messaggi: prima ciò che muove i numeri.</p>
+      <p><b>3) Processo & KPI</b> — template, routine e controllo: da “speriamo” a “gestiamo”.</p>
+      <div style="margin-top:12px">
+        <a id="btnCallBottom" class="btn btn--primary" href="#" rel="nofollow">Prenota la call gratuita</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    © <span id="y"></span> Federica Cellini — Tutti i diritti riservati.
+  </footer>
 </div>
 
-<!-- Sticky CTA: invariato -->
+<!-- Sticky CTA -->
+<div class="sticky" aria-label="Prenotazione rapida">
+  <div class="sticky__in">
+    <a id="btnCallSticky" class="btn btn--primary" href="#" rel="nofollow">Prenota la call gratuita</a>
+  </div>
+</div>
 
 <!-- Lightbox -->
 <div id="lightbox" class="lb" aria-hidden="true" role="dialog" aria-label="Immagine ingrandita">
@@ -63,23 +162,24 @@
 </div>
 
 <script>
-  // ====== LINK CORRETTI (restano) ======
-  const TIPOLOGIA    = 'errori';
+  // ====== CONFIG ======
+  const TIPOLOGIA = 'errori';
+  // Link corretti
   const DOWNLOAD_URL = 'https://drive.google.com/file/d/1aJmnfQn4-Q31_UiskQMJAQ0O11YKpWog/view?usp=sharing';
   const CALENDLY_URL = 'https://calendly.com/federica-cellini88/30min';
 
-  // ====== FIX PATH IMMAGINI per GitHub Pages ======
+  // ====== FIX PATH IMMAGINI per GitHub Pages (/username/<repo>/...) ======
   (function fixImagesBase(){
     const first = location.pathname.split('/')[1] || '';
     const BASE_PATH = first ? ('/' + first) : '';
     document.querySelectorAll('img[data-src]').forEach(img=>{
-      const rel = img.getAttribute('data-src');
+      const rel = img.getAttribute('data-src');  // es. "/assets/img/xxx.png"
       img.src = BASE_PATH + rel;
       const a = img.closest('a.zoom'); if(a){ a.href = img.src; }
     });
   })();
 
-  // ====== UTM & LID (invariato) ======
+  // ====== UTM & LID ======
   const q = new URLSearchParams(location.search);
   const utm_source   = q.get('utm_source')   || '';
   const utm_medium   = q.get('utm_medium')   || '';
@@ -101,18 +201,23 @@
     return u.toString();
   }
 
+  // ====== CTA LINKS ======
   ['btnDownloadHero','btnDownloadMid'].forEach(id=>{
     const el=document.getElementById(id); if(el) el.href = withParams(DOWNLOAD_URL);
   });
   ['btnCallHero','btnCallMid','btnCallBottom','btnCallSticky'].forEach(id=>{
     const el=document.getElementById(id); if(el) el.href = withParams(CALENDLY_URL);
   });
+
+  // Propaga UTM anche su eventuali link drive/calendly aggiunti in futuro
   document.querySelectorAll('a[href*="calendly.com"], a[href*="drive.google.com"]').forEach(a=>{
     try{ a.href = withParams(a.href); }catch(_){}
   });
+
+  // Footer year
   document.getElementById('y').textContent = new Date().getFullYear();
 
-  // ====== Lightbox semplice ======
+  // ====== Lightbox ======
   const lb = document.getElementById('lightbox');
   const lbimg = document.getElementById('lbimg');
   document.querySelectorAll('a.zoom').forEach(a=>{
