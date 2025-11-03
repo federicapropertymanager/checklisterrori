@@ -39,23 +39,24 @@ u{ text-decoration-thickness:6px; text-underline-offset:6px }
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media (max-width:900px){ .grid-2{grid-template-columns:1fr} }
 
-/* Immagini: anteprima "cover" senza bordi + lightbox full-screen */
+/* ---------- IMMAGINI: leggibili e estetiche ---------- */
+.shot{border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 10px 24px rgba(10,37,64,.10)}
+.shot > a{display:block;cursor:zoom-in}
+.shot img{width:100%;height:auto;object-fit:contain}   /* niente crop, testo nitido */
+.caption{font-size:14px;color:#667085;font-weight:600;margin-top:8px}
+
+/* Primo blocco risultato: 1 immagine full-width */
 .proof{display:grid;gap:10px}
-.ph{border-radius:14px;overflow:hidden;box-shadow:0 10px 24px rgba(10,37,64,.10)}
-.ph a{display:block;cursor:zoom-in}
-.proof img{width:100%;height:clamp(220px,52vw,420px);object-fit:cover;display:block}
 
-.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
-@media (max-width:900px){ .gallery{grid-template-columns:1fr 1fr} }
-@media (max-width:560px){ .gallery{grid-template-columns:1fr} }
-.gallery a{display:block;border-radius:14px;overflow:hidden;box-shadow:0 8px 18px rgba(10,37,64,.08);cursor:zoom-in}
-.gallery img{width:100%;height:clamp(180px,36vw,280px);object-fit:cover;display:block}
+/* Gallery: desktop 2 colonne, mobile 1 colonna */
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:12px}
+@media (max-width:900px){ .gallery{grid-template-columns:1fr} }
 
-.caption{font-size:14px;color:#667085;font-weight:600;margin-top:4px}
-
+/* Bullet list */
 .bullets{display:grid;gap:10px;margin:12px 0 0}
 .bullets .i{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-weight:600}
 
+/* Sticky CTA */
 .sticky{position:sticky;bottom:0;z-index:50;background:#ffffffcc;backdrop-filter:saturate(1.2) blur(6px);border-top:1px solid var(--line)}
 .sticky__in{max-width:1040px;margin:0 auto;padding:12px;display:flex;gap:12px;justify-content:center}
 
@@ -90,11 +91,11 @@ u{ text-decoration-thickness:6px; text-underline-offset:6px }
     </div>
   </section>
 
-  <!-- 2) RISULTATO principale -->
+  <!-- 2) RISULTATI PRINCIPALI -->
   <section class="section">
     <h2>Risultati reali (dal mio cruscotto)</h2>
     <div class="card proof">
-      <div class="ph">
+      <div class="shot">
         <a class="zoom" href="#" aria-label="Apri immagine a schermo intero">
           <img data-src="/assets/img/riepilogo-2025.png" alt="Riepilogo risultati" loading="lazy" />
         </a>
@@ -103,7 +104,7 @@ u{ text-decoration-thickness:6px; text-underline-offset:6px }
     </div>
   </section>
 
-  <!-- 3) Chi sono (prima persona) -->
+  <!-- 3) CHI SONO -->
   <section class="section">
     <div class="card">
       <h2>Chi sono</h2>
@@ -118,20 +119,20 @@ u{ text-decoration-thickness:6px; text-underline-offset:6px }
     </div>
   </section>
 
-  <!-- 4) RISULTATI (gallery) -->
+  <!-- 4) ALTRI RISULTATI -->
   <section class="section">
     <h2>Altri risultati (schermate reali)</h2>
     <div class="gallery" aria-label="Risultati">
-      <a class="zoom" href="#"><img data-src="/assets/img/entrate-2025.png"   alt="Entrate 2025" loading="lazy"></a>
-      <a class="zoom" href="#"><img data-src="/assets/img/1-2025.png"         alt="Dettaglio 1 2025" loading="lazy"></a>
-      <a class="zoom" href="#"><img data-src="/assets/img/2-2025.png"         alt="Dettaglio 2 2025" loading="lazy"></a>
-      <a class="zoom" href="#"><img data-src="/assets/img/3-2025.png"         alt="Dettaglio 3 2025" loading="lazy"></a>
-      <a class="zoom" href="#"><img data-src="/assets/img/4-2025.png"         alt="Dettaglio 4 2025" loading="lazy"></a>
-      <a class="zoom" href="#"><img data-src="/assets/img/5-2025.png"         alt="Dettaglio 5 2025" loading="lazy"></a>
+      <div class="shot"><a class="zoom" href="#"><img data-src="/assets/img/entrate-2025.png" alt="Entrate 2025" loading="lazy"></a></div>
+      <div class="shot"><a class="zoom" href="#"><img data-src="/assets/img/1-2025.png"       alt="Dettaglio 1 2025" loading="lazy"></a></div>
+      <div class="shot"><a class="zoom" href="#"><img data-src="/assets/img/2-2025.png"       alt="Dettaglio 2 2025" loading="lazy"></a></div>
+      <div class="shot"><a class="zoom" href="#"><img data-src="/assets/img/3-2025.png"       alt="Dettaglio 3 2025" loading="lazy"></a></div>
+      <div class="shot"><a class="zoom" href="#"><img data-src="/assets/img/4-2025.png"       alt="Dettaglio 4 2025" loading="lazy"></a></div>
+      <div class="shot"><a class="zoom" href="#"><img data-src="/assets/img/5-2025.png"       alt="Dettaglio 5 2025" loading="lazy"></a></div>
     </div>
   </section>
 
-  <!-- 5) Come funziona la call -->
+  <!-- 5) COME FUNZIONA LA CALL -->
   <section class="section">
     <div class="card">
       <h2>Come funziona la call</h2>
@@ -201,7 +202,7 @@ u{ text-decoration-thickness:6px; text-underline-offset:6px }
     return u.toString();
   }
 
-  // ====== CTA LINKS ======
+  // CTA LINKS
   ['btnDownloadHero','btnDownloadMid'].forEach(id=>{
     const el=document.getElementById(id); if(el) el.href = withParams(DOWNLOAD_URL);
   });
@@ -209,7 +210,7 @@ u{ text-decoration-thickness:6px; text-underline-offset:6px }
     const el=document.getElementById(id); if(el) el.href = withParams(CALENDLY_URL);
   });
 
-  // Propaga UTM anche su eventuali link drive/calendly aggiunti in futuro
+  // Propaga UTM su altri link drive/calendly
   document.querySelectorAll('a[href*="calendly.com"], a[href*="drive.google.com"]').forEach(a=>{
     try{ a.href = withParams(a.href); }catch(_){}
   });
