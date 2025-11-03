@@ -5,30 +5,41 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Guida pratica alla gestione degli affitti brevi — Federica Cellini</title>
 <base href="https://federicapropertymanager.github.io/checklisterrori/">
-<meta name="description" content="Scarica la guida sulla gestione: processi, prezzi dinamici, messaggi e controllo qualità per trasformare un annuncio in un asset che genera prenotazioni stabili.">
+<meta name="description" content="Processi, prezzi dinamici, messaggi e controllo qualità: la guida per trasformare un annuncio in un asset che genera prenotazioni stabili. Scarica la guida e prenota una call gratuita.">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root{ --navy:#0A2540; --gold:#D4AF37; --ink:#13202E; --muted:#6B7B89; --bg:#FFFFFF; --soft:#F5F7FA; --radius:16px; }
+  :root{ --navy:#0A2540; --ink:#13202E; --gold:#D4AF37; --az:#2B7BBB; --muted:#6B7B89; --soft:#F5F7FA; --line:#E8EEF4; --bg:#FFFFFF; --radius:16px; --shadow:0 10px 30px rgba(10,37,64,.10)}
   *{box-sizing:border-box}
   html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
-  a{color:#2B7BBB;text-decoration:none}
-  .wrap{max-width:780px;margin:0 auto;padding:0 18px}
-  .hero{background:linear-gradient(180deg,#0A2540 0%, #0B2236 100%);color:#fff;padding:48px 0}
-  .eyebrow{letter-spacing:.12em;text-transform:uppercase;font-size:.82rem;color:#8CBFE0;margin:0 0 10px 0}
-  h1{font-size:clamp(28px,6.2vw,42px);line-height:1.1;margin:0 0 14px 0}
+  a{color:var(--az);text-decoration:none}
+  img{max-width:100%;height:auto;display:block}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+  .hero{background:linear-gradient(180deg,#0A2540 0%, #0B2236 100%);color:#fff;padding:68px 0}
+  .eyebrow{letter-spacing:.12em;text-transform:uppercase;font-size:.82rem;color:#8CBFE0;margin:0 0 12px}
+  h1{font-size:clamp(30px,5.8vw,48px);line-height:1.08;margin:0 0 14px}
   h1 .hi{color:var(--gold)}
-  .lead{font-size:clamp(15px,2.9vw,18px);line-height:1.6;color:#E6F0F7;margin:0}
-  .stack{display:flex;flex-direction:column;gap:12px;margin-top:18px}
-  .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 18px;border-radius:14px;font-weight:800;border:2px solid transparent;justify-content:center}
+  .lead{font-size:clamp(16px,2.6vw,20px);line-height:1.6;color:#E6F0F7;margin:0;max-width:880px}
+  .stack{display:flex;flex-direction:column;gap:14px;margin-top:20px;max-width:520px}
+  .btn{display:inline-flex;align-items:center;gap:12px;padding:16px 22px;border-radius:14px;font-weight:800;border:2px solid transparent;justify-content:center}
   .btn-primary{background:var(--gold);color:#0A2540}
   .btn-ghost{background:transparent;border-color:#2D4962;color:#E8F1F7}
-  .note{margin-top:14px;border:1px solid #26425B;background:rgba(255,255,255,.04);color:#DCE8F0;border-radius:14px;padding:12px 14px}
-  .section{padding:34px 0}
-  .card{background:#fff;border:1px solid #E7EDF3;border-radius:14px;padding:16px}
-  .kicker{color:#2B7BBB;font-weight:800}
+  .note{margin-top:16px;border:1px solid #274661;background:rgba(255,255,255,.04);color:#DCE8F0;border-radius:14px;padding:14px}
+  .section{padding:50px 0}
+  .grid-2{display:grid;gap:22px;grid-template-columns:1fr}
+  @media(min-width:980px){ .grid-2{grid-template-columns:1.1fr .9fr;align-items:center} }
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:var(--shadow)}
+  .kicker{color:var(--az);font-weight:800;margin:0 0 8px}
   .bullets{display:grid;gap:12px}
   .bul{background:var(--soft);border:1px solid #E9EEF5;border-radius:12px;padding:12px}
+  .proof-grid{display:grid;gap:18px;grid-template-columns:1fr}
+  @media(min-width:820px){ .proof-grid{grid-template-columns:repeat(2,1fr)} }
+  .proof-fig{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;box-shadow:var(--shadow)}
+  .cap{font-size:.98rem;background:#F6FAFF;border:1px solid #EAF2FE;border-radius:12px;padding:10px 12px;margin-top:10px}
+  .collage{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:80px;gap:14px;margin-top:22px}
+  .shot{position:relative;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+  .shot img{width:100%;height:100%;object-fit:cover}
+  @media(max-width:860px){ .collage{grid-template-columns:1fr;grid-auto-rows:auto}.shot{grid-column:auto;grid-row:auto} }
   .cta-bar{position:sticky;bottom:0;left:0;right:0;background:#0A2540;border-top:1px solid rgba(255,255,255,.12);padding:12px 0;z-index:40}
 </style>
 
@@ -37,9 +48,8 @@
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
 n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
-t=b.createElement(e);t.async=!0;t.src=v;
-s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
-(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','1375982357419853'); fbq('track','PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none"
@@ -51,38 +61,61 @@ fbq('init','1375982357419853'); fbq('track','PageView');
   <div class="wrap">
     <p class="eyebrow">Scarica ora</p>
     <h1>Guida pratica alla <span class="hi">gestione</span> degli affitti brevi</h1>
-    <p class="lead">Processi, prezzi dinamici, messaggi e controllo qualità: cosa serve davvero per trasformare un annuncio in un asset che genera prenotazioni stabili.</p>
+    <p class="lead">Quello che serve davvero: <b>pricing dinamico</b>, <b>messaggi chiari</b>, <b>processi agili</b> e <b>controllo qualità</b>. La base per più recensioni 5★ e più prenotazioni.</p>
     <div class="stack">
       <a id="cta-download" class="btn btn-primary" href="#">📗 Scarica la guida</a>
       <a data-propagate class="btn btn-ghost" href="https://calendly.com/federica-cellini88/30min" target="_blank" rel="noopener">Prenota una consulenza gratuita</a>
     </div>
-    <div class="note"><b>Come usarla:</b> applica i punti chiave e, se vuoi accelerare, prenota la call gratuita per una revisione insieme.</div>
+    <div class="note"><b>Come usarla:</b> applica i punti chiave e, se vuoi accelerare, facciamo una revisione insieme in call gratuita.</div>
   </div>
 </header>
 
 <section class="section">
-  <div class="wrap card">
-    <h2 class="kicker">Cosa cambia con una gestione pro</h2>
-    <p style="margin:8px 0 0"><b>Operazioni snelle</b>, <b>pricing dinamico</b>, <b>messaggi automatici</b> e <b>qualità costante</b>: la base per più recensioni 5★ e più prenotazioni.</p>
+  <div class="wrap grid-2">
+    <div>
+      <h2 class="kicker">Il salto di qualità è nei processi</h2>
+      <p style="margin:10px 0 0">Con Federica passiamo da gestione “a sensazione” a flusso <b>misurabile</b>: prezzi legati agli eventi, messaggi standardizzati, check-list operative. Risultato: <b>più prevedibilità</b> e meno notti vuote.</p>
+      <div class="bullets" style="margin-top:14px">
+        <div class="bul"><b>Pricing dinamico:</b> domande diverse, prezzi diversi. Sempre.</div>
+        <div class="bul"><b>Operatività snella:</b> check-in, pulizie e messaggi senza attriti.</div>
+        <div class="bul"><b>Qualità costante:</b> KPI semplici per non “perdere colpi”.</div>
+      </div>
+    </div>
+    <div>
+      <div class="proof-grid">
+        <figure class="proof-fig">
+          <img src="assets/img/entrate-2025.png" alt="Andamento entrate con gestione">
+          <figcaption class="cap"><b>Effetto gestione:</b> entrate più stabili e calendario pieno nei momenti giusti.</figcaption>
+        </figure>
+        <figure class="proof-fig">
+          <img src="assets/img/riepilogo-2025.png" alt="Riepilogo risultati con gestione">
+          <figcaption class="cap"><b>Prima vs Dopo:</b> passare a un metodo fa la differenza sui numeri.</figcaption>
+        </figure>
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="section">
+<section class="section" id="prove">
   <div class="wrap">
-    <div class="bullets">
-      <div class="bul"><b>Pricing dinamico</b> → prezzi che seguono eventi e domanda.</div>
-      <div class="bul"><b>Operatività</b> → check-in, pulizie e messaggi standardizzati.</div>
-      <div class="bul"><b>Qualità</b> → controllo costante e KPI semplici.</div>
+    <h2 class="kicker">Prove & risultati reali</h2>
+    <p style="margin:8px 0 16px;color:var(--muted)">Screenshot originali (dati sensibili oscurati). Clicca per ingrandire.</p>
+    <div class="collage">
+      <figure class="shot"><img src="assets/img/1-2025.png" alt="Prova 1"></figure>
+      <figure class="shot"><img src="assets/img/2-2025.png" alt="Prova 2"></figure>
+      <figure class="shot"><img src="assets/img/3-2025.png" alt="Prova 3"></figure>
+      <figure class="shot"><img src="assets/img/4-2025.png" alt="Prova 4"></figure>
+      <figure class="shot"><img src="assets/img/5-2025.png" alt="Prova 5"></figure>
     </div>
   </div>
 </section>
 
 <section class="section">
   <div class="wrap card">
-    <h2 class="kicker">Come funziona la call gratuita (30’)</h2>
+    <h2 class="kicker">Call gratuita (30’): cosa metti a terra</h2>
     <ol style="margin:10px 0 0 18px">
-      <li>Contesto della struttura e obiettivi.</li>
-      <li>Piano operativo minimo per i prossimi 30 giorni.</li>
+      <li>Contesto e obiettivi della tua struttura.</li>
+      <li>Piano operativo minimo per i prossimi 30 giorni (chi fa cosa, quando).</li>
       <li>Se ha senso, proposta di <b>gestione completa</b> o affiancamento.</li>
     </ol>
     <div style="margin-top:14px">
@@ -91,10 +124,10 @@ fbq('init','1375982357419853'); fbq('track','PageView');
   </div>
 </section>
 
-<section class="section" style="padding-bottom:80px">
+<section class="section" style="padding-bottom:90px">
   <div class="wrap">
     <h2>Chi è Federica Cellini</h2>
-    <p>Property Manager su Roma e dintorni. Ottimizzo i processi e massimizzo le entrate con una gestione concreta e misurabile.</p>
+    <p>Property Manager su Roma e dintorni. Metodo semplice, numeri chiari e soluzioni concrete per far crescere il tuo annuncio in modo stabile.</p>
   </div>
 </section>
 
