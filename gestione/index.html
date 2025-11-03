@@ -129,74 +129,52 @@ fbq('init','1375982357419853'); fbq('track','PageView');
 
 <!-- ===== Tracking affidabile + UTM + LID ===== -->
 <script>
-  const ENDPOINT   = "https://script.google.com/macros/s/AKfycbysELmr4ZOvglHJfEplkkO0E8mW1oDfZUbhkQ2mzHo0vJp4f0npo50SNz8NLGwL-SwZNA/exec";
-  const TIPOLOGIA  = "gestione";
-  const DOWNLOAD_URL = "https://drive.google.com/file/d/1d8kwWlCp00xpj8KVWeqNz0TlB2S4_u-/view?usp=sharing";
-  const CALENDLY_URL = "https://calendly.com/federica-cellini88/30min";
+const ENDPOINT      = "https://script.google.com/macros/s/AKfycbysELmr4ZOvglHJfEplkkO0E8mW1oDfZUbhkQ2mzHo0vJp4f0npo50SNz8NLGwL-SwZNA/exec";
+const TIPOLOGIA     = "gestione";
+const DOWNLOAD_URL  = "https://drive.google.com/file/d/1d8kwWlCp00xpj8KVWeqNz0TlB2S4_u-/view?usp=sharing";
+const CALENDLY_URL  = "https://calendly.com/federica-cellini88/30min";
 
-  const q = new URLSearchParams(location.search);
-  const utm_source   = q.get('utm_source')   || "";
-  const utm_medium   = q.get('utm_medium')   || "";
-  const utm_campaign = q.get('utm_campaign') || TIPOLOGIA;
+const q = new URLSearchParams(location.search);
+const utm_source   = q.get('utm_source')   || "";
+const utm_medium   = q.get('utm_medium')   || "";
+const utm_campaign = q.get('utm_campaign') || TIPOLOGIA;
+let   lid = q.get('lid') || localStorage.getItem('lid') || '';
+if (!lid) { lid='ld_'+(crypto.randomUUID?crypto.randomUUID():Math.random().toString(16).slice(2)); localStorage.setItem('lid',lid); }
 
-  let lid = q.get('lid') || localStorage.getItem('lid') || '';
-  if (!lid) { lid = 'ld_' + (crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(16).slice(2)); localStorage.setItem('lid', lid); }
-
-  function propagate(){
-    document.querySelectorAll('a[href*="calendly.com"],a[href*="drive.google.com"]').forEach(a=>{
-      try{
-        const u=new URL(a.href||'#');
-        if(utm_source)   u.searchParams.set('utm_source',utm_source);
-        if(utm_medium)   u.searchParams.set('utm_medium',utm_medium);
-        if(utm_campaign) u.searchParams.set('utm_campaign',utm_campaign);
-        if(lid)          u.searchParams.set('lid', lid);
-        a.href=u.toString();
-      }catch(e){}
-    });
-  }
-
-  function beacon(bodyObj){
-    const body = new URLSearchParams(bodyObj).toString();
-    if (navigator.sendBeacon) {
-      navigator.sendBeacon(ENDPOINT, new Blob([body], {type:"application/x-www-form-urlencoded;charset=UTF-8"}));
-    } else {
-      fetch(ENDPOINT, {method:"POST", mode:"no-cors", keepalive:true, headers:{"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"}, body});
-    }
-    (new Image()).src = ENDPOINT + "?" + body + "&cb=" + Math.random().toString(36).slice(2);
-  }
-
-  function logAndOpen(action, href){
-    const payload = { Action:action, Tipologia:TIPOLOGIA, lead_id:lid, utm_source, utm_medium, utm_campaign, ts:new Date().toISOString(), ua:navigator.userAgent };
-    beacon(payload);
-    if(href) setTimeout(()=> window.open(href,"_blank","noopener"),120);
-  }
-
-  document.addEventListener('DOMContentLoaded', ()=>{ propagate(); logAndOpen('Visit',""); });
-
-  document.getElementById('cta-download')?.addEventListener('click',(e)=>{
-    e.preventDefault();
-    try{ fbq('trackCustom','Download',{funnel:TIPOLOGIA,utm_source,utm_medium,utm_campaign}); }catch(e){}
-    const u=new URL(DOWNLOAD_URL);
-    if(utm_source) u.searchParams.set('utm_source',utm_source);
-    if(utm_medium) u.searchParams.set('utm_medium',utm_medium);
+function withParams(base){
+  try{
+    const u=new URL(base);
+    if(utm_source)   u.searchParams.set('utm_source',utm_source);
+    if(utm_medium)   u.searchParams.set('utm_medium',utm_medium);
     if(utm_campaign) u.searchParams.set('utm_campaign',utm_campaign);
-    if(lid) u.searchParams.set('lid',lid);
-    logAndOpen('Download', u.toString());
-  });
+    if(lid)          u.searchParams.set('lid',lid);
+    return u.toString();
+  }catch(e){ return base; }
+}
+function logGET(action){
+  const p=new URLSearchParams({Action:action, Tipologia:TIPOLOGIA, lead_id:lid, utm_source, utm_medium, utm_campaign, ts:new Date().toISOString()}).toString();
+  (new Image()).src=ENDPOINT+"?"+p;
+}
+function handleDownload(e){
+  e.preventDefault();
+  try{ fbq('trackCustom','Download',{funnel:TIPOLOGIA}); }catch(e){}
+  logGET('Download');
+  setTimeout(()=> window.open(withParams(DOWNLOAD_URL),'_blank'), 180);
+}
+function handleCalendly(e){
+  e.preventDefault();
+  try{ fbq('track','Schedule',{content_name:'Calendly',funnel:TIPOLOGIA}); }catch(e){}
+  logGET('ScheduleClick');
+  setTimeout(()=> window.open(withParams(CALENDLY_URL),'_blank'), 180);
+}
+function bind(id){ const el=document.getElementById(id); if(el){ el.href="#"; el.addEventListener('click',handleCalendly); } }
 
-  ['cta-calendly','cta-calendly-footer','cta-calendly-2','cta-calendly-sticky'].forEach(id=>{
-    const el=document.getElementById(id); if(!el) return;
-    el.addEventListener('click',(e)=>{
-      e.preventDefault();
-      try{ fbq('track','Schedule',{content_name:'Prenotazione Calendly',funnel:TIPOLOGIA,utm_source,utm_medium,utm_campaign}); }catch(e){}
-      const u=new URL(CALENDLY_URL);
-      if(utm_source) u.searchParams.set('utm_source',utm_source);
-      if(utm_medium) u.searchParams.set('utm_medium',utm_medium);
-      if(utm_campaign) u.searchParams.set('utm_campaign',utm_campaign);
-      if(lid) u.searchParams.set('lid',lid);
-      logAndOpen('ScheduleClick', u.toString());
-    });
-  });
+document.getElementById('cta-download')?.addEventListener('click', handleDownload);
+bind('cta-calendly'); bind('cta-calendly-footer'); bind('cta-calendly-2'); bind('cta-calendly-sticky');
+
+document.addEventListener('DOMContentLoaded', ()=>{
+  document.querySelectorAll('a[href*="calendly.com"],a[href*="drive.google.com"]').forEach(a=>{ a.href=withParams(a.href); });
+});
 </script>
 </body>
 </html>
