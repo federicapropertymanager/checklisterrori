@@ -7,141 +7,174 @@
 <meta name="robots" content="noindex,nofollow" />
 <style>
 :root{
-  --navy:#0A2540; --navy-2:#0e3558; --gold:#D4AF37; --gold-2:#E2BF56;
-  --text:#0f172a; --muted:#475569; --bg:#f7f9fc; --card:#ffffff;
-  --radius:16px;
+  --ink:#0b1b2b; --ink-2:#11314d;
+  --gold:#D4AF37; --gold-2:#e7c96f;
+  --muted:#64748b; --bg:#f7fafc; --card:#ffffff; --line:#e6eef7;
+  --r:18px;
 }
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;font-family:Inter,system-ui,Arial,sans-serif;color:var(--text);background:var(--bg)}
-.container{max-width:1080px;margin:0 auto;padding:24px}
-.hero{padding:48px 0 12px}
-h1{font-size:42px;line-height:1.1;margin:0 0 12px}
-h1 .u{ text-decoration:underline; text-decoration-thickness:6px; text-underline-offset:6px }
-.lead{font-size:18px;color:var(--muted);max-width:920px}
+html,body{margin:0;padding:0;font-family:Inter,system-ui,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+.container{max-width:1040px;margin:0 auto;padding:20px}
+.section{margin:28px 0}
+h1{font-size:40px;line-height:1.1;margin:0 0 10px;letter-spacing:-.3px}
+.lead{font-size:18px;color:var(--muted);max-width:900px;margin:0}
+.kicker{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#2d3b4a;margin:0 0 10px;font-weight:700}
+u{ text-decoration-thickness:6px; text-underline-offset:6px }
 
-.pill{display:inline-flex;align-items:center;gap:10px;padding:14px 20px;border-radius:999px;font-weight:800;white-space:nowrap}
-.pill--gold{background:var(--gold);color:var(--navy)}
-.pill--blue{background:var(--navy);color:#fff}
-.pill-row{display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:center;background:var(--navy);padding:16px}
-.pill-row .pill{box-shadow:0 10px 24px rgba(0,0,0,.15)}
+.pills{position:sticky;top:0;z-index:40;backdrop-filter:saturate(1.2) blur(6px);
+  background:rgba(11,27,43,.75);border-bottom:1px solid rgba(255,255,255,.08)}
+.pills__inner{max-width:1040px;margin:0 auto;display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:center;padding:12px}
+.pill{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:12px 18px;font-weight:800;text-decoration:none;box-shadow:0 10px 20px rgba(0,0,0,.12)}
+.pill--gold{background:var(--gold);color:var(--ink)}
+.pill--blue{background:var(--ink);color:#fff}
+.pill:active{transform:translateY(1px)}
 
-.list{display:grid;gap:14px;margin:28px 0 18px}
-.list .item{background:var(--card);border-radius:14px;padding:16px 18px;box-shadow:0 4px 18px rgba(10,37,64,.08);font-weight:600}
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:16px 0 8px}
+.hero{padding:24px 0 6px}
+.bullets{display:grid;gap:10px;margin:16px 0 0}
+.bullets .i{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;font-weight:600}
+
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media (max-width:900px){ .grid-2{grid-template-columns:1fr} }
 
-.card{background:var(--card);border-radius:18px;padding:14px;box-shadow:0 10px 28px rgba(10,37,64,.10)}
-.proof{display:flex;flex-direction:column;gap:8px}
-.proof img{width:100%;height:auto;display:block;border-radius:14px;border:1px solid #e6eef7;background:#fff}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px}
+.card h3{margin:0 0 6px}
+.card p{margin:0;color:var(--muted)}
+.center{text-align:center}
 
-.gallery{margin-top:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.proof{display:grid;gap:10px}
+.proof .ph{border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+.proof img{width:100%;height:auto;display:block;aspect-ratio:16/10;object-fit:cover}
+.caption{font-size:14px;color:var(--muted);font-weight:600}
+
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
 @media (max-width:900px){ .gallery{grid-template-columns:1fr 1fr} }
 @media (max-width:560px){ .gallery{grid-template-columns:1fr} }
+.gallery img{border-radius:12px;border:1px solid var(--line);aspect-ratio:16/10;object-fit:cover}
 
-.sticky{position:sticky;bottom:0;z-index:50;background:var(--navy);padding:14px 10px;border-top:1px solid rgba(255,255,255,.08)}
-.sticky .cta{max-width:1080px;margin:0 auto;display:flex;justify-content:center}
-.cta .pill{transform:translateY(0);transition:.15s}
-.cta .pill:active{transform:translateY(1px)}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.btn{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:14px 20px;font-weight:800;text-decoration:none;border:1px solid transparent}
+.btn--gold{background:var(--gold);color:var(--ink)}
+.btn--blue{background:var(--ink);color:#fff}
+.btn:active{transform:translateY(1px)}
 
-.section{margin:26px 0}
-.box{background:var(--card);border-radius:18px;padding:20px;box-shadow:0 10px 28px rgba(10,37,64,.10)}
-.box h3{margin:0 0 8px}
-.kit{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.sticky{position:sticky;bottom:0;z-index:50;background:var(--ink);border-top:1px solid rgba(255,255,255,.08)}
+.sticky__in{max-width:1040px;margin:0 auto;padding:12px;display:flex;justify-content:center}
+
+.kit{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media (max-width:900px){ .kit{grid-template-columns:1fr} }
 
-.footer{margin:32px 0 40px}
-a.btn{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:14px 20px;font-weight:800;text-decoration:none}
-.btn--gold{background:var(--gold);color:var(--navy)}
-.btn--blue{background:var(--navy);color:#fff}
-.center{text-align:center}
+.badge{display:inline-flex;align-items:center;gap:6px;background:#eef5ff;color:#0b3a7a;border:1px solid #d6e6ff;border-radius:999px;padding:6px 10px;font-size:12px;font-weight:700}
+
+.footer{margin:26px 0 40px;color:var(--muted);font-size:13px}
+
+:focus-visible{outline:3px solid var(--gold-2);outline-offset:2px;border-radius:8px}
+@media (prefers-reduced-motion:reduce){
+  .pill:active,.btn:active{transform:none}
+}
 </style>
 </head>
 <body>
 
-<!-- Top CTA bar -->
-<div class="pill-row">
-  <a id="btnDownloadTop" class="pill pill--gold" href="#" rel="nofollow">📄 Scarica la checklist</a>
-  <a id="btnCallTop" class="pill pill--blue" href="#" rel="nofollow">📞 Prenota la call gratuita</a>
+<!-- TOP pills -->
+<div class="pills" role="navigation" aria-label="Azioni rapide">
+  <div class="pills__inner">
+    <a id="btnDownloadTop" class="pill pill--gold" href="#" rel="nofollow">📄 Scarica la checklist</a>
+    <a id="btnCallTop" class="pill pill--blue" href="#" rel="nofollow">📞 Prenota la call gratuita</a>
+  </div>
 </div>
 
 <div class="container">
   <!-- HERO -->
   <section class="hero">
-    <h1>Gli <span class="u">errori</span> che bloccano le prenotazioni (e come evitarli)</h1>
-    <p class="lead">
-      Stesso appartamento, due risultati opposti: nel <b>2024</b> calendario fermo; nel <b>2025</b> <b>+19.253€</b> e flusso costante.
-      La differenza? <b>Annuncio, prezzi, processi</b>.
-    </p>
-
-    <div class="list">
-      <div class="item">Titoli & cover che fanno cliccare → più visite al listing (e al calendario).</div>
-      <div class="item">Prezzi dinamici su eventi e stagioni → addio listini fissi.</div>
-      <div class="item">Messaggi preimpostati → risposta rapida, fiducia, conversioni.</div>
+    <p class="kicker">Affitti brevi • Airbnb</p>
+    <h1>Gli <u>errori</u> che bloccano le prenotazioni (e come evitarli)</h1>
+    <p class="lead">Stesso appartamento, due risultati: nel <b>2024</b> calendario a buchi; nel <b>2025</b> <b>+19.253€</b> e flusso costante. Differenza? <b>Annuncio, prezzi, processi</b>.</p>
+    <div class="bullets">
+      <div class="i">Titoli & cover che fanno cliccare → più visite al listing.</div>
+      <div class="i">Prezzi dinamici su eventi e stagioni → addio listino fisso.</div>
+      <div class="i">Messaggi preimpostati → risposta rapida, fiducia, conversioni.</div>
     </div>
   </section>
 
-  <!-- PROOF: confronto 2024 vs 2025 -->
+  <!-- PROOF -->
   <section class="section">
-    <h2>Con Federica i numeri cambiano</h2>
-    <p class="lead">Qui sotto vedi <b>lo stesso appartamento</b> prima e dopo l’intervento.</p>
-
     <div class="grid-2">
-      <div class="card proof">
-        <img src="../assets/img/confronto-2024.png" alt="Riepilogo 2024" />
-        <div class="item">Prima (2024): calendario “a buchi”.</div>
+      <div class="card">
+        <h3>Prima (2024)</h3>
+        <div class="proof">
+          <div class="ph">
+            <img src="../assets/img/confronto-2024.png" alt="Riepilogo 2024" loading="lazy" />
+          </div>
+          <div class="caption">Calendario “a buchi”.</div>
+        </div>
       </div>
-      <div class="card proof">
-        <img src="../assets/img/confronto-2025.png" alt="Riepilogo 2025" />
-        <div class="item">Dopo (2025): annuncio sbloccato, calendario più pieno.</div>
+      <div class="card">
+        <h3>Dopo (2025)</h3>
+        <div class="proof">
+          <div class="ph">
+            <img src="../assets/img/confronto-2025.png" alt="Riepilogo 2025" loading="lazy" />
+          </div>
+          <div class="caption">Annuncio sbloccato, calendario più pieno.</div>
+        </div>
       </div>
     </div>
 
-    <!-- Altre proof -->
-    <div class="gallery">
-      <img src="../assets/img/dash-entrate.png" alt="Entrate e prenotazioni">
-      <img src="../assets/img/dash-qualita.png" alt="Qualità e 5 stelle">
-      <img src="../assets/img/calendario.png" alt="Calendario prenotazioni">
+    <div class="gallery" aria-label="Altre prove">
+      <img src="../assets/img/dash-entrate.png" alt="Entrate e prenotazioni" loading="lazy">
+      <img src="../assets/img/dash-qualita.png" alt="Qualità e 5 stelle" loading="lazy">
+      <img src="../assets/img/calendario.png" alt="Calendario prenotazioni" loading="lazy">
     </div>
   </section>
 
-  <!-- COSA SUCCEDE IN CALL -->
+  <!-- COME LAVORIAMO / CHI È -->
   <section class="section">
-    <div class="box kit">
-      <div>
+    <div class="kit">
+      <div class="card">
         <h3>Come lavoriamo (in 3 mosse)</h3>
-        <p><b>1) Analisi lampo</b> — 10′ per capire dove l’annuncio perde visite o conversione.</p>
-        <p><b>2) Fix prioritari</b> — titolo/cover, prezzi, messaggi: facciamo prima ciò che muove i numeri.</p>
-        <p><b>3) Processo e controllo</b> — template, routine e KPI: da “speriamo” a “gestiamo”.</p>
-        <div class="center" style="margin-top:10px">
+        <p><b>1) Analisi lampo</b> — 10′ per capire dove l’annuncio perde visite o conversioni.</p>
+        <p><b>2) Fix prioritari</b> — titolo/cover, prezzi, messaggi: prima ciò che muove i numeri.</p>
+        <p><b>3) Processo & KPI</b> — template, routine e controllo: da “speriamo” a “gestiamo”.</p>
+        <div class="section center" style="margin-top:10px">
           <a id="btnCallMid" class="btn btn--blue" href="#" rel="nofollow">📞 Prenota la call gratuita</a>
         </div>
       </div>
-      <div>
-        <h3>Chi è Federica Cellini</h3>
-        <p>Property Manager su Roma e dintorni. Trasforma annunci “frenati” in asset che generano prenotazioni con <b>ottimizzazione annuncio</b>, <b>pricing dinamico</b> e <b>processi snelli</b>. Approccio concreto, numeri alla mano.</p>
-        <div class="center" style="margin-top:8px">
+      <div class="card">
+        <span class="badge">Chi è Federica Cellini</span>
+        <p style="margin-top:10px">
+          Property Manager su Roma e dintorni. Trasforma annunci “frenati” in asset che generano prenotazioni con
+          <b>ottimizzazione annuncio</b>, <b>pricing dinamico</b> e <b>processi snelli</b>. Approccio concreto, numeri alla mano.
+        </p>
+        <div class="section center" style="margin-top:8px">
           <a id="btnDownloadMid" class="btn btn--gold" href="#" rel="nofollow">📄 Scarica la checklist “7 errori”</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA FINALI -->
+  <!-- CTA -->
   <section class="section center">
-    <a id="btnDownloadBottom" class="btn btn--gold" href="#" rel="nofollow">📄 Scarica la checklist “7 errori”</a>
+    <div class="cta-row">
+      <a id="btnDownloadBottom" class="btn btn--gold" href="#" rel="nofollow">📄 Scarica la checklist “7 errori”</a>
+    </div>
   </section>
+
+  <footer class="footer">
+    © <span id="y"></span> Federica Cellini — Tutti i diritti riservati.
+  </footer>
 </div>
 
-<!-- Sticky SOLO call -->
-<div class="sticky">
-  <div class="cta">
+<!-- Sticky ONLY call -->
+<div class="sticky" aria-label="Prenotazione rapida">
+  <div class="sticky__in">
     <a id="btnCallSticky" class="pill pill--blue" href="#" rel="nofollow">📞 Prenota la call gratuita</a>
   </div>
 </div>
 
 <script>
-  // ===== Config specifica per pagina =====
-  const TIPOLOGIA = 'errori';
+  // ===== Config pagina =====
+  const TIPOLOGIA   = 'errori';
   const DOWNLOAD_URL = 'https://drive.google.com/file/d/1aJmnQf4-Q31_UiskQ9JA0001YKpWlog/view?usp=sharing';
   const CALENDLY_URL = 'https://calendly.com/federica-cellini188/30min';
 
@@ -154,7 +187,7 @@ a.btn{display:inline-flex;align-items:center;gap:10px;border-radius:999px;paddin
   function getLeadId(){
     let id = localStorage.getItem('lid');
     if(!id){
-      id = 'ld_'+(crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(16).slice(2));
+      id = 'ld_' + (crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(16).slice(2));
       localStorage.setItem('lid', id);
     }
     return id;
@@ -170,17 +203,20 @@ a.btn{display:inline-flex;align-items:center;gap:10px;border-radius:999px;paddin
     return u.toString();
   }
 
-  // Bottoni
+  // Link targets
   const downloadTargets = ['btnDownloadTop','btnDownloadMid','btnDownloadBottom'];
   downloadTargets.forEach(id=>{ const el=document.getElementById(id); if(el) el.href = withParams(DOWNLOAD_URL); });
 
   const callTargets = ['btnCallTop','btnCallMid','btnCallSticky'];
   callTargets.forEach(id=>{ const el=document.getElementById(id); if(el) el.href = withParams(CALENDLY_URL); });
 
-  // Propaga UTM anche su eventuali link drive/calendly presenti in pag
+  // Propaga UTM anche su link drive/calendly presenti in pagina
   document.querySelectorAll('a[href*="calendly.com"], a[href*="drive.google.com"]').forEach(a=>{
     try{ a.href = withParams(a.href); }catch(_){}
   });
+
+  // Anno footer
+  document.getElementById('y').textContent = new Date().getFullYear();
 </script>
 </body>
 </html>
