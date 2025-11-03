@@ -1,181 +1,85 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Checklist “7 errori” — Federica Cellini</title>
-<meta name="robots" content="noindex,nofollow" />
+<!-- ...HEAD invariato... -->
 <style>
-:root{
-  --ink:#0b1b2b; --muted:#667085; --bg:#f6f8fb; --card:#ffffff; --line:#e6eef7;
-  --primary:#0a2540;   /* bottone call */
-  --accent:#d4af37;    /* bottone checklist */
-  --r:18px;
-}
-*{box-sizing:border-box}
-html,body{margin:0;padding:0;font-family:Inter,system-ui,Arial,sans-serif;color:var(--ink);background:var(--bg)}
-img{max-width:100%;height:auto;display:block;background:#fff}
-a{color:inherit;text-decoration:none}
-.container{max-width:1040px;margin:0 auto;padding:20px}
-.section{margin:28px 0}
-h1{font-size:40px;line-height:1.1;margin:0 0 10px;letter-spacing:-.3px}
-h2{font-size:24px;margin:0 0 12px}
-.lead{font-size:18px;color:var(--muted);max-width:900px;margin:0 0 16px}
-.kicker{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#2d3b4a;margin:0 0 8px;font-weight:700}
-u{ text-decoration-thickness:6px; text-underline-offset:6px }
-
-.hero{padding:4px 0 6px}
-.cta-row{display:flex;flex-wrap:wrap;gap:12px}
-.cta-row .btn{flex:1 1 240px}
-
-.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:14px 22px;font-weight:800;border:2px solid transparent}
-.btn--primary{background:var(--primary);color:#fff;border-color:var(--primary)}
-.btn--accent{background:var(--accent);color:#1a1a1a;border-color:var(--accent)}
-.btn--ghost{background:#fff;color:var(--primary);border-color:var(--primary)}
-.btn:active{transform:translateY(1px)}
-
-.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px}
-.card p{margin:0 0 10px;color:var(--muted)}
-.center{text-align:center}
-
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-@media (max-width:900px){ .grid-2{grid-template-columns:1fr} }
-
-/* ----- Immagini: contenimento e click-to-zoom ----- */
+/* ...resto dello stile invariato... */
 .proof{display:grid;gap:10px}
-.ph{border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#fff}
+.ph{border-radius:14px;overflow:hidden;/* niente bordi */ box-shadow:0 10px 24px rgba(10,37,64,.10)}
 .ph a{display:block;cursor:zoom-in}
-.proof img{width:100%;height:auto;object-fit:contain;max-height:420px} /* evita immagini enormi */
-@media (max-width:560px){ .proof img{max-height:320px} }
-.caption{font-size:14px;color:var(--muted);font-weight:600}
+.proof img{width:100%;height:clamp(220px,52vw,420px);object-fit:cover;display:block}
 
 .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
 @media (max-width:900px){ .gallery{grid-template-columns:1fr 1fr} }
 @media (max-width:560px){ .gallery{grid-template-columns:1fr} }
-.gallery a{display:block;border-radius:12px;border:1px solid var(--line);overflow:hidden;cursor:zoom-in;background:#fff}
-.gallery img{width:100%;height:auto;object-fit:contain;max-height:260px}
-@media (max-width:560px){ .gallery img{max-height:220px} }
+.gallery a{display:block;border-radius:14px;overflow:hidden;box-shadow:0 8px 18px rgba(10,37,64,.08);cursor:zoom-in}
+.gallery img{width:100%;height:clamp(180px,36vw,280px);object-fit:cover;display:block}
 
-.bullets{display:grid;gap:10px;margin:12px 0 0}
-.bullets .i{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-weight:600}
+.caption{font-size:14px;color:#667085;font-weight:600;margin-top:4px}
 
-.sticky{position:sticky;bottom:0;z-index:50;background:#ffffffcc;backdrop-filter:saturate(1.2) blur(6px);border-top:1px solid var(--line)}
-.sticky__in{max-width:1040px;margin:0 auto;padding:12px;display:flex;gap:12px;justify-content:center}
-
-.footer{margin:26px 0 40px;color:var(--muted);font-size:13px}
-:focus-visible{outline:3px solid #e6c766;outline-offset:2px;border-radius:8px}
-@media (prefers-reduced-motion:reduce){ .btn:active{transform:none} }
+/* Lightbox */
+.lb{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;z-index:9999}
+.lb img{max-width:92vw;max-height:92vh;object-fit:contain;box-shadow:0 20px 60px rgba(0,0,0,.5);border-radius:12px}
+.lb[aria-hidden="false"]{display:flex}
 </style>
 </head>
 <body>
-
 <div class="container">
+  <!-- HERO invariato -->
 
-  <!-- 1) HERO: titolo + 2 CTA -->
-  <section class="hero">
-    <p class="kicker">Affitti brevi • Airbnb</p>
-    <h1>Checklist <u>7 errori</u> che ti stanno bloccando le prenotazioni</h1>
-    <p class="lead">Scarica la checklist per correggere subito <b>titolo/cover</b>, <b>prezzi</b> e <b>messaggi</b>. Se vuoi, prenota una call gratuita e li sistemiamo insieme in 20 minuti.</p>
-    <div class="cta-row">
-      <a id="btnDownloadHero" class="btn btn--accent" href="#" rel="nofollow">Scarica la checklist</a>
-      <a id="btnCallHero" class="btn btn--primary" href="#" rel="nofollow">Prenota la call gratuita</a>
-    </div>
-
-    <div class="bullets">
-      <div class="i">Titoli e cover che fanno cliccare → più visite al listing.</div>
-      <div class="i">Prezzi dinamici su stagioni ed eventi → addio listino fisso.</div>
-      <div class="i">Messaggi preimpostati → risposta rapida, fiducia, conversioni.</div>
-    </div>
-  </section>
-
-  <!-- 2) PROOF principale -->
+  <!-- 2) RISULTATO principale -->
   <section class="section">
-    <h2>Proof</h2>
+    <h2>Risultati reali (dal mio cruscotto)</h2>
     <div class="card proof">
       <div class="ph">
-        <a id="full-riepilogo" href="#" target="_blank" rel="noopener">
+        <a class="zoom" href="#" aria-label="Apri immagine a schermo intero">
           <img data-src="/assets/img/riepilogo-2025.png" alt="Riepilogo risultati" loading="lazy" />
         </a>
       </div>
-      <div class="caption">Stesso appartamento: prima il calendario era a buchi; dopo l’ottimizzazione l’occupazione e le entrate sono salite in modo stabile.</div>
+      <div class="caption">Dopo l’ottimizzazione: calendario più pieno e entrate in crescita stabile.</div>
     </div>
   </section>
 
-  <!-- 3) Chi sono (prima persona) -->
-  <section class="section">
-    <div class="card">
-      <h2>Chi sono</h2>
-      <p>Ciao, sono <b>Federica Cellini</b>, Property Manager su Roma e dintorni. Lavoro sugli annunci “frenati” e li trasformo in asset che generano prenotazioni reali.</p>
-      <p>Il mio metodo è pratico: partiamo dai fondamentali (titolo, cover, dotazioni), impostiamo un <b>pricing dinamico</b> e costruiamo <b>processi snelli</b> con template e KPI.</p>
-      <p>Io e il mio team ci muoviamo con i numeri alla mano: analizziamo, testiamo, misuriamo e correggiamo in fretta ciò che impatta sul calendario.</p>
-      <p>Se vuoi un confronto veloce sul tuo listing, prenota la call gratuita: in 20 minuti ti dico dove stai perdendo visite o conversioni e cosa sistemare subito.</p>
-      <div style="margin-top:12px;display:flex;gap:12px;flex-wrap:wrap">
-        <a id="btnDownloadMid" class="btn btn--accent" href="#" rel="nofollow">Scarica la checklist “7 errori”</a>
-        <a id="btnCallMid" class="btn btn--ghost" href="#" rel="nofollow">Prenota la call gratuita</a>
-      </div>
-    </div>
-  </section>
+  <!-- 3) Chi sono: invariato nel contenuto che ti ho già dato -->
 
-  <!-- 4) RISULTATI -->
+  <!-- 4) RISULTATI elenco immagini -->
   <section class="section">
-    <h2>Risultati</h2>
+    <h2>Altri risultati (schermate reali)</h2>
     <div class="gallery" aria-label="Risultati">
-      <a href="#" target="_blank" rel="noopener"><img data-src="/assets/img/entrate-2025.png"   alt="Entrate 2025" loading="lazy"></a>
-      <a href="#" target="_blank" rel="noopener"><img data-src="/assets/img/1-2025.png"         alt="Dettaglio 1 2025" loading="lazy"></a>
-      <a href="#" target="_blank" rel="noopener"><img data-src="/assets/img/2-2025.png"         alt="Dettaglio 2 2025" loading="lazy"></a>
-      <a href="#" target="_blank" rel="noopener"><img data-src="/assets/img/3-2025.png"         alt="Dettaglio 3 2025" loading="lazy"></a>
-      <a href="#" target="_blank" rel="noopener"><img data-src="/assets/img/4-2025.png"         alt="Dettaglio 4 2025" loading="lazy"></a>
-      <a href="#" target="_blank" rel="noopener"><img data-src="/assets/img/5-2025.png"         alt="Dettaglio 5 2025" loading="lazy"></a>
+      <a class="zoom" href="#"><img data-src="/assets/img/entrate-2025.png" alt="Entrate 2025" loading="lazy"></a>
+      <a class="zoom" href="#"><img data-src="/assets/img/1-2025.png" alt="Dettaglio 1 2025" loading="lazy"></a>
+      <a class="zoom" href="#"><img data-src="/assets/img/2-2025.png" alt="Dettaglio 2 2025" loading="lazy"></a>
+      <a class="zoom" href="#"><img data-src="/assets/img/3-2025.png" alt="Dettaglio 3 2025" loading="lazy"></a>
+      <a class="zoom" href="#"><img data-src="/assets/img/4-2025.png" alt="Dettaglio 4 2025" loading="lazy"></a>
+      <a class="zoom" href="#"><img data-src="/assets/img/5-2025.png" alt="Dettaglio 5 2025" loading="lazy"></a>
     </div>
   </section>
 
-  <!-- 5) Come funziona la call -->
-  <section class="section">
-    <div class="card">
-      <h2>Come funziona la call</h2>
-      <p><b>1) Analisi lampo</b> — 10′ per capire dove il tuo annuncio perde visite o conversioni.</p>
-      <p><b>2) Fix prioritari</b> — titolo/cover, prezzi e messaggi: prima ciò che muove i numeri.</p>
-      <p><b>3) Processo & KPI</b> — template, routine e controllo: da “speriamo” a “gestiamo”.</p>
-      <div style="margin-top:12px">
-        <a id="btnCallBottom" class="btn btn--primary" href="#" rel="nofollow">Prenota la call gratuita</a>
-      </div>
-    </div>
-  </section>
-
-  <footer class="footer">
-    © <span id="y"></span> Federica Cellini — Tutti i diritti riservati.
-  </footer>
+  <!-- 5) Come funziona la call: invariato -->
 </div>
 
-<!-- Sticky: call sempre visibile, contrasto alto -->
-<div class="sticky" aria-label="Prenotazione rapida">
-  <div class="sticky__in">
-    <a id="btnCallSticky" class="btn btn--primary" href="#" rel="nofollow">Prenota la call gratuita</a>
-  </div>
+<!-- Sticky CTA: invariato -->
+
+<!-- Lightbox -->
+<div id="lightbox" class="lb" aria-hidden="true" role="dialog" aria-label="Immagine ingrandita">
+  <img id="lbimg" alt="Anteprima ingrandita" />
 </div>
 
 <script>
-  // ====== CONFIG PAGINA ======
+  // ====== LINK CORRETTI (restano) ======
   const TIPOLOGIA    = 'errori';
-  // ✅ Link corretti forniti da te
   const DOWNLOAD_URL = 'https://drive.google.com/file/d/1aJmnfQn4-Q31_UiskQMJAQ0O11YKpWog/view?usp=sharing';
   const CALENDLY_URL = 'https://calendly.com/federica-cellini88/30min';
 
-  // ====== FIX IMMAGINI GITHUB PAGES ======
-  // Su project pages l'URL è /<repo>/... quindi i path assoluti devono includere il nome repo.
+  // ====== FIX PATH IMMAGINI per GitHub Pages ======
   (function fixImagesBase(){
     const first = location.pathname.split('/')[1] || '';
     const BASE_PATH = first ? ('/' + first) : '';
-    // setta src + href di tutte le immagini (anche per click-to-zoom)
     document.querySelectorAll('img[data-src]').forEach(img=>{
-      const rel = img.getAttribute('data-src');  // es. "/assets/img/xxx.png"
+      const rel = img.getAttribute('data-src');
       img.src = BASE_PATH + rel;
-      const parentA = img.closest('a');
-      if(parentA){ parentA.href = img.src; }
+      const a = img.closest('a.zoom'); if(a){ a.href = img.src; }
     });
   })();
 
-  // ====== UTM & LID ======
+  // ====== UTM & LID (invariato) ======
   const q = new URLSearchParams(location.search);
   const utm_source   = q.get('utm_source')   || '';
   const utm_medium   = q.get('utm_medium')   || '';
@@ -183,10 +87,7 @@ u{ text-decoration-thickness:6px; text-underline-offset:6px }
 
   function getLeadId(){
     let id = localStorage.getItem('lid');
-    if(!id){
-      id = 'ld_' + (crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(16).slice(2));
-      localStorage.setItem('lid', id);
-    }
+    if(!id){ id = 'ld_' + (crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(16).slice(2)); localStorage.setItem('lid', id); }
     return id;
   }
   const lid = getLeadId();
@@ -200,20 +101,31 @@ u{ text-decoration-thickness:6px; text-underline-offset:6px }
     return u.toString();
   }
 
-  // ====== CTA LINKS ======
-  const dls = ['btnDownloadHero','btnDownloadMid'];
-  dls.forEach(id=>{ const el=document.getElementById(id); if(el) el.href = withParams(DOWNLOAD_URL); });
-
-  const calls = ['btnCallHero','btnCallMid','btnCallBottom','btnCallSticky'];
-  calls.forEach(id=>{ const el=document.getElementById(id); if(el) el.href = withParams(CALENDLY_URL); });
-
-  // Propaga UTM su eventuali link drive/calendly presenti
+  ['btnDownloadHero','btnDownloadMid'].forEach(id=>{
+    const el=document.getElementById(id); if(el) el.href = withParams(DOWNLOAD_URL);
+  });
+  ['btnCallHero','btnCallMid','btnCallBottom','btnCallSticky'].forEach(id=>{
+    const el=document.getElementById(id); if(el) el.href = withParams(CALENDLY_URL);
+  });
   document.querySelectorAll('a[href*="calendly.com"], a[href*="drive.google.com"]').forEach(a=>{
     try{ a.href = withParams(a.href); }catch(_){}
   });
-
-  // Anno footer
   document.getElementById('y').textContent = new Date().getFullYear();
+
+  // ====== Lightbox semplice ======
+  const lb = document.getElementById('lightbox');
+  const lbimg = document.getElementById('lbimg');
+  document.querySelectorAll('a.zoom').forEach(a=>{
+    a.addEventListener('click', e=>{
+      e.preventDefault();
+      lbimg.src = a.href;
+      lb.setAttribute('aria-hidden','false');
+    });
+  });
+  lb.addEventListener('click', ()=> lb.setAttribute('aria-hidden','true'));
+  document.addEventListener('keydown', e=>{
+    if(e.key==='Escape') lb.setAttribute('aria-hidden','true');
+  });
 </script>
 </body>
 </html>
