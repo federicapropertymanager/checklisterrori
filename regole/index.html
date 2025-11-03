@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Checklist “Regole” — Federica Cellini</title>
+<title>Checklist “Regole essenziali” — Federica Cellini</title>
 <meta name="robots" content="noindex,nofollow" />
 <style>
 :root{
@@ -39,24 +39,20 @@ u{ text-decoration-thickness:6px; text-underline-offset:6px }
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media (max-width:900px){ .grid-2{grid-template-columns:1fr} }
 
-/* Immagini pulite + lightbox */
+/* IMMAGINI: leggibili (contain), una colonna mobile, 2 colonne desktop */
 .shot{border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 10px 24px rgba(10,37,64,.10)}
 .shot > a{display:block;cursor:zoom-in}
 .shot img{width:100%;height:auto;object-fit:contain}
 .caption{font-size:14px;color:#667085;font-weight:600;margin-top:8px}
 
-/* Primo blocco risultato: single full-width */
 .proof{display:grid;gap:10px}
 
-/* Gallery: desktop 2 colonne, mobile 1 colonna */
 .gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:12px}
 @media (max-width:900px){ .gallery{grid-template-columns:1fr} }
 
-/* Bullet list */
 .bullets{display:grid;gap:10px;margin:12px 0 0}
 .bullets .i{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-weight:600}
 
-/* Sticky CTA */
 .sticky{position:sticky;bottom:0;z-index:50;background:#ffffffcc;backdrop-filter:saturate(1.2) blur(6px);border-top:1px solid var(--line)}
 .sticky__in{max-width:1040px;margin:0 auto;padding:12px;display:flex;gap:12px;justify-content:center}
 
@@ -76,31 +72,29 @@ u{ text-decoration-thickness:6px; text-underline-offset:6px }
 
   <!-- HERO -->
   <section class="hero">
-    <p class="kicker">Affitti brevi • Normativa</p>
-    <h1>Le <u>regole</u> che ogni host deve conoscere</h1>
-    <p class="lead">Ti spiego cosa serve davvero per essere in regola: <b>SCIA</b>, <b>tassa di soggiorno</b> e <b>comunicazione ospiti</b> senza burocrazia infinita. Scarica la checklist e, se vuoi, prenota una call gratuita: in 20 minuti verifichiamo la tua situazione.</p>
+    <p class="kicker">Affitti brevi • Airbnb</p>
+    <h1>Checklist <u>Regole essenziali</u> per ospitare senza rischi</h1>
+    <p class="lead">Scarica la checklist per impostare <b>regole chiare</b> e <b>procedure corrette</b>: comunicazioni, tassa di soggiorno, orari, cauzione, documenti. Se vuoi, prenota una call gratuita: ti aiuto a metterle a terra subito.</p>
     <div class="cta-row">
       <a id="btnDownloadHero" class="btn btn--accent" href="#" rel="nofollow">Scarica la checklist</a>
       <a id="btnCallHero" class="btn btn--primary" href="#" rel="nofollow">Prenota la call gratuita</a>
     </div>
 
     <div class="bullets">
-      <div class="i">SCIA: quando, dove e come presentarla nel modo giusto.</div>
-      <div class="i">Tassa di soggiorno: chi la versa, scadenze e ricevute.</div>
-      <div class="i">Alloggiati Web: comunicazione ospiti senza errori.</div>
+      <div class="i">Alloggiati Web e privacy: cosa raccogliere e quando inviare.</div>
+      <div class="i">Tassa di soggiorno: calcolo, esenzioni e ricevute.</div>
+      <div class="i">House rules chiare: check-in/out, silenzio, ospiti extra, fumo, animali.</div>
     </div>
   </section>
 
-  <!-- RISULTATO PRINCIPALE -->
+  <!-- RISULTATI PRINCIPALI -->
   <section class="section">
     <h2>Risultati reali (dal mio cruscotto)</h2>
     <div class="card proof">
       <div class="shot">
-        <a class="zoom" href="#" aria-label="Apri immagine a schermo intero">
-          <img data-src="/assets/img/riepilogo-2025.png" alt="Riepilogo risultati" loading="lazy" />
-        </a>
+        <a class="zoom" href="#"><img data-src="/assets/img/riepilogo-2025.png" alt="Riepilogo risultati" loading="lazy"></a>
       </div>
-      <div class="caption">Quando la parte normativa è in ordine, il calendario lavora: meno blocchi, più prenotazioni tracciate.</div>
+      <div class="caption">Con regole e processi impostati bene, meno problemi → più recensioni positive e calendario più ordinato.</div>
     </div>
   </section>
 
@@ -108,9 +102,10 @@ u{ text-decoration-thickness:6px; text-underline-offset:6px }
   <section class="section">
     <div class="card">
       <h2>Chi sono</h2>
-      <p>Ciao, sono <b>Federica Cellini</b>, Property Manager su Roma e dintorni. Traduco la burocrazia in azioni semplici: niente sigle oscure, solo ciò che serve per essere in regola e non rischiare sanzioni.</p>
-      <p>Condivido modelli e procedure che uso ogni giorno con i proprietari: documenti, scadenze, ricevute e controlli da fare senza perdersi nei portali.</p>
-      <p>Preferisco la chiarezza: ti dico cosa manca, come recuperarlo e come impostare un sistema che regge nel tempo.</p>
+      <p>Ciao, sono <b>Federica Cellini</b>. Quando mettiamo in chiaro regole e procedure, calano gli imprevisti e cresce la fiducia degli ospiti.</p>
+      <p>Imposto con te i punti critici: comunicazioni a norma, tassa di soggiorno, cauzione, orari e istruzioni in appartamento. Tutto semplice da seguire.</p>
+      <p>Ti lascio <b>template pronti</b> e una mini-dashboard per controllare richieste, arrivi e segnalazioni.</p>
+      <p>Se vuoi, facciamo una call gratuita: in 20′ vediamo dove rischi e cosa correggere subito.</p>
       <div style="margin-top:12px;display:flex;gap:12px;flex-wrap:wrap">
         <a id="btnDownloadMid" class="btn btn--accent" href="#" rel="nofollow">Scarica la checklist “Regole”</a>
         <a id="btnCallMid" class="btn btn--ghost" href="#" rel="nofollow">Prenota la call gratuita</a>
@@ -131,40 +126,35 @@ u{ text-decoration-thickness:6px; text-underline-offset:6px }
     </div>
   </section>
 
-  <!-- COME FUNZIONA LA CALL -->
+  <!-- CALL -->
   <section class="section">
     <div class="card">
       <h2>Come funziona la call</h2>
-      <p><b>1) Check normative</b> — verifichiamo SCIA, tassa di soggiorno e comunicazione ospiti.</p>
-      <p><b>2) Piano operativo</b> — cosa manca, come sistemarlo, scadenze e ricevute.</p>
-      <p><b>3) Procedura semplice</b> — modelli e promemoria per non saltare più un adempimento.</p>
+      <p><b>1) Analisi lampo</b> — verifichiamo dove mancano o sono confuse le regole.</p>
+      <p><b>2) Fix prioritari</b> — testo house rules, messaggi, modelli ricevute, flusso Alloggiati Web.</p>
+      <p><b>3) Processo & KPI</b> — template operativi e checklist per non saltare passaggi.</p>
       <div style="margin-top:12px">
         <a id="btnCallBottom" class="btn btn--primary" href="#" rel="nofollow">Prenota la call gratuita</a>
       </div>
     </div>
   </section>
 
-  <footer class="footer">
-    © <span id="y"></span> Federica Cellini — Tutti i diritti riservati.
-  </footer>
+  <footer class="footer">© <span id="y"></span> Federica Cellini — Tutti i diritti riservati.</footer>
 </div>
 
 <!-- Sticky CTA -->
 <div class="sticky" aria-label="Prenotazione rapida">
-  <div class="sticky__in">
-    <a id="btnCallSticky" class="btn btn--primary" href="#" rel="nofollow">Prenota la call gratuita</a>
-  </div>
+  <div class="sticky__in"><a id="btnCallSticky" class="btn btn--primary" href="#" rel="nofollow">Prenota la call gratuita</a></div>
 </div>
 
 <!-- Lightbox -->
-<div id="lightbox" class="lb" aria-hidden="true" role="dialog" aria-label="Immagine ingrandita">
-  <img id="lbimg" alt="Anteprima ingrandita" />
-</div>
+<div id="lightbox" class="lb" aria-hidden="true" role="dialog" aria-label="Immagine ingrandita"><img id="lbimg" alt="Anteprima ingrandita" /></div>
 
 <script>
   // ====== CONFIG ======
   const TIPOLOGIA = 'regole';
-  const DOWNLOAD_URL = 'https://drive.google.com/file/d/1XgVZ5-F3TlipuoJtBAL8xpcADdl4sXuA/view?usp=sharing';
+  // Sostituisci l'ID Drive quando lo hai
+  const DOWNLOAD_URL = 'https://drive.google.com/file/d/REPLACE_WITH_REGOLE_ID/view?usp=sharing';
   const CALENDLY_URL = 'https://calendly.com/federica-cellini88/30min';
 
   // Fix path immagini per GitHub Pages
@@ -178,55 +168,31 @@ u{ text-decoration-thickness:6px; text-underline-offset:6px }
     });
   })();
 
-  // UTM & LID
+  // UTM + LID
   const q = new URLSearchParams(location.search);
-  const utm_source   = q.get('utm_source')   || '';
-  const utm_medium   = q.get('utm_medium')   || '';
+  const utm_source = q.get('utm_source') || '';
+  const utm_medium = q.get('utm_medium') || '';
   const utm_campaign = q.get('utm_campaign') || TIPOLOGIA;
 
-  function getLeadId(){
-    let id = localStorage.getItem('lid');
-    if(!id){ id = 'ld_' + (crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(16).slice(2)); localStorage.setItem('lid', id); }
-    return id;
-  }
+  function getLeadId(){ let id=localStorage.getItem('lid'); if(!id){ id='ld_'+(crypto.randomUUID?crypto.randomUUID():Math.random().toString(16).slice(2)); localStorage.setItem('lid',id); } return id; }
   const lid = getLeadId();
 
-  function withParams(url){
-    const u = new URL(url);
-    if(utm_source)   u.searchParams.set('utm_source', utm_source);
-    if(utm_medium)   u.searchParams.set('utm_medium', utm_medium);
-    if(utm_campaign) u.searchParams.set('utm_campaign', utm_campaign);
-    u.searchParams.set('lid', lid);
-    return u.toString();
-  }
+  function withParams(url){ const u=new URL(url); if(utm_source)u.searchParams.set('utm_source',utm_source); if(utm_medium)u.searchParams.set('utm_medium',utm_medium); if(utm_campaign)u.searchParams.set('utm_campaign',utm_campaign); u.searchParams.set('lid',lid); return u.toString(); }
 
   // CTA links
-  ['btnDownloadHero','btnDownloadMid'].forEach(id=>{
-    const el=document.getElementById(id); if(el) el.href = withParams(DOWNLOAD_URL);
-  });
-  ['btnCallHero','btnCallMid','btnCallBottom','btnCallSticky'].forEach(id=>{
-    const el=document.getElementById(id); if(el) el.href = withParams(CALENDLY_URL);
-  });
+  ['btnDownloadHero','btnDownloadMid'].forEach(id=>{ const el=document.getElementById(id); if(el) el.href = withParams(DOWNLOAD_URL); });
+  ['btnCallHero','btnCallMid','btnCallBottom','btnCallSticky'].forEach(id=>{ const el=document.getElementById(id); if(el) el.href = withParams(CALENDLY_URL); });
 
-  // Propaga UTM su link esterni
-  document.querySelectorAll('a[href*="calendly.com"], a[href*="drive.google.com"]').forEach(a=>{
-    try{ a.href = withParams(a.href); }catch(_){}
-  });
+  // Propagazione UTM su eventuali link
+  document.querySelectorAll('a[href*="calendly.com"],a[href*="drive.google.com"]').forEach(a=>{ try{ a.href = withParams(a.href); }catch(_){}});
 
   document.getElementById('y').textContent = new Date().getFullYear();
 
   // Lightbox
-  const lb = document.getElementById('lightbox');
-  const lbimg = document.getElementById('lbimg');
-  document.querySelectorAll('a.zoom').forEach(a=>{
-    a.addEventListener('click', e=>{
-      e.preventDefault();
-      lbimg.src = a.href;
-      lb.setAttribute('aria-hidden','false');
-    });
-  });
-  lb.addEventListener('click', ()=> lb.setAttribute('aria-hidden','true'));
-  document.addEventListener('keydown', e=>{ if(e.key==='Escape') lb.setAttribute('aria-hidden','true'); });
+  const lb=document.getElementById('lightbox'), lbimg=document.getElementById('lbimg');
+  document.querySelectorAll('a.zoom').forEach(a=>{ a.addEventListener('click',e=>{ e.preventDefault(); lbimg.src=a.href; lb.setAttribute('aria-hidden','false'); }); });
+  lb.addEventListener('click',()=>lb.setAttribute('aria-hidden','true'));
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') lb.setAttribute('aria-hidden','true'); });
 </script>
 </body>
 </html>
