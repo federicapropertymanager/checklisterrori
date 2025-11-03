@@ -1,149 +1,154 @@
-<!DOCTYPE html><html lang="it"><head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Scarica la checklist — Federica Cellini</title>
-<meta name="robots" content="noindex,nofollow">
-<style>
-:root{ --navy:#0A2540; --gold:#D4AF37; --gold-2:#E2BF56; --text:#1C1C1C; --muted:#555; --bg:#FAFAFA; --radius:14px; }
-*{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:var(--text)}
-.container{max-width:520px;margin:64px auto;background:#fff;padding:28px;border-radius:var(--radius);box-shadow:0 6px 24px rgba(10,37,64,.08)}
-h1{margin:0 0 8px;font-size:24px;line-height:1.2;font-weight:800;color:var(--navy);text-align:center}
-p.lead{margin:0 0 22px;color:var(--muted);font-size:15px;text-align:center}
-label{display:block;font-size:14px;font-weight:600;margin:14px 0 6px}
-input,select{width:100%;padding:12px 14px;border:1px solid #e6e6e6;border-radius:12px;font-size:15px;background:#fff;outline:none}
-input:focus,select:focus{border-color:#cbd5e1;box-shadow:0 0 0 3px rgba(58,124,165,.12)}
-button{width:100%;margin-top:10px;padding:14px;border:0;border-radius:12px;cursor:pointer;background:var(--gold);color:var(--navy);font-weight:800;font-size:16px;transition:background .15s ease,transform .02s ease}
-button:hover{background:var(--gold-2)} button:active{transform:translateY(1px)}
-.success{display:none;margin-top:14px;padding:12px;border-radius:12px;text-align:center;background:#e8f7ef;color:#0a6b2b;font-weight:600;font-size:14px}
-.err{color:#b00020;font-size:13px;margin-top:6px;display:none}
-</style>
-<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
-t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init','1375982357419853');fbq('track','PageView');</script>
-</head><body>
-<div class="container">
-  <h1>Scarica la checklist</h1>
-  <p class="lead">Compila i campi per riceverla in pochi secondi.</p>
-  <form id="leadForm" novalidate>
-    <label for="name">Nome</label><input id="name" required>
-    <label for="email">Email</label><input id="email" type="email" required>
-    <label for="phone">Telefono</label><input id="phone" type="tel" required>
-    <label for="situazione">Situazione</label>
-    <select id="situazione" required>
-      <option value="">Seleziona…</option><option>Ho già una casa vacanza</option><option>Sto per iniziare</option><option>Gestisco per altri</option>
-    </select>
-    <button id="submitBtn" type="submit">Invia e scarica</button>
-    <div id="successMsg" class="success">Dati inviati! Reindirizzamento…</div>
-    <div id="errMsg" class="err"></div>
-  </form>
-</div>
-<script>
-  // ==== CONFIG ====
-  const ENDPOINT = "https://script.google.com/macros/s/AKfycbysELmr4ZOvglHJfEplkkO0E8mW1oDfZUbhkQ2mzHo0vJp4f0npo50SNz8NLGwL-SwZNA/exec";
-  const TIPOLOGIA = "regole"; // <-- regole / gestione nei rispettivi file
-  const REDIRECT  = "https://federicapropertymanager.github.io/checklisterrori/regole/"; 
-  // ^^^ per regole -> /regole/   per gestione -> /gestione/
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Scarica la checklist — Federica Cellini</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <style>
+    :root{ --navy:#0A2540; --gold:#D4AF37; --gold-2:#E2BF56; --text:#1C1C1C; --muted:#555; --bg:#FAFAFA; --radius:14px; }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:var(--text)}
+    .container{max-width:520px;margin:64px auto;background:#fff;padding:28px;border-radius:var(--radius);box-shadow:0 6px 24px rgba(10,37,64,.08)}
+    h1{margin:0 0 8px;font-size:24px;line-height:1.2;font-weight:800;color:var(--navy);text-align:center}
+    p.lead{margin:0 0 22px;color:var(--muted);font-size:15px;text-align:center}
+    label{display:block;font-size:14px;font-weight:600;margin:14px 0 6px}
+    input,select{width:100%;padding:12px 14px;border:1px solid #e6e6e6;border-radius:12px;font-size:15px;background:#fff;outline:none}
+    input:focus,select:focus{border-color:#cbd5e1;box-shadow:0 0 0 3px rgba(58,124,165,.12)}
+    button{width:100%;margin-top:10px;padding:14px;border:0;border-radius:12px;cursor:pointer;background:var(--gold);color:var(--navy);font-weight:800;font-size:16px;transition:background .15s ease,transform .02s ease}
+    button:hover{background:var(--gold-2)} button:active{transform:translateY(1px)}
+    .success{display:none;margin-top:14px;padding:12px;border-radius:12px;text-align:center;background:#e8f7ef;color:#0a6b2b;font-weight:600;font-size:14px}
+    .err{color:#b00020;font-size:13px;margin-top:6px;display:none}
+    noscript{display:block;color:#b00020;text-align:center;margin-top:12px}
+  </style>
 
-  // UTM dal querystring
-  const q = new URLSearchParams(location.search);
-  const utm_source   = q.get('utm_source')   || '';
-  const utm_medium   = q.get('utm_medium')   || '';
-  const utm_campaign = q.get('utm_campaign') || TIPOLOGIA;
-  const PROVENIENZA  = utm_source || 'instagram';
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n; n.loaded=!0; n.version='2.0'; n.queue=[];
+    t=b.createElement(e); t.async=!0; t.src=v;
+    s=b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s)
+    }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','1375982357419853'); fbq('track','PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1375982357419853&ev=PageView&noscript=1"/></noscript>
+</head>
+<body>
+  <div class="container">
+    <h1>Scarica la checklist</h1>
+    <p class="lead">Compila i campi per riceverla in pochi secondi.</p>
 
-  const isEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+    <form id="leadForm" novalidate>
+      <label for="name">Nome</label>
+      <input id="name" type="text" placeholder="Inserisci il tuo nome" autocomplete="name" required />
 
-  function getLeadId(){
-    try{
+      <label for="email">Email</label>
+      <input id="email" type="email" placeholder="es. nome@email.com" autocomplete="email" required />
+
+      <label for="phone">Telefono</label>
+      <input id="phone" type="tel" inputmode="tel" placeholder="+39 3xx xxx xxxx" autocomplete="tel" required />
+
+      <label for="situazione">Situazione</label>
+      <select id="situazione" required>
+        <option value="">Seleziona…</option>
+        <option>Ho già una casa vacanza</option>
+        <option>Sto per iniziare</option>
+        <option>Gestisco per altri</option>
+      </select>
+
+      <button type="submit" id="submitBtn">Invia e scarica</button>
+      <div class="success" id="successMsg" aria-live="polite">Dati inviati! Reindirizzamento…</div>
+      <div class="err" id="errMsg">Errore di rete. Riprova tra qualche secondo.</div>
+      <noscript>Per favore attiva JavaScript e ricarica.</noscript>
+    </form>
+  </div>
+
+  <script>
+    /* ===== COSTANTI DEDICATE (cambia qui per ciascun file) ===== */
+    const ENDPOINT = "https://script.google.com/macros/s/AKfycbysELmr4ZOvglHJfEplkkO0E8mW1oDfZUbhkQ2mzHo0vJp4f0npo50SNz8NLGwL-SwZNA/exec";
+    const REDIRECT = "https://federicapropertymanager.github.io/checklisterrori/errori/"; // <-- cambia per regole/gestione
+    const TIPOLOGIA = "errori"; // <-- cambia per regole/gestione
+
+    /* ===== UTM & Lead ID ===== */
+    const q = new URLSearchParams(location.search);
+    const utm_source   = q.get('utm_source')   || '';
+    const utm_medium   = q.get('utm_medium')   || '';
+    const utm_campaign = q.get('utm_campaign') || TIPOLOGIA;
+    const PROVENIENZA  = utm_source || 'instagram';
+    const isEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+
+    function getLeadId(){
       let id = localStorage.getItem('lid');
       if(!id){
-        id = 'ld_'+(window.crypto && crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(16).slice(2));
+        id = 'ld_'+(crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(16).slice(2));
         localStorage.setItem('lid', id);
       }
       return id;
-    }catch(_){
-      return 'ld_'+Math.random().toString(16).slice(2);
-    }
-  }
-
-  document.getElementById("leadForm").addEventListener("submit", (e)=>{
-    e.preventDefault();
-
-    const btn    = document.getElementById("submitBtn");
-    const okBox  = document.getElementById("successMsg");
-    const errBox = document.getElementById("errMsg");
-    errBox.style.display = "none";
-
-    const Nome       = document.getElementById("name").value.trim();
-    const Email      = document.getElementById("email").value.trim();
-    const Telefono   = document.getElementById("phone").value.trim();
-    const Situazione = document.getElementById("situazione").value;
-
-    if (!Nome || !isEmail(Email) || !Telefono || !Situazione){
-      errBox.textContent = "Compila correttamente tutti i campi.";
-      errBox.style.display = "block";
-      return;
     }
 
-    btn.disabled = true; btn.textContent = "Invio…";
+    document.getElementById("leadForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
 
-    const lead_id = getLeadId();
-    const payload = {
-      Nome, Email, Telefono, Situazione,
-      Tipologia: TIPOLOGIA,
-      Prenotato: "No",
-      Provenienza: PROVENIENZA,
-      utm_source, utm_medium, utm_campaign,
-      lead_id,
-      ts: new Date().toISOString(),
-      userAgent: navigator.userAgent,
-      cacheBust: Date.now()
-    };
+      const btn    = document.getElementById("submitBtn");
+      const okBox  = document.getElementById("successMsg");
+      const errBox = document.getElementById("errMsg");
+      errBox.style.display = "none";
 
-    // Pixel (non blocca mai)
-    try{
-      fbq('track','Lead', { funnel: TIPOLOGIA, Nome, Email, utm_source, utm_medium, utm_campaign });
-      fbq('trackCustom','FormSubmit', { funnel: TIPOLOGIA, Provenienza: PROVENIENZA, utm_source, utm_medium, utm_campaign });
-    }catch(_){}
+      const Nome       = document.getElementById("name").value.trim();
+      const Email      = document.getElementById("email").value.trim();
+      const Telefono   = document.getElementById("phone").value.trim();
+      const Situazione = document.getElementById("situazione").value;
 
-    // Costruisco subito il redirect (mantengo UTM e aggiungo lid)
-    const redirectUrl = (() => {
-      try{
-        const u = new URL(REDIRECT);
-        if (utm_source)   u.searchParams.set('utm_source', utm_source);
-        if (utm_medium)   u.searchParams.set('utm_medium', utm_medium);
-        if (utm_campaign) u.searchParams.set('utm_campaign', utm_campaign);
-        u.searchParams.set('lid', lead_id);
-        return u.toString();
-      }catch(_){
-        // fallback grezzo
-        const qs = new URLSearchParams({
-          utm_source, utm_medium, utm_campaign, lid: lead_id
-        }).toString();
-        return REDIRECT + (REDIRECT.includes('?') ? '&' : '?') + qs;
+      if (!Nome || !isEmail(Email) || !Telefono || !Situazione) {
+        errBox.textContent = "Compila correttamente tutti i campi.";
+        errBox.style.display = "block";
+        return;
       }
-    })();
 
-    // Invio NON BLOCCANTE (fire-and-forget)
-    try{
+      btn.disabled = true; btn.textContent = "Invio in corso…";
+
+      const lead_id = getLeadId();
+      const payload = {
+        Nome, Email, Telefono, Situazione,
+        Tipologia: TIPOLOGIA,
+        Prenotato: "No",
+        Provenienza: PROVENIENZA,
+        utm_source, utm_medium, utm_campaign,
+        lead_id,
+        ts: new Date().toISOString(),
+        userAgent: navigator.userAgent,
+        cacheBust: Date.now()
+      };
+
+      try {
+        fbq('track','Lead', { funnel: TIPOLOGIA, Nome, Email, utm_source, utm_medium, utm_campaign });
+        fbq('trackCustom','FormSubmit', { funnel: TIPOLOGIA, Provenienza: PROVENIENZA, utm_source, utm_medium, utm_campaign });
+      } catch(e){}
+
       const qs = new URLSearchParams(payload).toString();
-      if (navigator.sendBeacon){
-        navigator.sendBeacon(ENDPOINT + "?" + qs);
-      } else {
-        fetch(ENDPOINT, {
-          method: "POST",
-          mode: "no-cors",
-          keepalive: true,
+      const redirect = REDIRECT + (location.search ? location.search + '&' : '?') + 'lid=' + encodeURIComponent(lead_id);
+
+      try {
+        if (navigator.sendBeacon) {
+          navigator.sendBeacon(ENDPOINT + "?" + qs, new Blob([], { type: "text/plain" }));
+          location.href = redirect;
+          return;
+        }
+        await fetch(ENDPOINT, {
+          method: "POST", mode: "no-cors", keepalive: true,
           headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
           body: qs
-        }).catch(()=>{});
+        });
+        okBox.style.display = "block";
+        setTimeout(()=> location.href = redirect, 150);
+      } catch {
+        errBox.textContent = "Errore di rete. Riprova tra qualche secondo.";
+        errBox.style.display = "block";
+        btn.disabled = false; btn.textContent = "Invia e scarica";
       }
-    }catch(_){}
-
-    // Redirect immediato, senza aspettare nessuna rete
-    okBox.style.display = "block";
-    location.href = redirectUrl;
-  });
-</script>
+    });
+  </script>
 </body>
 </html>
