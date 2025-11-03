@@ -1,143 +1,94 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="it">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Le 5 regole che ogni host deve conoscere — Federica Cellini</title>
-<meta name="description" content="SCIA, tassa di soggiorno, Alloggiati Web e privacy: le 5 regole base per partire senza rischi. Scarica la guida e prenota una call gratuita.">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<title>Le 5 regole indispensabili — Federica Cellini</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <style>
-/* identico a landing “errori” */
-:root{ --navy:#0A2540; --az:#3A7CA5; --gold:#D4AF37; --muted:#F5F7FA; --ink:#0A2540; --radius:16px }
-*{box-sizing:border-box} html,body{margin:0;background:#fff;color:#13202E;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
-a{color:var(--az);text-decoration:none} img{max-width:100%;display:block;height:auto}
-.wrap{max-width:1100px;margin:0 auto;padding:0 18px}
-.hero{background:linear-gradient(180deg,#0A2540 0%, #0A2540 65%, #082033 100%);color:#fff;padding:56px 0 34px}
-.eyebrow{letter-spacing:.12em;text-transform:uppercase;font-size:.82rem;color:#8CBFE0;margin:0 0 10px 0}
-h1{font-size:clamp(28px,6vw,52px);line-height:1.05;margin:0 0 18px 0}
-.lead{font-size:clamp(16px,2.6vw,19px);line-height:1.55;color:#E8F1F7;max-width:840px}
-.stack{display:flex;flex-direction:column;gap:12px;margin-top:18px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 20px;border-radius:14px;font-weight:800;border:2px solid transparent;transition:.15s ease}
-.btn-primary{background:var(--gold);color:#0A2540} .btn-primary:hover{filter:brightness(.95)}
-.btn-ghost{background:transparent;border-color:#2D4962;color:#E8F1F7} .btn-ghost:hover{background:#0f3555}
-.note{margin-top:14px;border:1px solid #26425B;background:rgba(255,255,255,.03);color:#DCE8F0;border-radius:14px;padding:12px 14px}
-.section{padding:44px 0} .section.alt{background:#F8FAFC}
-h2{font-size:clamp(24px,4.2vw,36px);line-height:1.15;color:#0A2540;margin:0 0 14px 0}
-.bullets{display:grid;gap:12px}
-.pill{background:#fff;border:1px solid #EAEAEA;border-radius:14px;padding:14px;box-shadow:0 4px 14px rgba(10,37,64,.06);font-weight:600}
-.kicker{color:#3A7CA5;font-weight:800}
-.compare{margin-top:18px;display:grid;gap:18px}
-@media(min-width:900px){ .compare{grid-template-columns:1fr 1fr} }
-.card{background:#fff;border:1px solid #EAEAEA;border-radius:16px;padding:12px;box-shadow:0 6px 18px rgba(10,37,64,.06)}
-.frame{background:#fff;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden}
-.frame img{width:100%;height:340px;object-fit:contain;background:#fff}
-.cap{margin-top:8px;font-size:.92rem;color:#334155;font-weight:700}
-.proof{display:grid;gap:14px;margin-top:24px}
-@media(min-width:900px){ .proof{grid-template-columns:repeat(3,1fr)} }
-.proof .frame img{height:260px}
-.cta-bar{position:sticky;bottom:0;left:0;right:0;background:#0A2540;border-top:1px solid rgba(255,255,255,.12);padding:14px 0;z-index:40}
-.footer{padding:40px 0;background:#fff}
-.card-simple{background:#fff;border:1px solid #EAEAEA;border-radius:16px;padding:16px;box-shadow:0 6px 18px rgba(10,37,64,.06)}
+  :root{--navy:#0A2540;--gold:#D4AF37;--gold-2:#E2BF56;--ink:#0d1117;--muted:#5b6472;--bg:#f7f9fc;--card:#fff;--radius:16px;--shadow:0 8px 32px rgba(10,37,64,.09)}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+  .wrap{max-width:1120px;margin:0 auto;padding:24px}
+  header{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,#0A2540 0,#0A2540 72%,transparent)}
+  .topbar{max-width:1120px;margin:0 auto;padding:14px 24px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:center}
+  .cta{display:inline-flex;gap:10px;align-items:center;justify-content:center;background:var(--gold);color:var(--navy);font-weight:800;border:0;border-radius:999px;padding:12px 18px;cursor:pointer;text-decoration:none}
+  .cta.secondary{background:#102b45;color:#fff}.cta:hover{background:var(--gold-2)}
+  h1{font-size:40px;line-height:1.1;margin:28px 0 8px;color:var(--navy)}
+  .p-lead{color:var(--muted);font-size:18px;margin:0 0 22px}
+  .pill{background:var(--card);border:1px solid #e9eef5;border-radius:14px;padding:14px 16px;box-shadow:var(--shadow);margin:10px 0;font-weight:600}
+  .section{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;margin:24px 0}
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .card-img{background:#fff;border:1px solid #e8edf3;border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+  figure{margin:0}
+  .imgbox{width:100%;height:360px;display:flex;align-items:center;justify-content:center;background:#fff}
+  .imgbox img{max-width:100%;max-height:100%;object-fit:contain;display:block}
+  figcaption{font-size:14px;color:#3b4350;padding:10px 12px;border-top:1px solid #eef3f8}
+  .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .thumb .imgbox{height:220px}
+  .badge{display:inline-block;font-size:12px;font-weight:700;color:#0a6b2b;background:#e8f7ef;border:1px solid #c9ecd9;border-radius:999px;padding:4px 8px;margin-left:8px}
+  .cta-sticky{position:sticky;bottom:0;background:#0A2540;padding:18px 0;z-index:40}
+  .cta-bar{max-width:900px;margin:0 auto;background:var(--gold);color:var(--navy);font-weight:800;border-radius:999px;padding:16px 22px;text-align:center}
+  @media (max-width:960px){h1{font-size:32px}.compare{grid-template-columns:1fr}.gallery{grid-template-columns:1fr 1fr}.imgbox{height:300px}}
+  @media (max-width:620px){.gallery{grid-template-columns:1fr}.thumb .imgbox{height:200px}}
 </style>
 </head>
 <body>
 
-<header class="hero">
-  <div class="wrap">
-    <p class="eyebrow">Scarica ora</p>
-    <h1>Le <span class="kicker">5 regole</span> che ogni host deve conoscere</h1>
-    <p class="lead">Metterti in regola evita blocchi e richieste extra dai portali. La guida ti spiega cosa sistemare subito per lavorare sereno.</p>
-    <div class="stack">
-      <a id="cta-download" class="btn btn-primary" href="#">📄 Scarica la guida</a>
-      <a id="cta-calendly" class="btn btn-ghost" href="#">Prenota una consulenza gratuita</a>
-    </div>
-    <div class="note"><b>Perché serve:</b> host “in regola” hanno meno attriti e più recensioni 5★. Metti a posto i fondamentali e dormi tranquillo.</div>
+<header>
+  <div class="topbar">
+    <a class="cta" href="../regole/form.html">📄 Scarica le 5 regole</a>
+    <a class="cta secondary" href="https://calendly.com/federica-cellini888/30min" target="_blank" rel="noopener">📞 Prenota una consulenza gratuita</a>
   </div>
 </header>
 
-<section class="section">
-  <div class="wrap">
-    <h2>Prima sistemi, poi cresci</h2>
-    <div class="bullets">
-      <div class="pill"><b>Meno rischi</b> → niente sorprese o blocchi improvvisi dai portali.</div>
-      <div class="pill"><b>Più fiducia</b> → gli host “a norma” convertono meglio e ottengono più 5★.</div>
-      <div class="pill"><b>Processi chiari</b> → sai esattamente cosa fare e quando farlo.</div>
-    </div>
+<main class="wrap">
+  <h1>Regole chiare, annuncio <u>più sicuro</u> e <u>più redditizio</u></h1>
+  <p class="p-lead">Quando sistemi le basi legali e i processi, l’annuncio sblocca visibilità e fiducia → <b>più prenotazioni liquide</b>.</p>
 
+  <div class="pill"><b>Normativa in ordine</b> → niente sorprese o blocchi dai portali.</div>
+  <div class="pill"><b>Qualità “misurabile”</b> → host a norma convertono meglio e raccolgono più 5★.</div>
+  <div class="pill"><b>Processi chiari</b> → sai cosa fare e quando, zero stress.</div>
+
+  <section class="section">
+    <h2 style="margin:0 0 10px;color:#0A2540">L’effetto “regole fatte bene”</h2>
     <div class="compare">
-      <div class="card">
-        <div class="frame"><img src="../assets/img/entrate-2025.png" alt="Riepilogo dall'inizio dell'anno" loading="lazy"></div>
-        <p class="cap">Effetto conformità: meno attriti = più prenotazioni liquide.</p>
-      </div>
-      <div class="card">
-        <div class="frame"><img src="../assets/img/riepilogo-2025.png" alt="Grafico 2024→2025" loading="lazy"></div>
-        <p class="cap">Prima vs Dopo: annuncio sbloccato, calendario più pieno.</p>
-      </div>
+      <figure class="card-img">
+        <div class="imgbox"><img src="../assets/img/proof-2024.png" alt="Riepilogo 2024"></div>
+        <figcaption>Prima: documenti e processi incompleti → attriti e buchi a calendario.</figcaption>
+      </figure>
+      <figure class="card-img">
+        <div class="imgbox"><img src="../assets/img/proof-2025.png" alt="Riepilogo 2025"></div>
+        <figcaption><b>Con Federica</b>: portali “sereni”, più fiducia, <b>prenotazioni più costanti</b>.</figcaption>
+      </figure>
     </div>
+  </section>
 
-    <div class="proof">
-      <div class="card"><div class="frame"><img src="../assets/img/1-2025.png" alt="Prova 1" loading="lazy"></div></div>
-      <div class="card"><div class="frame"><img src="../assets/img/2-2025.png" alt="Prova 2" loading="lazy"></div></div>
-      <div class="card"><div class="frame"><img src="../assets/img/3-2025.png" alt="Prova 3" loading="lazy"></div></div>
-      <div class="card"><div class="frame"><img src="../assets/img/4-2025.png" alt="Prova 4" loading="lazy"></div></div>
-      <div class="card"><div class="frame"><img src="../assets/img/5-2025.png" alt="Prova 5" loading="lazy"></div></div>
+  <section class="section">
+    <h3 style="margin-top:0;color:#0A2540">Prove in chiaro <span class="badge">risultati reali</span></h3>
+    <div class="gallery">
+      <figure class="card-img thumb"><div class="imgbox"><img src="../assets/img/dash.png" alt="Dashboard"></div><figcaption>Valore prenotazioni in crescita dopo il “riordino”.</figcaption></figure>
+      <figure class="card-img thumb"><div class="imgbox"><img src="../assets/img/calendar.png" alt="Calendario pieno"></div><figcaption>Calendario più pieno anche sui feriali.</figcaption></figure>
+      <figure class="card-img thumb"><div class="imgbox"><img src="../assets/img/reviews.png" alt="Qualità e recensioni"></div><figcaption>Più 5★ grazie a regole e messaggi chiari.</figcaption></figure>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section alt">
-  <div class="wrap">
-    <h2>Call gratuita (30’): cosa ottieni</h2>
-    <div class="card-simple">
-      <ol>
-        <li>Checklist dei documenti/regole per il tuo caso.</li>
-        <li>Indicazioni operative su cosa sistemare subito.</li>
-        <li>Se ha senso: percorso <b>gestione</b> o <b>avviamento</b>.</li>
-      </ol>
-      <a class="btn btn-primary" id="cta-calendly-2" href="#">Prenota ora (gratuita)</a>
-    </div>
-  </div>
-</section>
+  <section class="section">
+    <h3 style="margin:0 0 6px;color:#0A2540">In 30’ capiamo cosa sistemare</h3>
+    <ul style="margin:0 0 16px 18px;line-height:1.7">
+      <li>Check pratico della tua situazione (SCIA, Alloggiati Web, tassa soggiorno…).</li>
+      <li>Lista priorità per “metterti a norma” senza perdere settimane.</li>
+      <li>Piano di lavoro per far rendere l’annuncio mentre resti tranquillo.</li>
+    </ul>
+    <a class="cta" href="https://calendly.com/federica-cellini888/30min" target="_blank" rel="noopener">Prenota ora (gratuita)</a>
+  </section>
+</main>
 
-<section class="section footer">
-  <div class="wrap">
-    <h2>Chi è Federica Cellini</h2>
-    <p>Property Manager su Roma e dintorni. Approccio concreto e a norma: annunci ottimizzati, prezzi dinamici, processi snelli.</p>
-  </div>
-</section>
-
-<div class="cta-bar">
-  <div class="wrap">
-    <a class="btn btn-primary" style="width:100%" id="cta-calendly-sticky" href="#">Prenota la consulenza gratuita</a>
+<div class="cta-sticky">
+  <div class="wrap" style="max-width:900px">
+    <a class="cta-bar" href="../regole/form.html">📄 Scarica “Le 5 regole indispensabili”</a>
   </div>
 </div>
 
-<script>
-const DOWNLOAD_URL = "https://drive.google.com/file/d/1XgVZ5-F3TlipuoJtBAL8xpcADdl4sXuA/view?usp=sharing";
-const CALENDLY_URL = "https://calendly.com/federica-cellini88/30min";
-
-const q = new URLSearchParams(location.search);
-const utm_source   = q.get('utm_source')   || "";
-const utm_medium   = q.get('utm_medium')   || "";
-const utm_campaign = q.get('utm_campaign') || "regole";
-const lid = q.get('lid') || localStorage.getItem('lid') || '';
-
-function withParams(base){
-  try{ const u=new URL(base);
-    if(utm_source)u.searchParams.set('utm_source',utm_source);
-    if(utm_medium)u.searchParams.set('utm_medium',utm_medium);
-    if(utm_campaign)u.searchParams.set('utm_campaign',utm_campaign);
-    if(lid)u.searchParams.set('lid',lid);
-    return u.toString();
-  }catch(e){ return base; }
-}
-function openNew(href){ window.open(withParams(href),'_blank'); }
-document.getElementById('cta-download').addEventListener('click', e=>{ e.preventDefault(); openNew(DOWNLOAD_URL); });
-['cta-calendly','cta-calendly-2','cta-calendly-sticky'].forEach(id=>{
-  const el=document.getElementById(id); if(el) el.addEventListener('click', e=>{ e.preventDefault(); openNew(CALENDLY_URL); });
-});
-document.addEventListener('DOMContentLoaded', ()=>{
-  document.querySelectorAll('a[href*="calendly.com"],a[href*="drive.google.com"]').forEach(a=>{ try{ a.href = withParams(a.href);}catch(e){} });
-});
-</script>
 </body>
 </html>
