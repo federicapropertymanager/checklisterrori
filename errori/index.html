@@ -8,155 +8,140 @@
 <style>
 :root{
   --ink:#0b1b2b; --ink-2:#11314d;
-  --gold:#D4AF37; --gold-2:#e7c96f;
-  --muted:#64748b; --bg:#f7fafc; --card:#ffffff; --line:#e6eef7;
+  --muted:#64748b; --bg:#f6f8fb; --card:#ffffff; --line:#e6eef7;
+  --primary:#0a2540; /* bottone call */
+  --accent:#d4af37;  /* bottone checklist */
   --r:18px;
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;font-family:Inter,system-ui,Arial,sans-serif;color:var(--ink);background:var(--bg)}
 img{max-width:100%;height:auto;display:block}
-a{color:inherit}
+a{color:inherit;text-decoration:none}
 .container{max-width:1040px;margin:0 auto;padding:20px}
 .section{margin:28px 0}
 h1{font-size:40px;line-height:1.1;margin:0 0 10px;letter-spacing:-.3px}
-.lead{font-size:18px;color:var(--muted);max-width:900px;margin:0}
-.kicker{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#2d3b4a;margin:0 0 10px;font-weight:700}
+h2{font-size:24px;margin:0 0 10px}
+.lead{font-size:18px;color:var(--muted);max-width:900px;margin:0 0 16px}
+.kicker{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#2d3b4a;margin:0 0 8px;font-weight:700}
 u{ text-decoration-thickness:6px; text-underline-offset:6px }
 
-.pills{position:sticky;top:0;z-index:40;backdrop-filter:saturate(1.2) blur(6px);
-  background:rgba(11,27,43,.75);border-bottom:1px solid rgba(255,255,255,.08)}
-.pills__inner{max-width:1040px;margin:0 auto;display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:center;padding:12px}
-.pill{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:12px 18px;font-weight:800;text-decoration:none;box-shadow:0 10px 20px rgba(0,0,0,.12)}
-.pill--gold{background:var(--gold);color:var(--ink)}
-.pill--blue{background:var(--ink);color:#fff}
-.pill:active{transform:translateY(1px)}
+.hero{padding:10px 0 6px}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px}
+.cta-row .btn{flex:1 1 240px}
 
-.hero{padding:24px 0 6px}
-.bullets{display:grid;gap:10px;margin:16px 0 0}
-.bullets .i{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;font-weight:600}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:999px;padding:14px 22px;font-weight:800;border:2px solid transparent}
+.btn--primary{background:var(--primary);color:#fff;border-color:var(--primary)}
+.btn--accent{background:var(--accent);color:#1a1a1a;border-color:var(--accent)}
+.btn--ghost{background:#fff;color:var(--primary);border-color:var(--primary)}
+.btn:active{transform:translateY(1px)}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px}
+.card p{margin:0 0 8px;color:var(--muted)}
+.center{text-align:center}
 
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media (max-width:900px){ .grid-2{grid-template-columns:1fr} }
 
-.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px}
-.card h3{margin:0 0 6px}
-.card p{margin:0;color:var(--muted)}
-.center{text-align:center}
-
 .proof{display:grid;gap:10px}
-.proof .ph{border-radius:12px;overflow:hidden;border:1px solid var(--line)}
-.proof img{width:100%;height:auto;display:block;aspect-ratio:16/10;object-fit:cover}
+.proof .ph{border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#fff}
+.proof img{width:100%;height:auto;aspect-ratio:16/10;object-fit:cover}
 .caption{font-size:14px;color:var(--muted);font-weight:600}
 
 .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
 @media (max-width:900px){ .gallery{grid-template-columns:1fr 1fr} }
 @media (max-width:560px){ .gallery{grid-template-columns:1fr} }
-.gallery img{border-radius:12px;border:1px solid var(--line);aspect-ratio:16/10;object-fit:cover}
+.gallery img{border-radius:12px;border:1px solid var(--line);aspect-ratio:16/10;object-fit:cover;background:#fff}
 
-.cta-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
-.btn{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:14px 20px;font-weight:800;text-decoration:none;border:1px solid transparent}
-.btn--gold{background:var(--gold);color:var(--ink)}
-.btn--blue{background:var(--ink);color:#fff}
-.btn:active{transform:translateY(1px)}
+.bullets{display:grid;gap:10px;margin:12px 0 0}
+.bullets .i{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-weight:600}
 
-.sticky{position:sticky;bottom:0;z-index:50;background:var(--ink);border-top:1px solid rgba(255,255,255,.08)}
-.sticky__in{max-width:1040px;margin:0 auto;padding:12px;display:flex;justify-content:center}
-
-.kit{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-@media (max-width:900px){ .kit{grid-template-columns:1fr} }
-
-.badge{display:inline-flex;align-items:center;gap:6px;background:#eef5ff;color:#0b3a7a;border:1px solid #d6e6ff;border-radius:999px;padding:6px 10px;font-size:12px;font-weight:700}
+.sticky{position:sticky;bottom:0;z-index:50;background:#ffffffcc;backdrop-filter:saturate(1.2) blur(6px);border-top:1px solid var(--line)}
+.sticky__in{max-width:1040px;margin:0 auto;padding:12px;display:flex;gap:12px;justify-content:center}
 
 .footer{margin:26px 0 40px;color:var(--muted);font-size:13px}
-
-:focus-visible{outline:3px solid var(--gold-2);outline-offset:2px;border-radius:8px}
-@media (prefers-reduced-motion:reduce){
-  .pill:active,.btn:active{transform:none}
-}
+:focus-visible{outline:3px solid #e6c766;outline-offset:2px;border-radius:8px}
+@media (prefers-reduced-motion:reduce){ .btn:active{transform:none} }
 </style>
 </head>
 <body>
 
-<!-- TOP pills -->
-<div class="pills" role="navigation" aria-label="Azioni rapide">
-  <div class="pills__inner">
-    <a id="btnDownloadTop" class="pill pill--gold" href="#" rel="nofollow">📄 Scarica la checklist</a>
-    <a id="btnCallTop" class="pill pill--blue" href="#" rel="nofollow">📞 Prenota la call gratuita</a>
-  </div>
-</div>
-
 <div class="container">
-  <!-- HERO -->
+
+  <!-- 1) HERO: titolo + 2 CTA -->
   <section class="hero">
     <p class="kicker">Affitti brevi • Airbnb</p>
-    <h1>Gli <u>errori</u> che bloccano le prenotazioni (e come evitarli)</h1>
-    <p class="lead">Stesso appartamento, due risultati: nel <b>2024</b> calendario a buchi; nel <b>2025</b> <b>+19.253€</b> e flusso costante. Differenza? <b>Annuncio, prezzi, processi</b>.</p>
+    <h1>Checklist <u>7 errori</u> che ti stanno bloccando le prenotazioni</h1>
+    <p class="lead">Scarica la checklist per correggere subito titolo/cover, prezzi e messaggi. Se vuoi, facciamo una call gratuita e li sistemiamo insieme.</p>
+    <div class="cta-row">
+      <a id="btnDownloadHero" class="btn btn--accent" href="#" rel="nofollow">Scarica la checklist</a>
+      <a id="btnCallHero" class="btn btn--primary" href="#" rel="nofollow">Prenota la call gratuita</a>
+    </div>
+
     <div class="bullets">
-      <div class="i">Titoli & cover che fanno cliccare → più visite al listing.</div>
-      <div class="i">Prezzi dinamici su eventi e stagioni → addio listino fisso.</div>
+      <div class="i">Titoli & cover che fanno cliccare → più visite.</div>
+      <div class="i">Prezzi dinamici su eventi e stagioni → no listino fisso.</div>
       <div class="i">Messaggi preimpostati → risposta rapida, fiducia, conversioni.</div>
     </div>
   </section>
 
-  <!-- PROOF -->
+  <!-- 2) PROOF comparazione -->
   <section class="section">
+    <h2>Prima vs Dopo</h2>
     <div class="grid-2">
       <div class="card">
-        <h3>Prima (2024)</h3>
+        <strong>Prima (2024)</strong>
         <div class="proof">
           <div class="ph">
-            <img src="../assets/img/confronto-2024.png" alt="Riepilogo 2024" loading="lazy" />
+            <img data-src="/assets/img/confronto-2024.png" alt="Riepilogo 2024" loading="lazy" />
           </div>
           <div class="caption">Calendario “a buchi”.</div>
         </div>
       </div>
       <div class="card">
-        <h3>Dopo (2025)</h3>
+        <strong>Dopo (2025)</strong>
         <div class="proof">
           <div class="ph">
-            <img src="../assets/img/confronto-2025.png" alt="Riepilogo 2025" loading="lazy" />
+            <img data-src="/assets/img/confronto-2025.png" alt="Riepilogo 2025" loading="lazy" />
           </div>
           <div class="caption">Annuncio sbloccato, calendario più pieno.</div>
         </div>
       </div>
     </div>
-
-    <div class="gallery" aria-label="Altre prove">
-      <img src="../assets/img/dash-entrate.png" alt="Entrate e prenotazioni" loading="lazy">
-      <img src="../assets/img/dash-qualita.png" alt="Qualità e 5 stelle" loading="lazy">
-      <img src="../assets/img/calendario.png" alt="Calendario prenotazioni" loading="lazy">
-    </div>
   </section>
 
-  <!-- COME LAVORIAMO / CHI È -->
+  <!-- 3) Chi è Federica -->
   <section class="section">
-    <div class="kit">
-      <div class="card">
-        <h3>Come lavoriamo (in 3 mosse)</h3>
-        <p><b>1) Analisi lampo</b> — 10′ per capire dove l’annuncio perde visite o conversioni.</p>
-        <p><b>2) Fix prioritari</b> — titolo/cover, prezzi, messaggi: prima ciò che muove i numeri.</p>
-        <p><b>3) Processo & KPI</b> — template, routine e controllo: da “speriamo” a “gestiamo”.</p>
-        <div class="section center" style="margin-top:10px">
-          <a id="btnCallMid" class="btn btn--blue" href="#" rel="nofollow">📞 Prenota la call gratuita</a>
-        </div>
-      </div>
-      <div class="card">
-        <span class="badge">Chi è Federica Cellini</span>
-        <p style="margin-top:10px">
-          Property Manager su Roma e dintorni. Trasforma annunci “frenati” in asset che generano prenotazioni con
-          <b>ottimizzazione annuncio</b>, <b>pricing dinamico</b> e <b>processi snelli</b>. Approccio concreto, numeri alla mano.
-        </p>
-        <div class="section center" style="margin-top:8px">
-          <a id="btnDownloadMid" class="btn btn--gold" href="#" rel="nofollow">📄 Scarica la checklist “7 errori”</a>
-        </div>
+    <div class="card">
+      <h2>Chi è Federica Cellini</h2>
+      <p>Property Manager su Roma e dintorni. Trasforma annunci “frenati” in asset che generano prenotazioni con
+      <b>ottimizzazione annuncio</b>, <b>pricing dinamico</b> e <b>processi snelli</b>. Approccio concreto, numeri alla mano.</p>
+      <div style="margin-top:12px;display:flex;gap:12px;flex-wrap:wrap">
+        <a id="btnDownloadMid" class="btn btn--accent" href="#" rel="nofollow">Scarica la checklist “7 errori”</a>
+        <a id="btnCallMid" class="btn btn--ghost" href="#" rel="nofollow">Prenota la call gratuita</a>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="section center">
-    <div class="cta-row">
-      <a id="btnDownloadBottom" class="btn btn--gold" href="#" rel="nofollow">📄 Scarica la checklist “7 errori”</a>
+  <!-- 4) Altre proof (gallery) -->
+  <section class="section">
+    <h2>Altre prove</h2>
+    <div class="gallery" aria-label="Altre prove">
+      <img data-src="/assets/img/dash-entrate.png" alt="Entrate e prenotazioni" loading="lazy">
+      <img data-src="/assets/img/dash-qualita.png" alt="Qualità e 5 stelle" loading="lazy">
+      <img data-src="/assets/img/calendario.png" alt="Calendario prenotazioni" loading="lazy">
+    </div>
+  </section>
+
+  <!-- 5) Come funziona la call -->
+  <section class="section">
+    <div class="card">
+      <h2>Come funziona la call</h2>
+      <p><b>1) Analisi lampo</b> — 10′ per capire dove l’annuncio perde visite o conversioni.</p>
+      <p><b>2) Fix prioritari</b> — titolo/cover, prezzi, messaggi: prima ciò che muove i numeri.</p>
+      <p><b>3) Processo & KPI</b> — template, routine e controllo: da “speriamo” a “gestiamo”.</p>
+      <div style="margin-top:12px">
+        <a id="btnCallBottom" class="btn btn--primary" href="#" rel="nofollow">Prenota la call gratuita</a>
+      </div>
     </div>
   </section>
 
@@ -165,20 +150,32 @@ u{ text-decoration-thickness:6px; text-underline-offset:6px }
   </footer>
 </div>
 
-<!-- Sticky ONLY call -->
+<!-- Sticky: call sempre visibile, contrasto alto -->
 <div class="sticky" aria-label="Prenotazione rapida">
   <div class="sticky__in">
-    <a id="btnCallSticky" class="pill pill--blue" href="#" rel="nofollow">📞 Prenota la call gratuita</a>
+    <a id="btnCallSticky" class="btn btn--primary" href="#" rel="nofollow">Prenota la call gratuita</a>
   </div>
 </div>
 
 <script>
-  // ===== Config pagina =====
-  const TIPOLOGIA   = 'errori';
+  // ====== CONFIG PAGINA ======
+  const TIPOLOGIA    = 'errori';
   const DOWNLOAD_URL = 'https://drive.google.com/file/d/1aJmnQf4-Q31_UiskQ9JA0001YKpWlog/view?usp=sharing';
   const CALENDLY_URL = 'https://calendly.com/federica-cellini188/30min';
 
-  // ===== UTM & LID =====
+  // ====== FIX IMMAGINI GITHUB PAGES ======
+  // Su project pages l'URL è /<repo>/... quindi i path assoluti devono includere il nome repo.
+  // BASE_PATH prende il primo segmento (es. "/checklisterrori").
+  (function fixImagesBase(){
+    const first = location.pathname.split('/')[1] || '';
+    const BASE_PATH = first ? ('/' + first) : '';
+    document.querySelectorAll('img[data-src]').forEach(img=>{
+      const rel = img.getAttribute('data-src'); // es. "/assets/img/xxx.png"
+      img.src = BASE_PATH + rel;                // -> "/checklisterrori/assets/img/xxx.png"
+    });
+  })();
+
+  // ====== UTM & LID ======
   const q = new URLSearchParams(location.search);
   const utm_source   = q.get('utm_source')   || '';
   const utm_medium   = q.get('utm_medium')   || '';
@@ -203,14 +200,14 @@ u{ text-decoration-thickness:6px; text-underline-offset:6px }
     return u.toString();
   }
 
-  // Link targets
-  const downloadTargets = ['btnDownloadTop','btnDownloadMid','btnDownloadBottom'];
-  downloadTargets.forEach(id=>{ const el=document.getElementById(id); if(el) el.href = withParams(DOWNLOAD_URL); });
+  // ====== CTA LINKS ======
+  const dls = ['btnDownloadHero','btnDownloadMid'];
+  dls.forEach(id=>{ const el=document.getElementById(id); if(el) el.href = withParams(DOWNLOAD_URL); });
 
-  const callTargets = ['btnCallTop','btnCallMid','btnCallSticky'];
-  callTargets.forEach(id=>{ const el=document.getElementById(id); if(el) el.href = withParams(CALENDLY_URL); });
+  const calls = ['btnCallHero','btnCallMid','btnCallBottom','btnCallSticky'];
+  calls.forEach(id=>{ const el=document.getElementById(id); if(el) el.href = withParams(CALENDLY_URL); });
 
-  // Propaga UTM anche su link drive/calendly presenti in pagina
+  // Propaga UTM su eventuali link drive/calendly presenti
   document.querySelectorAll('a[href*="calendly.com"], a[href*="drive.google.com"]').forEach(a=>{
     try{ a.href = withParams(a.href); }catch(_){}
   });
