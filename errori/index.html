@@ -7,50 +7,49 @@
 <meta name="robots" content="noindex,nofollow" />
 <style>
 :root{
-  --ink:#0b1b2b; --ink-2:#11314d;
-  --muted:#64748b; --bg:#f6f8fb; --card:#ffffff; --line:#e6eef7;
-  --primary:#0a2540; /* bottone call */
-  --accent:#d4af37;  /* bottone checklist */
+  --ink:#0b1b2b; --muted:#667085; --bg:#f6f8fb; --card:#ffffff; --line:#e6eef7;
+  --primary:#0a2540;   /* bottone call */
+  --accent:#d4af37;    /* bottone checklist */
   --r:18px;
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;font-family:Inter,system-ui,Arial,sans-serif;color:var(--ink);background:var(--bg)}
-img{max-width:100%;height:auto;display:block}
+img{max-width:100%;height:auto;display:block;background:#fff}
 a{color:inherit;text-decoration:none}
 .container{max-width:1040px;margin:0 auto;padding:20px}
 .section{margin:28px 0}
 h1{font-size:40px;line-height:1.1;margin:0 0 10px;letter-spacing:-.3px}
-h2{font-size:24px;margin:0 0 10px}
+h2{font-size:24px;margin:0 0 12px}
 .lead{font-size:18px;color:var(--muted);max-width:900px;margin:0 0 16px}
 .kicker{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#2d3b4a;margin:0 0 8px;font-weight:700}
 u{ text-decoration-thickness:6px; text-underline-offset:6px }
 
-.hero{padding:10px 0 6px}
+.hero{padding:4px 0 6px}
 .cta-row{display:flex;flex-wrap:wrap;gap:12px}
 .cta-row .btn{flex:1 1 240px}
 
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:999px;padding:14px 22px;font-weight:800;border:2px solid transparent}
+.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:14px 22px;font-weight:800;border:2px solid transparent}
 .btn--primary{background:var(--primary);color:#fff;border-color:var(--primary)}
 .btn--accent{background:var(--accent);color:#1a1a1a;border-color:var(--accent)}
 .btn--ghost{background:#fff;color:var(--primary);border-color:var(--primary)}
 .btn:active{transform:translateY(1px)}
 
 .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px}
-.card p{margin:0 0 8px;color:var(--muted)}
+.card p{margin:0 0 10px;color:var(--muted)}
 .center{text-align:center}
 
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media (max-width:900px){ .grid-2{grid-template-columns:1fr} }
 
 .proof{display:grid;gap:10px}
-.proof .ph{border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#fff}
+.ph{border-radius:12px;overflow:hidden;border:1px solid var(--line)}
 .proof img{width:100%;height:auto;aspect-ratio:16/10;object-fit:cover}
 .caption{font-size:14px;color:var(--muted);font-weight:600}
 
 .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
 @media (max-width:900px){ .gallery{grid-template-columns:1fr 1fr} }
 @media (max-width:560px){ .gallery{grid-template-columns:1fr} }
-.gallery img{border-radius:12px;border:1px solid var(--line);aspect-ratio:16/10;object-fit:cover;background:#fff}
+.gallery img{border-radius:12px;border:1px solid var(--line);aspect-ratio:16/10;object-fit:cover}
 
 .bullets{display:grid;gap:10px;margin:12px 0 0}
 .bullets .i{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-weight:600}
@@ -71,50 +70,39 @@ u{ text-decoration-thickness:6px; text-underline-offset:6px }
   <section class="hero">
     <p class="kicker">Affitti brevi • Airbnb</p>
     <h1>Checklist <u>7 errori</u> che ti stanno bloccando le prenotazioni</h1>
-    <p class="lead">Scarica la checklist per correggere subito titolo/cover, prezzi e messaggi. Se vuoi, facciamo una call gratuita e li sistemiamo insieme.</p>
+    <p class="lead">Scarica la checklist per correggere subito <b>titolo/cover</b>, <b>prezzi</b> e <b>messaggi</b>. Se vuoi, prenota una call gratuita e li sistemiamo insieme in 20 minuti.</p>
     <div class="cta-row">
       <a id="btnDownloadHero" class="btn btn--accent" href="#" rel="nofollow">Scarica la checklist</a>
       <a id="btnCallHero" class="btn btn--primary" href="#" rel="nofollow">Prenota la call gratuita</a>
     </div>
 
     <div class="bullets">
-      <div class="i">Titoli & cover che fanno cliccare → più visite.</div>
-      <div class="i">Prezzi dinamici su eventi e stagioni → no listino fisso.</div>
+      <div class="i">Titoli e cover che fanno cliccare → più visite al listing.</div>
+      <div class="i">Prezzi dinamici su stagioni ed eventi → addio listino fisso.</div>
       <div class="i">Messaggi preimpostati → risposta rapida, fiducia, conversioni.</div>
     </div>
   </section>
 
-  <!-- 2) PROOF comparazione -->
+  <!-- 2) PROOF principale (riepilogo/comparazione) -->
   <section class="section">
-    <h2>Prima vs Dopo</h2>
-    <div class="grid-2">
-      <div class="card">
-        <strong>Prima (2024)</strong>
-        <div class="proof">
-          <div class="ph">
-            <img data-src="/assets/img/confronto-2024.png" alt="Riepilogo 2024" loading="lazy" />
-          </div>
-          <div class="caption">Calendario “a buchi”.</div>
-        </div>
+    <h2>Proof</h2>
+    <div class="card proof">
+      <div class="ph">
+        <!-- Riepilogo principale -->
+        <img data-src="/assets/img/riepilogo-2025.png" alt="Riepilogo risultati" loading="lazy" />
       </div>
-      <div class="card">
-        <strong>Dopo (2025)</strong>
-        <div class="proof">
-          <div class="ph">
-            <img data-src="/assets/img/confronto-2025.png" alt="Riepilogo 2025" loading="lazy" />
-          </div>
-          <div class="caption">Annuncio sbloccato, calendario più pieno.</div>
-        </div>
-      </div>
+      <div class="caption">Stesso appartamento: prima il calendario era a buchi; dopo l’ottimizzazione l’occupazione e le entrate sono salite in modo stabile.</div>
     </div>
   </section>
 
-  <!-- 3) Chi è Federica -->
+  <!-- 3) Chi sono (prima persona) -->
   <section class="section">
     <div class="card">
-      <h2>Chi è Federica Cellini</h2>
-      <p>Property Manager su Roma e dintorni. Trasforma annunci “frenati” in asset che generano prenotazioni con
-      <b>ottimizzazione annuncio</b>, <b>pricing dinamico</b> e <b>processi snelli</b>. Approccio concreto, numeri alla mano.</p>
+      <h2>Chi sono</h2>
+      <p>Ciao, sono <b>Federica Cellini</b>, Property Manager su Roma e dintorni. Lavoro sugli annunci “frenati” e li trasformo in asset che generano prenotazioni reali.</p>
+      <p>Il mio metodo è pratico: partiamo dai fondamentali (titolo, cover, dotazioni), impostiamo un <b>pricing dinamico</b> e costruiamo <b>processi snelli</b> con template e KPI.</p>
+      <p>Io e il mio team ci muoviamo con i numeri alla mano: analizziamo, testiamo, misuriamo e correggiamo in fretta ciò che impatta sul calendario.</p>
+      <p>Se vuoi un confronto veloce sul tuo listing, prenota la call gratuita: in 20 minuti ti dico dove stai perdendo visite o conversioni e cosa sistemare subito.</p>
       <div style="margin-top:12px;display:flex;gap:12px;flex-wrap:wrap">
         <a id="btnDownloadMid" class="btn btn--accent" href="#" rel="nofollow">Scarica la checklist “7 errori”</a>
         <a id="btnCallMid" class="btn btn--ghost" href="#" rel="nofollow">Prenota la call gratuita</a>
@@ -122,13 +110,16 @@ u{ text-decoration-thickness:6px; text-underline-offset:6px }
     </div>
   </section>
 
-  <!-- 4) Altre proof (gallery) -->
+  <!-- 4) RISULTATI (tutte le immagini viste nello screen) -->
   <section class="section">
-    <h2>Altre prove</h2>
-    <div class="gallery" aria-label="Altre prove">
-      <img data-src="/assets/img/dash-entrate.png" alt="Entrate e prenotazioni" loading="lazy">
-      <img data-src="/assets/img/dash-qualita.png" alt="Qualità e 5 stelle" loading="lazy">
-      <img data-src="/assets/img/calendario.png" alt="Calendario prenotazioni" loading="lazy">
+    <h2>Risultati</h2>
+    <div class="gallery" aria-label="Risultati">
+      <img data-src="/assets/img/entrate-2025.png"   alt="Entrate 2025" loading="lazy">
+      <img data-src="/assets/img/1-2025.png"         alt="Dettaglio 1 2025" loading="lazy">
+      <img data-src="/assets/img/2-2025.png"         alt="Dettaglio 2 2025" loading="lazy">
+      <img data-src="/assets/img/3-2025.png"         alt="Dettaglio 3 2025" loading="lazy">
+      <img data-src="/assets/img/4-2025.png"         alt="Dettaglio 4 2025" loading="lazy">
+      <img data-src="/assets/img/5-2025.png"         alt="Dettaglio 5 2025" loading="lazy">
     </div>
   </section>
 
@@ -136,8 +127,8 @@ u{ text-decoration-thickness:6px; text-underline-offset:6px }
   <section class="section">
     <div class="card">
       <h2>Come funziona la call</h2>
-      <p><b>1) Analisi lampo</b> — 10′ per capire dove l’annuncio perde visite o conversioni.</p>
-      <p><b>2) Fix prioritari</b> — titolo/cover, prezzi, messaggi: prima ciò che muove i numeri.</p>
+      <p><b>1) Analisi lampo</b> — 10′ per capire dove il tuo annuncio perde visite o conversioni.</p>
+      <p><b>2) Fix prioritari</b> — titolo/cover, prezzi e messaggi: prima ciò che muove i numeri.</p>
       <p><b>3) Processo & KPI</b> — template, routine e controllo: da “speriamo” a “gestiamo”.</p>
       <div style="margin-top:12px">
         <a id="btnCallBottom" class="btn btn--primary" href="#" rel="nofollow">Prenota la call gratuita</a>
@@ -165,13 +156,13 @@ u{ text-decoration-thickness:6px; text-underline-offset:6px }
 
   // ====== FIX IMMAGINI GITHUB PAGES ======
   // Su project pages l'URL è /<repo>/... quindi i path assoluti devono includere il nome repo.
-  // BASE_PATH prende il primo segmento (es. "/checklisterrori").
+  // BASE_PATH prende il primo segmento (es. "/checklisterrori") e lo premette ai data-src.
   (function fixImagesBase(){
     const first = location.pathname.split('/')[1] || '';
     const BASE_PATH = first ? ('/' + first) : '';
     document.querySelectorAll('img[data-src]').forEach(img=>{
-      const rel = img.getAttribute('data-src'); // es. "/assets/img/xxx.png"
-      img.src = BASE_PATH + rel;                // -> "/checklisterrori/assets/img/xxx.png"
+      const rel = img.getAttribute('data-src');      // es. "/assets/img/xxx.png"
+      img.src = BASE_PATH + rel;                     // -> "/checklisterrori/assets/img/xxx.png"
     });
   })();
 
