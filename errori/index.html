@@ -3,9 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Titolo landing — Federica Cellini</title>
+<title>Checklist: 7 errori che ti fanno perdere prenotazioni — Federica Cellini</title>
 <base href="https://federicapropertymanager.github.io/checklisterrori/">
-<meta name="description" content="Guida pratica di Federica Cellini.">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -26,7 +25,6 @@
   .section{padding:46px 0}
   .cta-bar{position:sticky;bottom:0;left:0;right:0;background:#0A2540;border-top:1px solid rgba(255,255,255,.12);padding:14px 0;z-index:40}
 </style>
-
 <!-- Meta Pixel -->
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -40,12 +38,11 @@ fbq('init','1375982357419853'); fbq('track','PageView');
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1375982357419853&ev=PageView&noscript=1"/></noscript>
 </head>
 <body>
-
 <header class="hero">
   <div class="wrap">
     <p class="eyebrow">Scarica ora</p>
-    <h1 id="titleH1">Titolo</h1>
-    <p class="lead" id="leadP">Sottotitolo</p>
+    <h1>Checklist: <span class="hi">7 errori</span> che ti fanno perdere prenotazioni</h1>
+    <p class="lead">Cosa evitare su titolo, foto, prezzi e messaggi per aumentare click e prenotazioni.</p>
     <div class="stack">
       <a id="cta-download" class="btn btn-primary" href="#" target="_blank" rel="noopener">Scarica la guida</a>
       <a id="cta-calendly" class="btn btn-ghost" href="https://calendly.com/federica-cellini88/30min" target="_blank" rel="noopener">Prenota una consulenza gratuita</a>
@@ -67,11 +64,9 @@ fbq('init','1375982357419853'); fbq('track','PageView');
 </div>
 
 <script>
-  /* ===== COSTANTI (personalizza per ogni landing) ===== */
-  const TIPOLOGIA   = "errori"; // cambia in "regole" / "gestione"
-  const DOWNLOAD_URL= "https://drive.google.com/file/d/1aJmnfQn4-Q31_UiskQMJAQ0O11YKpWog/view?usp=sharing"; // link drive specifico
+  const TIPOLOGIA   = "errori";
+  const DOWNLOAD_URL= "https://drive.google.com/file/d/1aJmnfQn4-Q31_UiskQMJAQ0O11YKpWog/view?usp=sharing";
 
-  /* ===== Solo propagazione UTM/LID nei link (nessuna scrittura su Sheet) ===== */
   const q = new URLSearchParams(location.search);
   const utm_source   = q.get('utm_source')   || '';
   const utm_medium   = q.get('utm_medium')   || '';
@@ -89,24 +84,7 @@ fbq('init','1375982357419853'); fbq('track','PageView');
     }catch(e){ return base; }
   }
 
-  // Set CTA download
-  const d=document.getElementById('cta-download');
-  d.href = withParams(DOWNLOAD_URL);
-
-  // (Testi landing – opzionale)
-  if(TIPOLOGIA==='errori'){
-    document.title="Checklist: 7 errori che ti fanno perdere prenotazioni — Federica Cellini";
-    document.getElementById('titleH1').innerHTML='Checklist: <span class="hi">7 errori</span> che ti fanno perdere prenotazioni';
-    document.getElementById('leadP').textContent='Cosa evitare su titolo, foto, prezzi e messaggi per aumentare click e prenotazioni.';
-  }else if(TIPOLOGIA==='regole'){
-    document.title="Le 5 regole che ogni host deve conoscere — Federica Cellini";
-    document.getElementById('titleH1').innerHTML='Le <span class="hi">5 regole</span> che ogni host deve conoscere';
-    document.getElementById('leadP').textContent='Evita sanzioni e problemi: SCIA, tassa di soggiorno, privacy e adempimenti chiave.';
-  }else{
-    document.title="Guida pratica alla gestione degli affitti brevi — Federica Cellini";
-    document.getElementById('titleH1').innerHTML='Guida pratica alla <span class="hi">gestione</span> degli affitti brevi';
-    document.getElementById('leadP').textContent='Processi, prezzi dinamici, messaggi e controllo qualità per risultati stabili.';
-  }
+  document.getElementById('cta-download').href = withParams(DOWNLOAD_URL);
 </script>
 </body>
 </html>
