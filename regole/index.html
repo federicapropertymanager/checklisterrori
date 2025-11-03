@@ -3,120 +3,230 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Guida “Regole & adempimenti” — Federica Cellini</title>
+<title>Checklist “Regole” — Federica Cellini</title>
 <meta name="robots" content="noindex,nofollow" />
 <style>
-/* stessa base stile della pagina Errori */
-:root{--navy:#0A2540;--navy-2:#0e3558;--gold:#D4AF37;--gold-2:#E2BF56;--text:#0f172a;--muted:#475569;--bg:#f7f9fc;--card:#ffffff;--radius:16px}
+:root{
+  --ink:#0b1b2b; --muted:#667085; --bg:#f6f8fb; --card:#ffffff;
+  --line:#e6eef7; --primary:#0a2540; --accent:#d4af37; --r:18px;
+}
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;font-family:Inter,system-ui,Arial,sans-serif;color:var(--text);background:var(--bg)}
-.container{max-width:1080px;margin:0 auto;padding:24px}
-.hero{padding:48px 0 12px}
-h1{font-size:42px;line-height:1.1;margin:0 0 12px}
-h1 .u{ text-decoration:underline; text-decoration-thickness:6px; text-underline-offset:6px }
-.lead{font-size:18px;color:var(--muted);max-width:920px}
-.pill{display:inline-flex;align-items:center;gap:10px;padding:14px 20px;border-radius:999px;font-weight:800;white-space:nowrap}
-.pill--gold{background:var(--gold);color:var(--navy)} .pill--blue{background:var(--navy);color:#fff}
-.pill-row{display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:center;background:var(--navy);padding:16px}
-.pill-row .pill{box-shadow:0 10px 24px rgba(0,0,0,.15)}
-.list{display:grid;gap:14px;margin:28px 0 18px}
-.list .item{background:var(--card);border-radius:14px;padding:16px 18px;box-shadow:0 4px 18px rgba(10,37,64,.08);font-weight:600}
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:16px 0 8px}
-@media (max-width:900px){ .grid-2{grid-template-columns:1fr} }
-.card{background:var(--card);border-radius:18px;padding:14px;box-shadow:0 10px 28px rgba(10,37,64,.10)}
-.proof{display:flex;flex-direction:column;gap:8px}
-.proof img{width:100%;height:auto;display:block;border-radius:14px;border:1px solid #e6eef7;background:#fff}
-.gallery{margin-top:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-@media (max-width:900px){ .gallery{grid-template-columns:1fr 1fr} }
-@media (max-width:560px){ .gallery{grid-template-columns:1fr} }
-.sticky{position:sticky;bottom:0;z-index:50;background:var(--navy);padding:14px 10px;border-top:1px solid rgba(255,255,255,.08)}
-.sticky .cta{max-width:1080px;margin:0 auto;display:flex;justify-content:center}
-.section{margin:26px 0}
-.box{background:var(--card);border-radius:18px;padding:20px;box-shadow:0 10px 28px rgba(10,37,64,.10)}
-.kit{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-@media (max-width:900px){ .kit{grid-template-columns:1fr} }
-.footer{margin:32px 0 40px}
-a.btn{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:14px 20px;font-weight:800;text-decoration:none}
-.btn--gold{background:var(--gold);color:var(--navy)} .btn--blue{background:var(--navy);color:#fff}
+html,body{margin:0;padding:0;font-family:Inter,system-ui,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+.container{max-width:1040px;margin:0 auto;padding:20px}
+.section{margin:28px 0}
+h1{font-size:40px;line-height:1.1;margin:0 0 10px;letter-spacing:-.3px}
+h2{font-size:24px;margin:0 0 12px}
+.lead{font-size:18px;color:var(--muted);max-width:900px;margin:0 0 16px}
+.kicker{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#2d3b4a;margin:0 0 8px;font-weight:700}
+u{ text-decoration-thickness:6px; text-underline-offset:6px }
+
+.hero{padding:4px 0 6px}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px}
+.cta-row .btn{flex:1 1 240px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:14px 22px;font-weight:800;border:2px solid transparent}
+.btn--primary{background:var(--primary);color:#fff;border-color:var(--primary)}
+.btn--accent{background:var(--accent);color:#1a1a1a;border-color:var(--accent)}
+.btn--ghost{background:#fff;color:var(--primary);border-color:var(--primary)}
+.btn:active{transform:translateY(1px)}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px}
+.card p{margin:0 0 10px;color:var(--muted)}
 .center{text-align:center}
+
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:900px){ .grid-2{grid-template-columns:1fr} }
+
+/* Immagini pulite + lightbox */
+.shot{border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 10px 24px rgba(10,37,64,.10)}
+.shot > a{display:block;cursor:zoom-in}
+.shot img{width:100%;height:auto;object-fit:contain}
+.caption{font-size:14px;color:#667085;font-weight:600;margin-top:8px}
+
+/* Primo blocco risultato: single full-width */
+.proof{display:grid;gap:10px}
+
+/* Gallery: desktop 2 colonne, mobile 1 colonna */
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:12px}
+@media (max-width:900px){ .gallery{grid-template-columns:1fr} }
+
+/* Bullet list */
+.bullets{display:grid;gap:10px;margin:12px 0 0}
+.bullets .i{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-weight:600}
+
+/* Sticky CTA */
+.sticky{position:sticky;bottom:0;z-index:50;background:#ffffffcc;backdrop-filter:saturate(1.2) blur(6px);border-top:1px solid var(--line)}
+.sticky__in{max-width:1040px;margin:0 auto;padding:12px;display:flex;gap:12px;justify-content:center}
+
+.footer{margin:26px 0 40px;color:var(--muted);font-size:13px}
+:focus-visible{outline:3px solid #e6c766;outline-offset:2px;border-radius:8px}
+@media (prefers-reduced-motion:reduce){ .btn:active{transform:none} }
+
+/* Lightbox */
+.lb{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;z-index:9999}
+.lb img{max-width:92vw;max-height:92vh;object-fit:contain;box-shadow:0 20px 60px rgba(0,0,0,.5);border-radius:12px}
+.lb[aria-hidden="false"]{display:flex}
 </style>
 </head>
 <body>
-<div class="pill-row">
-  <a id="btnDownloadTop" class="pill pill--gold" href="#" rel="nofollow">📄 Scarica la guida</a>
-  <a id="btnCallTop" class="pill pill--blue" href="#" rel="nofollow">📞 Prenota la call gratuita</a>
-</div>
 
 <div class="container">
+
+  <!-- HERO -->
   <section class="hero">
-    <h1>Le <span class="u">regole</span> che evitano blocchi (e ti tengono “a norma”)</h1>
-    <p class="lead">SCIA, Alloggiati Web, tassa di soggiorno. Con il setup giusto riduci rischi e aumenti la fiducia (e le prenotazioni).</p>
-    <div class="list">
-      <div class="item">Meno rischi → niente sorprese dai portali o blocchi improvvisi.</div>
-      <div class="item">Più fiducia → gli host “a norma” convertono meglio e ottengono più 5★.</div>
-      <div class="item">Processi chiari → sai cosa fare e quando farlo.</div>
+    <p class="kicker">Affitti brevi • Normativa</p>
+    <h1>Le <u>regole</u> che ogni host deve conoscere</h1>
+    <p class="lead">Ti spiego cosa serve davvero per essere in regola: <b>SCIA</b>, <b>tassa di soggiorno</b> e <b>comunicazione ospiti</b> senza burocrazia infinita. Scarica la checklist e, se vuoi, prenota una call gratuita: in 20 minuti verifichiamo la tua situazione.</p>
+    <div class="cta-row">
+      <a id="btnDownloadHero" class="btn btn--accent" href="#" rel="nofollow">Scarica la checklist</a>
+      <a id="btnCallHero" class="btn btn--primary" href="#" rel="nofollow">Prenota la call gratuita</a>
+    </div>
+
+    <div class="bullets">
+      <div class="i">SCIA: quando, dove e come presentarla nel modo giusto.</div>
+      <div class="i">Tassa di soggiorno: chi la versa, scadenze e ricevute.</div>
+      <div class="i">Alloggiati Web: comunicazione ospiti senza errori.</div>
     </div>
   </section>
 
+  <!-- RISULTATO PRINCIPALE -->
   <section class="section">
-    <h2>Effetto conformità (stesso immobile)</h2>
-    <div class="grid-2">
-      <div class="card proof">
-        <img src="../assets/img/confronto-2024.png" alt="Riepilogo 2024">
-        <div class="item">Prima: documenti e processi lacunosi.</div>
+    <h2>Risultati reali (dal mio cruscotto)</h2>
+    <div class="card proof">
+      <div class="shot">
+        <a class="zoom" href="#" aria-label="Apri immagine a schermo intero">
+          <img data-src="/assets/img/riepilogo-2025.png" alt="Riepilogo risultati" loading="lazy" />
+        </a>
       </div>
-      <div class="card proof">
-        <img src="../assets/img/confronto-2025.png" alt="Riepilogo 2025">
-        <div class="item">Dopo: attriti ridotti, più prenotazioni liquide.</div>
-      </div>
-    </div>
-    <div class="gallery">
-      <img src="../assets/img/dash-entrate.png" alt="Entrate in crescita">
-      <img src="../assets/img/dash-qualita.png" alt="Qualità e 5 stelle">
-      <img src="../assets/img/calendario.png" alt="Calendario stabile">
+      <div class="caption">Quando la parte normativa è in ordine, il calendario lavora: meno blocchi, più prenotazioni tracciate.</div>
     </div>
   </section>
 
+  <!-- CHI SONO -->
   <section class="section">
-    <div class="box kit">
-      <div>
-        <h3>Cosa ottieni nella call (30′)</h3>
-        <p>Checklist dei fix “a norma”, priorità operative, e se serve un piano su misura (gestione/avviamento).</p>
-        <div class="center"><a id="btnCallMid" class="btn btn--blue" href="#" rel="nofollow">📞 Prenota la call gratuita</a></div>
-      </div>
-      <div>
-        <h3>Perché questa guida</h3>
-        <p>Se vuoi un annuncio pulito e senza attriti, questa guida ti fa evitare gli errori formali che costano visibilità e conversione.</p>
-        <div class="center"><a id="btnDownloadMid" class="btn btn--gold" href="#" rel="nofollow">📄 Scarica “Regole & adempimenti”</a></div>
+    <div class="card">
+      <h2>Chi sono</h2>
+      <p>Ciao, sono <b>Federica Cellini</b>, Property Manager su Roma e dintorni. Traduco la burocrazia in azioni semplici: niente sigle oscure, solo ciò che serve per essere in regola e non rischiare sanzioni.</p>
+      <p>Condivido modelli e procedure che uso ogni giorno con i proprietari: documenti, scadenze, ricevute e controlli da fare senza perdersi nei portali.</p>
+      <p>Preferisco la chiarezza: ti dico cosa manca, come recuperarlo e come impostare un sistema che regge nel tempo.</p>
+      <div style="margin-top:12px;display:flex;gap:12px;flex-wrap:wrap">
+        <a id="btnDownloadMid" class="btn btn--accent" href="#" rel="nofollow">Scarica la checklist “Regole”</a>
+        <a id="btnCallMid" class="btn btn--ghost" href="#" rel="nofollow">Prenota la call gratuita</a>
       </div>
     </div>
   </section>
 
-  <section class="section center">
-    <a id="btnDownloadBottom" class="btn btn--gold" href="#" rel="nofollow">📄 Scarica “Regole & adempimenti”</a>
+  <!-- ALTRI RISULTATI -->
+  <section class="section">
+    <h2>Altri risultati (schermate reali)</h2>
+    <div class="gallery" aria-label="Risultati">
+      <div class="shot"><a class="zoom" href="#"><img data-src="/assets/img/entrate-2025.png" alt="Entrate 2025" loading="lazy"></a></div>
+      <div class="shot"><a class="zoom" href="#"><img data-src="/assets/img/1-2025.png"       alt="Dettaglio 1 2025" loading="lazy"></a></div>
+      <div class="shot"><a class="zoom" href="#"><img data-src="/assets/img/2-2025.png"       alt="Dettaglio 2 2025" loading="lazy"></a></div>
+      <div class="shot"><a class="zoom" href="#"><img data-src="/assets/img/3-2025.png"       alt="Dettaglio 3 2025" loading="lazy"></a></div>
+      <div class="shot"><a class="zoom" href="#"><img data-src="/assets/img/4-2025.png"       alt="Dettaglio 4 2025" loading="lazy"></a></div>
+      <div class="shot"><a class="zoom" href="#"><img data-src="/assets/img/5-2025.png"       alt="Dettaglio 5 2025" loading="lazy"></a></div>
+    </div>
   </section>
+
+  <!-- COME FUNZIONA LA CALL -->
+  <section class="section">
+    <div class="card">
+      <h2>Come funziona la call</h2>
+      <p><b>1) Check normative</b> — verifichiamo SCIA, tassa di soggiorno e comunicazione ospiti.</p>
+      <p><b>2) Piano operativo</b> — cosa manca, come sistemarlo, scadenze e ricevute.</p>
+      <p><b>3) Procedura semplice</b> — modelli e promemoria per non saltare più un adempimento.</p>
+      <div style="margin-top:12px">
+        <a id="btnCallBottom" class="btn btn--primary" href="#" rel="nofollow">Prenota la call gratuita</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    © <span id="y"></span> Federica Cellini — Tutti i diritti riservati.
+  </footer>
 </div>
 
-<div class="sticky">
-  <div class="cta"><a id="btnCallSticky" class="pill pill--blue" href="#" rel="nofollow">📞 Prenota la call gratuita</a></div>
+<!-- Sticky CTA -->
+<div class="sticky" aria-label="Prenotazione rapida">
+  <div class="sticky__in">
+    <a id="btnCallSticky" class="btn btn--primary" href="#" rel="nofollow">Prenota la call gratuita</a>
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lb" aria-hidden="true" role="dialog" aria-label="Immagine ingrandita">
+  <img id="lbimg" alt="Anteprima ingrandita" />
 </div>
 
 <script>
-  const TIPOLOGIA='regole';
-  const DOWNLOAD_URL='https://drive.google.com/file/d/1zwA16ynAmG-DmSvrIAWULeM-7RgYETOc/view?usp=sharing';
-  const CALENDLY_URL='https://calendly.com/federica-cellini188/30min';
+  // ====== CONFIG ======
+  const TIPOLOGIA = 'regole';
+  const DOWNLOAD_URL = 'https://drive.google.com/file/d/1XgVZ5-F3TlipuoJtBAL8xpcADdl4sXuA/view?usp=sharing';
+  const CALENDLY_URL = 'https://calendly.com/federica-cellini88/30min';
 
-  const q=new URLSearchParams(location.search);
-  const utm_source=q.get('utm_source')||''; const utm_medium=q.get('utm_medium')||''; const utm_campaign=q.get('utm_campaign')||TIPOLOGIA;
+  // Fix path immagini per GitHub Pages
+  (function fixImagesBase(){
+    const first = location.pathname.split('/')[1] || '';
+    const BASE_PATH = first ? ('/' + first) : '';
+    document.querySelectorAll('img[data-src]').forEach(img=>{
+      const rel = img.getAttribute('data-src');
+      img.src = BASE_PATH + rel;
+      const a = img.closest('a.zoom'); if(a){ a.href = img.src; }
+    });
+  })();
 
-  function getLeadId(){ let id=localStorage.getItem('lid'); if(!id){ id='ld_'+(crypto.randomUUID?crypto.randomUUID():Math.random().toString(16).slice(2)); localStorage.setItem('lid',id);} return id; }
-  const lid=getLeadId();
+  // UTM & LID
+  const q = new URLSearchParams(location.search);
+  const utm_source   = q.get('utm_source')   || '';
+  const utm_medium   = q.get('utm_medium')   || '';
+  const utm_campaign = q.get('utm_campaign') || TIPOLOGIA;
 
-  function withParams(url){ const u=new URL(url); if(utm_source)u.searchParams.set('utm_source',utm_source); if(utm_medium)u.searchParams.set('utm_medium',utm_medium); if(utm_campaign)u.searchParams.set('utm_campaign',utm_campaign); u.searchParams.set('lid',lid); return u.toString(); }
+  function getLeadId(){
+    let id = localStorage.getItem('lid');
+    if(!id){ id = 'ld_' + (crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(16).slice(2)); localStorage.setItem('lid', id); }
+    return id;
+  }
+  const lid = getLeadId();
 
-  ['btnDownloadTop','btnDownloadMid','btnDownloadBottom'].forEach(id=>{ const el=document.getElementById(id); if(el) el.href=withParams(DOWNLOAD_URL); });
-  ['btnCallTop','btnCallMid','btnCallSticky'].forEach(id=>{ const el=document.getElementById(id); if(el) el.href=withParams(CALENDLY_URL); });
-  document.querySelectorAll('a[href*="calendly.com"], a[href*="drive.google.com"]').forEach(a=>{ try{ a.href=withParams(a.href);}catch(_){}} );
+  function withParams(url){
+    const u = new URL(url);
+    if(utm_source)   u.searchParams.set('utm_source', utm_source);
+    if(utm_medium)   u.searchParams.set('utm_medium', utm_medium);
+    if(utm_campaign) u.searchParams.set('utm_campaign', utm_campaign);
+    u.searchParams.set('lid', lid);
+    return u.toString();
+  }
+
+  // CTA links
+  ['btnDownloadHero','btnDownloadMid'].forEach(id=>{
+    const el=document.getElementById(id); if(el) el.href = withParams(DOWNLOAD_URL);
+  });
+  ['btnCallHero','btnCallMid','btnCallBottom','btnCallSticky'].forEach(id=>{
+    const el=document.getElementById(id); if(el) el.href = withParams(CALENDLY_URL);
+  });
+
+  // Propaga UTM su link esterni
+  document.querySelectorAll('a[href*="calendly.com"], a[href*="drive.google.com"]').forEach(a=>{
+    try{ a.href = withParams(a.href); }catch(_){}
+  });
+
+  document.getElementById('y').textContent = new Date().getFullYear();
+
+  // Lightbox
+  const lb = document.getElementById('lightbox');
+  const lbimg = document.getElementById('lbimg');
+  document.querySelectorAll('a.zoom').forEach(a=>{
+    a.addEventListener('click', e=>{
+      e.preventDefault();
+      lbimg.src = a.href;
+      lb.setAttribute('aria-hidden','false');
+    });
+  });
+  lb.addEventListener('click', ()=> lb.setAttribute('aria-hidden','true'));
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape') lb.setAttribute('aria-hidden','true'); });
 </script>
 </body>
 </html>
