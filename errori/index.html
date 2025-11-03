@@ -7,7 +7,7 @@
 <meta name="description" content="Evita gli errori più comuni su titolo, foto, prezzi e messaggi. Scarica la checklist e, se vuoi, prenota una call gratuita.">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{ --navy:#0A2540; --az:#3A7CA5; --gold:#D4AF37; --bg:#FFFFFF; --muted:#F5F7FA; --ink:#0A2540; --radius:16px }
+:root{ --navy:#0A2540; --az:#3A7CA5; --gold:#D4AF37; --muted:#F5F7FA; --ink:#0A2540; --radius:16px }
 *{box-sizing:border-box} html,body{margin:0;background:#fff;color:#13202E;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
 a{color:var(--az);text-decoration:none} img{max-width:100%;display:block;height:auto}
 .wrap{max-width:1100px;margin:0 auto;padding:0 18px}
@@ -67,7 +67,7 @@ h2{font-size:clamp(24px,4.2vw,36px);line-height:1.15;color:#0A2540;margin:0 0 14
       <div class="pill">Messaggi preimpostati → risposta rapida, fiducia, conversioni.</div>
     </div>
 
-    <!-- Confronto sotto al testo -->
+    <!-- CONFRONTO SOTTO IL TESTO -->
     <div class="compare">
       <div class="card">
         <div class="frame"><img src="../assets/img/entrate-2025.png" alt="Riepilogo dall'inizio dell'anno" loading="lazy"></div>
@@ -79,7 +79,7 @@ h2{font-size:clamp(24px,4.2vw,36px);line-height:1.15;color:#0A2540;margin:0 0 14
       </div>
     </div>
 
-    <!-- Prove -->
+    <!-- PROVE (sotto il confronto) -->
     <div class="proof">
       <div class="card"><div class="frame"><img src="../assets/img/1-2025.png" alt="Prova 1" loading="lazy"></div></div>
       <div class="card"><div class="frame"><img src="../assets/img/2-2025.png" alt="Prova 2" loading="lazy"></div></div>
@@ -117,7 +117,6 @@ h2{font-size:clamp(24px,4.2vw,36px);line-height:1.15;color:#0A2540;margin:0 0 14
   </div>
 </div>
 
-<!-- ===== JS: link + UTM + aperture ===== -->
 <script>
 const DOWNLOAD_URL = "https://drive.google.com/file/d/1aJmnfQn4-Q31_UiskQMJAQ0O11YKpWog/view?usp=sharing";
 const CALENDLY_URL = "https://calendly.com/federica-cellini88/30min";
@@ -138,14 +137,12 @@ function withParams(base){
     return u.toString();
   }catch(e){ return base; }
 }
-
 function openNew(href){ window.open(withParams(href),'_blank'); }
 
 document.getElementById('cta-download').addEventListener('click', e=>{ e.preventDefault(); openNew(DOWNLOAD_URL); });
 ['cta-calendly','cta-calendly-2','cta-calendly-sticky'].forEach(id=>{
   const el=document.getElementById(id); if(el) el.addEventListener('click', e=>{ e.preventDefault(); openNew(CALENDLY_URL); });
 });
-
 document.addEventListener('DOMContentLoaded', ()=>{
   document.querySelectorAll('a[href*="calendly.com"],a[href*="drive.google.com"]').forEach(a=>{
     try{ a.href = withParams(a.href); }catch(e){}
