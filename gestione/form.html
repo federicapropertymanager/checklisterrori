@@ -15,8 +15,8 @@
     label{display:block;font-size:14px;font-weight:600;margin:14px 0 6px}
     input,select{width:100%;padding:12px 14px;border:1px solid #e6e6e6;border-radius:12px;font-size:15px;background:#fff;outline:none}
     input:focus,select:focus{border-color:#cbd5e1;box-shadow:0 0 0 3px rgba(58,124,165,.12)}
-    button{width:100%;margin-top:10px;padding:14px;border:0;border-radius:12px;cursor:pointer;background:var(--gold);color:var(--navy);font-weight:800;font-size:16px;transition:background .15s ease,transform .02s ease}
-    button:hover{background:var(--gold-2)} button:active{transform:translateY(1px)}
+    button{width:100%;margin-top:10px;padding:14px;border:0;border-radius:12px;cursor:pointer;background:#D4AF37;color:#0A2540;font-weight:800;font-size:16px;transition:background .15s ease,transform .02s ease}
+    button:hover{background:#E2BF56} button:active{transform:translateY(1px)}
     .success{display:none;margin-top:14px;padding:12px;border-radius:12px;text-align:center;background:#e8f7ef;color:#0a6b2b;font-weight:600;font-size:14px}
     .err{color:#b00020;font-size:13px;margin-top:6px;display:none}
     noscript{display:block;color:#b00020;text-align:center;margin-top:12px}
@@ -66,10 +66,10 @@
   </div>
 
   <script>
-    /* ===== COSTANTI DEDICATE (cambia qui per ciascun file) ===== */
+    /* ===== COSTANTI (Gestione) ===== */
     const ENDPOINT = "https://script.google.com/macros/s/AKfycbysELmr4ZOvglHJfEplkkO0E8mW1oDfZUbhkQ2mzHo0vJp4f0npo50SNz8NLGwL-SwZNA/exec";
-    const REDIRECT = "https://federicapropertymanager.github.io/checklisterrori/errori/"; // <-- cambia per regole/gestione
-    const TIPOLOGIA = "errori"; // <-- cambia per regole/gestione
+    const REDIRECT = "https://federicapropertymanager.github.io/checklisterrori/gestione/";
+    const TIPOLOGIA = "gestione";
 
     /* ===== UTM & Lead ID ===== */
     const q = new URLSearchParams(location.search);
