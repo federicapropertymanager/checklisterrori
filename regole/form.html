@@ -8,29 +8,30 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{ --navy:#0A2540; --gold:#D4AF37; --muted:#6b7280; --bg:#FAFAFA; --radius:14px; }
-*{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:#101828}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:#101828}
 .container{max-width:560px;margin:64px auto;background:#fff;padding:28px;border-radius:var(--radius);box-shadow:0 6px 24px rgba(10,37,64,.08)}
 h1{margin:0 0 8px;font-size:26px;font-weight:800;color:var(--navy);text-align:center}
 p.lead{margin:0 0 22px;color:var(--muted);font-size:15px;text-align:center}
 label{display:block;font-size:14px;font-weight:600;margin:14px 0 6px}
 input,select{width:100%;padding:12px 14px;border:1px solid #e6e6e6;border-radius:12px;font-size:15px;background:#fff;outline:none}
 input:focus,select:focus{border-color:#cbd5e1;box-shadow:0 0 0 3px rgba(58,124,165,.12)}
-button{width:100%;margin-top:12px;padding:14px;border:0;border-radius:12px;cursor:pointer;background:var(--gold);color:#0A2540;font-weight:800;font-size:16px}
+button{width:100%;margin-top:16px;padding:14px;border:0;border-radius:12px;cursor:pointer;background:var(--gold);color:#0A2540;font-weight:800;font-size:16px}
+button:disabled{opacity:.6;cursor:not-allowed}
 .success{display:none;margin-top:12px;padding:12px;border-radius:12px;text-align:center;background:#e8f7ef;color:#0a6b2b;font-weight:600;font-size:14px}
 .err{display:none;color:#b00020;font-size:13px;margin-top:8px}
-/* Consensi */
-.check{display:flex;align-items:flex-start;gap:8px;margin:10px 0;color:#374151;font-size:13px;line-height:1.35}
-.check input{margin-top:2px;transform:scale(1.05)}
-.check a{color:#0A2540;text-decoration:underline;font-weight:700}
-.check.opt{color:#6b7280}
-.footer-legal{margin-top:14px;font-size:12px;color:#6b7280}
-.footer-legal a{color:#0A2540;text-decoration:underline}
+.consent{display:flex;align-items:flex-start;gap:10px;margin-top:10px}
+.consent input[type="checkbox"]{margin-top:3px;min-width:18px;width:18px;height:18px;cursor:pointer}
+.consent label{margin:0;font-weight:500;color:#334155;line-height:1.45}
+.consent a{color:#0A2540;text-decoration:underline;text-underline-offset:2px}
+.meta{margin-top:10px;color:#94a3b8;font-size:12px;text-align:left}
+.meta a{color:inherit;text-decoration:underline;text-underline-offset:2px}
 </style>
 </head>
 <body>
 <div class="container">
   <h1>Scarica la checklist</h1>
-  <p class="lead">Compila i campi e vieni reindirizzato alla guida “Regole”.</p>
+  <p class="lead">Compila i campi e vieni reindirizzato alla guida “Regole essenziali”.</p>
 
   <form id="leadForm" novalidate>
     <label for="name">Nome</label>
@@ -50,20 +51,18 @@ button{width:100%;margin-top:12px;padding:14px;border:0;border-radius:12px;curso
       <option>Gestisco per altri</option>
     </select>
 
-    <!-- Consensi -->
-    <label class="check">
-      <input id="consent_privacy" type="checkbox" required>
-      <span>Ho letto l’<a href="https://federicapropertymanager.github.io/checklisterrori/privacy.html" target="_blank" rel="noopener">Informativa Privacy</a> e acconsento al trattamento dei dati per essere ricontattat*.</span>
-    </label>
-    <label class="check opt">
-      <input id="consent_marketing" type="checkbox">
-      <span>Desidero ricevere consigli e aggiornamenti (facoltativo).</span>
-    </label>
-    <p class="footer-legal">Titolare: Federica Cellini · <a href="https://federicapropertymanager.github.io/checklisterrori/privacy.html" target="_blank" rel="noopener">Privacy</a></p>
+    <div class="consent">
+      <input id="consent" type="checkbox" required>
+      <label for="consent">
+        Dichiaro di aver letto l’<a href="https://federicapropertymanager.github.io/checklisterrori/privacy.html" target="_blank" rel="noopener noreferrer">Informativa Privacy</a> e acconsento al trattamento dei dati per essere ricontattat*.
+      </label>
+    </div>
 
-    <button id="submitBtn" type="submit">Invia e apri la guida</button>
+    <button id="submitBtn" type="submit">Invia e scarica la checklist “Regole”</button>
     <div id="successMsg" class="success">Dati inviati! Reindirizzamento…</div>
     <div id="errMsg" class="err"></div>
+
+    <div class="meta">Titolare: Federica Cellini — <a href="https://federicapropertymanager.github.io/checklisterrori/privacy.html" target="_blank" rel="noopener noreferrer">Privacy</a></div>
   </form>
 </div>
 
@@ -94,11 +93,12 @@ document.getElementById("leadForm").addEventListener("submit", (e)=>{
   const Email= document.getElementById("email").value.trim();
   const Tel  = document.getElementById("phone").value.trim();
   const Sit  = document.getElementById("situazione").value;
-  const consentPrivacy = document.getElementById('consent_privacy').checked;
-  const consentMarketing = document.getElementById('consent_marketing').checked;
+  const Consenso = document.getElementById("consent").checked;
 
-  if(!Nome || !isEmail(Email) || !Tel || !Sit){ err.textContent="Compila correttamente tutti i campi."; err.style.display="block"; return; }
-  if(!consentPrivacy){ err.textContent="Devi accettare l’Informativa Privacy per proseguire."; err.style.display="block"; return; }
+  if(!Nome || !isEmail(Email) || !Tel || !Sit || !Consenso){
+    err.textContent="Compila correttamente tutti i campi e accetta l’informativa privacy.";
+    err.style.display="block"; return;
+  }
 
   btn.disabled=true; btn.textContent="Invio…";
   const lead_id=getLeadId();
@@ -107,9 +107,8 @@ document.getElementById("leadForm").addEventListener("submit", (e)=>{
     Tipologia: TIPOLOGIA, Prenotato: "No",
     Provenienza: PROVENIENZA,
     utm_source, utm_medium, utm_campaign,
-    consent_privacy: consentPrivacy ? "yes" : "no",
-    consent_marketing: consentMarketing ? "yes" : "no",
-    lead_id, ts:new Date().toISOString(), userAgent: navigator.userAgent
+    lead_id, ts:new Date().toISOString(), userAgent: navigator.userAgent,
+    ConsensoPrivacy: "SI"
   };
   const qs=new URLSearchParams(payload).toString();
   const redirect = REDIRECT + (location.search ? location.search+'&' : '?') + 'lid='+encodeURIComponent(lead_id);
@@ -120,7 +119,7 @@ document.getElementById("leadForm").addEventListener("submit", (e)=>{
       .finally(()=>{ ok.style.display="block"; setTimeout(()=>location.href=redirect,200); });
   }catch{
     err.textContent="Errore di rete. Riprova."; err.style.display="block";
-    btn.disabled=false; btn.textContent="Invia e apri la guida";
+    btn.disabled=false; btn.textContent="Invia e scarica la checklist “Regole”";
   }
 });
 </script>
